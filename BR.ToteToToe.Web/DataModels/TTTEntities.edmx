@@ -1,0 +1,2282 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="tttModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="tttModelStoreContainer">
+          <EntitySet Name="lnkcollectionmodel" EntityType="tttModel.Store.lnkcollectionmodel" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkcolourpriority" EntityType="tttModel.Store.lnkcolourpriority" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkcustomizemodelimage" EntityType="tttModel.Store.lnkcustomizemodelimage" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkmodelcolourdesc" EntityType="tttModel.Store.lnkmodelcolourdesc" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkmodelimage" EntityType="tttModel.Store.lnkmodelimage" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkmodellifestyle" EntityType="tttModel.Store.lnkmodellifestyle" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkmodelsize" EntityType="tttModel.Store.lnkmodelsize" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkmodeltrend" EntityType="tttModel.Store.lnkmodeltrend" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnksalesorder" EntityType="tttModel.Store.lnksalesorder" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnksoaddress" EntityType="tttModel.Store.lnksoaddress" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnktrendpriority" EntityType="tttModel.Store.lnktrendpriority" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="lnkwishlist" EntityType="tttModel.Store.lnkwishlist" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="logpayment" EntityType="tttModel.Store.logpayment" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refbrand" EntityType="tttModel.Store.refbrand" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refcategory" EntityType="tttModel.Store.refcategory" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refcollection" EntityType="tttModel.Store.refcollection" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refcolour" EntityType="tttModel.Store.refcolour" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refcolourdesc" EntityType="tttModel.Store.refcolourdesc" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refcountry" EntityType="tttModel.Store.refcountry" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refcustomizemodel" EntityType="tttModel.Store.refcustomizemodel" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="reflifestyle" EntityType="tttModel.Store.reflifestyle" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refmodel" EntityType="tttModel.Store.refmodel" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="refstatus" EntityType="tttModel.Store.refstatus" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="reftrend" EntityType="tttModel.Store.reftrend" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="tblaccess" EntityType="tttModel.Store.tblaccess" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="tbladdress" EntityType="tttModel.Store.tbladdress" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="tblrecentview" EntityType="tttModel.Store.tblrecentview" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="tblvoucher" EntityType="tttModel.Store.tblvoucher" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="trnsalesorder" EntityType="tttModel.Store.trnsalesorder" store:Type="Tables" Schema="ttt" />
+          <EntitySet Name="trnwishlist" EntityType="tttModel.Store.trnwishlist" store:Type="Tables" Schema="ttt" />
+          <AssociationSet Name="fk_address_access" Association="tttModel.Store.fk_address_access">
+            <End Role="tblaccess" EntitySet="tblaccess" />
+            <End Role="tbladdress" EntitySet="tbladdress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_country" Association="tttModel.Store.fk_address_country">
+            <End Role="refcountry" EntitySet="refcountry" />
+            <End Role="tbladdress" EntitySet="tbladdress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_brand_category" Association="tttModel.Store.fk_brand_category">
+            <End Role="refcategory" EntitySet="refcategory" />
+            <End Role="refbrand" EntitySet="refbrand" />
+          </AssociationSet>
+          <AssociationSet Name="fk_collectionmode_model" Association="tttModel.Store.fk_collectionmode_model">
+            <End Role="refmodel" EntitySet="refmodel" />
+            <End Role="lnkcollectionmodel" EntitySet="lnkcollectionmodel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_collectionmodel_collection" Association="tttModel.Store.fk_collectionmodel_collection">
+            <End Role="refcollection" EntitySet="refcollection" />
+            <End Role="lnkcollectionmodel" EntitySet="lnkcollectionmodel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_colourdesc_colour" Association="tttModel.Store.fk_colourdesc_colour">
+            <End Role="refcolour" EntitySet="refcolour" />
+            <End Role="refcolourdesc" EntitySet="refcolourdesc" />
+          </AssociationSet>
+          <AssociationSet Name="fk_colourpriority_colour" Association="tttModel.Store.fk_colourpriority_colour">
+            <End Role="refcolour" EntitySet="refcolour" />
+            <End Role="lnkcolourpriority" EntitySet="lnkcolourpriority" />
+          </AssociationSet>
+          <AssociationSet Name="fk_lso_country" Association="tttModel.Store.fk_lso_country">
+            <End Role="refcountry" EntitySet="refcountry" />
+            <End Role="lnksoaddress" EntitySet="lnksoaddress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_lso_so" Association="tttModel.Store.fk_lso_so">
+            <End Role="trnsalesorder" EntitySet="trnsalesorder" />
+            <End Role="lnksoaddress" EntitySet="lnksoaddress" />
+          </AssociationSet>
+          <AssociationSet Name="fk_model_brand" Association="tttModel.Store.fk_model_brand">
+            <End Role="refbrand" EntitySet="refbrand" />
+            <End Role="refmodel" EntitySet="refmodel" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modelimage_modelcolourdesc" Association="tttModel.Store.fk_modelimage_modelcolourdesc">
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdesc" />
+            <End Role="lnkmodelimage" EntitySet="lnkmodelimage" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modellifestyle_lifestyle" Association="tttModel.Store.fk_modellifestyle_lifestyle">
+            <End Role="reflifestyle" EntitySet="reflifestyle" />
+            <End Role="lnkmodellifestyle" EntitySet="lnkmodellifestyle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modellifestyle_model" Association="tttModel.Store.fk_modellifestyle_model">
+            <End Role="refmodel" EntitySet="refmodel" />
+            <End Role="lnkmodellifestyle" EntitySet="lnkmodellifestyle" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modeltrend_model" Association="tttModel.Store.fk_modeltrend_model">
+            <End Role="refmodel" EntitySet="refmodel" />
+            <End Role="lnkmodeltrend" EntitySet="lnkmodeltrend" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modeltrend_trend" Association="tttModel.Store.fk_modeltrend_trend">
+            <End Role="reftrend" EntitySet="reftrend" />
+            <End Role="lnkmodeltrend" EntitySet="lnkmodeltrend" />
+          </AssociationSet>
+          <AssociationSet Name="fk_so_status" Association="tttModel.Store.fk_so_status">
+            <End Role="refstatus" EntitySet="refstatus" />
+            <End Role="trnsalesorder" EntitySet="trnsalesorder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_so_voucher" Association="tttModel.Store.fk_so_voucher">
+            <End Role="tblvoucher" EntitySet="tblvoucher" />
+            <End Role="trnsalesorder" EntitySet="trnsalesorder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_soitem_modelsize" Association="tttModel.Store.fk_soitem_modelsize">
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsize" />
+            <End Role="lnksalesorder" EntitySet="lnksalesorder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_soitem_soid" Association="tttModel.Store.fk_soitem_soid">
+            <End Role="trnsalesorder" EntitySet="trnsalesorder" />
+            <End Role="lnksalesorder" EntitySet="lnksalesorder" />
+          </AssociationSet>
+          <AssociationSet Name="fk_trendpriority_trend" Association="tttModel.Store.fk_trendpriority_trend">
+            <End Role="reftrend" EntitySet="reftrend" />
+            <End Role="lnktrendpriority" EntitySet="lnktrendpriority" />
+          </AssociationSet>
+          <AssociationSet Name="kf_modelsize_colourdesc" Association="tttModel.Store.kf_modelsize_colourdesc">
+            <End Role="refcolourdesc" EntitySet="refcolourdesc" />
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsize" />
+          </AssociationSet>
+          <AssociationSet Name="kf_modelsize_model" Association="tttModel.Store.kf_modelsize_model">
+            <End Role="refmodel" EntitySet="refmodel" />
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsize" />
+          </AssociationSet>
+          <AssociationSet Name="modelcolourdesc_colourdesc" Association="tttModel.Store.modelcolourdesc_colourdesc">
+            <End Role="refcolourdesc" EntitySet="refcolourdesc" />
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdesc" />
+          </AssociationSet>
+          <AssociationSet Name="modelcolourdesc_model" Association="tttModel.Store.modelcolourdesc_model">
+            <End Role="refmodel" EntitySet="refmodel" />
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdesc" />
+          </AssociationSet>
+          <AssociationSet Name="wishlistitem_modelcolour" Association="tttModel.Store.wishlistitem_modelcolour">
+            <End Role="refcolourdesc" EntitySet="refcolourdesc" />
+            <End Role="lnkwishlist" EntitySet="lnkwishlist" />
+          </AssociationSet>
+          <AssociationSet Name="wishlistitem_modelsize" Association="tttModel.Store.wishlistitem_modelsize">
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsize" />
+            <End Role="lnkwishlist" EntitySet="lnkwishlist" />
+          </AssociationSet>
+          <AssociationSet Name="wishlistitem_wishlist" Association="tttModel.Store.wishlistitem_wishlist">
+            <End Role="trnwishlist" EntitySet="trnwishlist" />
+            <End Role="lnkwishlist" EntitySet="lnkwishlist" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="lnkcollectionmodel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CollectionID" Type="int" Nullable="false" />
+          <Property Name="ModelID" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkcolourpriority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ColourID" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkcustomizemodelimage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CustomizeModelID" Type="int" Nullable="false" />
+          <Property Name="Colour" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="SKU" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="HeelHeight" Type="int" Nullable="false" />
+          <Property Name="MainImage" Type="varchar" MaxLength="45" />
+          <Property Name="SubImage" Type="varchar" MaxLength="45" />
+          <Property Name="Priority" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkmodelcolourdesc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModelID" Type="int" Nullable="false" />
+          <Property Name="ColourDescID" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="MainImage" Type="varchar" MaxLength="45" />
+          <Property Name="SubImage" Type="varchar" MaxLength="45" />
+          <Property Name="SKU" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="HeelHeight" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkmodelimage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModelColourDescID" Type="int" Nullable="false" />
+          <Property Name="Image" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Thumbnail" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkmodellifestyle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModelID" Type="int" Nullable="false" />
+          <Property Name="LifeStyleID" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="ColourDescID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkmodelsize">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModelID" Type="int" Nullable="false" />
+          <Property Name="ColourDescID" Type="int" Nullable="false" />
+          <Property Name="Size" Type="varchar" Nullable="false" MaxLength="5" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkmodeltrend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ModelID" Type="int" Nullable="false" />
+          <Property Name="TrendID" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="ColourDescID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnksalesorder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SalesOrderID" Type="int" />
+          <Property Name="ModelSizeID" Type="int" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="SKU" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Size" Type="varchar" MaxLength="5" />
+          <Property Name="CookieID" Type="varchar" MaxLength="200" />
+          <Property Name="UnitPrice" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="lnksoaddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="SalesOrderID" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="200" />
+          <Property Name="LastName" Type="varchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="AddressLine1" Type="varchar" MaxLength="200" />
+          <Property Name="AddressLine2" Type="varchar" MaxLength="200" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityTown" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="200" />
+          <Property Name="Postcode" Type="varchar" MaxLength="20" />
+          <Property Name="IsBilling" Type="bit" Nullable="false" />
+          <Property Name="IsShipping" Type="bit" Nullable="false" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="ChooseAddress" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnktrendpriority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="TrendID" Type="int" Nullable="false" />
+          <Property Name="Sequence" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnkwishlist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="WishlistID" Type="int" Nullable="false" />
+          <Property Name="ColourDescID" Type="int" />
+          <Property Name="ModelSizeID" Type="int" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="SKU" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Size" Type="varchar" MaxLength="5" />
+        </EntityType>
+        <EntityType Name="logpayment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="MerchantCode" Type="varchar" MaxLength="20" />
+          <Property Name="PaymentId" Type="int" />
+          <Property Name="RefNo" Type="varchar" MaxLength="20" />
+          <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="Currency" Type="varchar" MaxLength="5" />
+          <Property Name="Remark" Type="varchar" MaxLength="100" />
+          <Property Name="TransId" Type="varchar" MaxLength="30" />
+          <Property Name="AuthCode" Type="varchar" MaxLength="20" />
+          <Property Name="Status" Type="varchar" MaxLength="1" />
+          <Property Name="ErrDesc" Type="varchar" MaxLength="100" />
+          <Property Name="Signature" Type="varchar" MaxLength="100" />
+          <Property Name="RequestReferrerUrl" Type="varchar" MaxLength="150" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refbrand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CategoryID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="20" />
+          <Property Name="Image" Type="varchar" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refcollection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refcolour">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refcolourdesc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ColourID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refcountry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Code" Type="varchar" MaxLength="10" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+        </EntityType>
+        <EntityType Name="refcustomizemodel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Style" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="varchar" Nullable="false" />
+          <Property Name="MainImage" Type="varchar" MaxLength="45" />
+          <Property Name="SubImage" Type="varchar" MaxLength="45" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reflifestyle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refmodel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="BrandID" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="varchar" Nullable="false" MaxLength="10" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="4000" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="HeelHeight" Type="int" Nullable="false" />
+          <Property Name="MainImage" Type="varchar" MaxLength="45" />
+          <Property Name="SubImage" Type="varchar" MaxLength="45" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="DiscountPrice" Type="decimal" Precision="11" Scale="2" />
+        </EntityType>
+        <EntityType Name="refstatus">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="reftrend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblaccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="50" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="FacebookAccessToken" Type="varchar" />
+          <Property Name="FacebookID" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="200" />
+          <Property Name="LastName" Type="varchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="20" />
+          <Property Name="Gender" Type="varchar" MaxLength="10" />
+          <Property Name="BirthDateDay" Type="varchar" MaxLength="2" />
+          <Property Name="BirthDateMonth" Type="varchar" MaxLength="2" />
+          <Property Name="BirthDateYear" Type="varchar" MaxLength="4" />
+        </EntityType>
+        <EntityType Name="tbladdress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AccessID" Type="int" Nullable="false" />
+          <Property Name="AddressLine1" Type="varchar" MaxLength="200" />
+          <Property Name="AddressLine2" Type="varchar" MaxLength="200" />
+          <Property Name="CountryID" Type="int" />
+          <Property Name="CityTown" Type="varchar" MaxLength="200" />
+          <Property Name="State" Type="varchar" MaxLength="200" />
+          <Property Name="Postcode" Type="varchar" MaxLength="20" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="IsPrimary" Type="bit" Nullable="false" />
+          <Property Name="IsBilling" Type="bit" Nullable="false" />
+          <Property Name="IsShipping" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblrecentview">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="CookieID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ImageUrl" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="LinkUrl" Type="varchar" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tblvoucher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Type" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Code" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Value" Type="int" Nullable="false" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trnsalesorder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="StatusID" Type="int" Nullable="false" />
+          <Property Name="PaymentID" Type="int" />
+          <Property Name="Receipient" Type="varchar" MaxLength="200" />
+          <Property Name="AddressLine1" Type="varchar" MaxLength="250" />
+          <Property Name="AddressLine2" Type="varchar" MaxLength="250" />
+          <Property Name="State" Type="varchar" MaxLength="100" />
+          <Property Name="Postcode" Type="varchar" MaxLength="10" />
+          <Property Name="Contact" Type="varchar" MaxLength="15" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="DeliveryDT" Type="datetime" />
+          <Property Name="SubTotal" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="GrandTotal" Type="decimal" Nullable="false" Precision="11" Scale="2" />
+          <Property Name="VoucheID" Type="int" />
+          <Property Name="Remarks" Type="varchar" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="PaymentGatewayTransID" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="trnwishlist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateDT" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDT" Type="datetime" />
+          <Property Name="Active" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_address_access">
+          <End Role="tblaccess" Type="tttModel.Store.tblaccess" Multiplicity="1" />
+          <End Role="tbladdress" Type="tttModel.Store.tbladdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblaccess">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbladdress">
+              <PropertyRef Name="AccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_country">
+          <End Role="refcountry" Type="tttModel.Store.refcountry" Multiplicity="0..1" />
+          <End Role="tbladdress" Type="tttModel.Store.tbladdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcountry">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbladdress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_brand_category">
+          <End Role="refcategory" Type="tttModel.Store.refcategory" Multiplicity="1" />
+          <End Role="refbrand" Type="tttModel.Store.refbrand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refbrand">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_collectionmode_model">
+          <End Role="refmodel" Type="tttModel.Store.refmodel" Multiplicity="1" />
+          <End Role="lnkcollectionmodel" Type="tttModel.Store.lnkcollectionmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkcollectionmodel">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_collectionmodel_collection">
+          <End Role="refcollection" Type="tttModel.Store.refcollection" Multiplicity="1" />
+          <End Role="lnkcollectionmodel" Type="tttModel.Store.lnkcollectionmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcollection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkcollectionmodel">
+              <PropertyRef Name="CollectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_colourdesc_colour">
+          <End Role="refcolour" Type="tttModel.Store.refcolour" Multiplicity="1" />
+          <End Role="refcolourdesc" Type="tttModel.Store.refcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refcolourdesc">
+              <PropertyRef Name="ColourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_colourpriority_colour">
+          <End Role="refcolour" Type="tttModel.Store.refcolour" Multiplicity="1" />
+          <End Role="lnkcolourpriority" Type="tttModel.Store.lnkcolourpriority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkcolourpriority">
+              <PropertyRef Name="ColourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_lso_country">
+          <End Role="refcountry" Type="tttModel.Store.refcountry" Multiplicity="0..1" />
+          <End Role="lnksoaddress" Type="tttModel.Store.lnksoaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcountry">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksoaddress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_lso_so">
+          <End Role="trnsalesorder" Type="tttModel.Store.trnsalesorder" Multiplicity="1" />
+          <End Role="lnksoaddress" Type="tttModel.Store.lnksoaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trnsalesorder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksoaddress">
+              <PropertyRef Name="SalesOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_model_brand">
+          <End Role="refbrand" Type="tttModel.Store.refbrand" Multiplicity="1" />
+          <End Role="refmodel" Type="tttModel.Store.refmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refbrand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refmodel">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modelimage_modelcolourdesc">
+          <End Role="lnkmodelcolourdesc" Type="tttModel.Store.lnkmodelcolourdesc" Multiplicity="1" />
+          <End Role="lnkmodelimage" Type="tttModel.Store.lnkmodelimage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelimage">
+              <PropertyRef Name="ModelColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modellifestyle_lifestyle">
+          <End Role="reflifestyle" Type="tttModel.Store.reflifestyle" Multiplicity="1" />
+          <End Role="lnkmodellifestyle" Type="tttModel.Store.lnkmodellifestyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reflifestyle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodellifestyle">
+              <PropertyRef Name="LifeStyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modellifestyle_model">
+          <End Role="refmodel" Type="tttModel.Store.refmodel" Multiplicity="1" />
+          <End Role="lnkmodellifestyle" Type="tttModel.Store.lnkmodellifestyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodellifestyle">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modeltrend_model">
+          <End Role="refmodel" Type="tttModel.Store.refmodel" Multiplicity="1" />
+          <End Role="lnkmodeltrend" Type="tttModel.Store.lnkmodeltrend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodeltrend">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modeltrend_trend">
+          <End Role="reftrend" Type="tttModel.Store.reftrend" Multiplicity="1" />
+          <End Role="lnkmodeltrend" Type="tttModel.Store.lnkmodeltrend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reftrend">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodeltrend">
+              <PropertyRef Name="TrendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_so_status">
+          <End Role="refstatus" Type="tttModel.Store.refstatus" Multiplicity="1" />
+          <End Role="trnsalesorder" Type="tttModel.Store.trnsalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refstatus">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="trnsalesorder">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_so_voucher">
+          <End Role="tblvoucher" Type="tttModel.Store.tblvoucher" Multiplicity="0..1" />
+          <End Role="trnsalesorder" Type="tttModel.Store.trnsalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblvoucher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="trnsalesorder">
+              <PropertyRef Name="VoucheID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_soitem_modelsize">
+          <End Role="lnkmodelsize" Type="tttModel.Store.lnkmodelsize" Multiplicity="0..1" />
+          <End Role="lnksalesorder" Type="tttModel.Store.lnksalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelsize">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksalesorder">
+              <PropertyRef Name="ModelSizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_soitem_soid">
+          <End Role="trnsalesorder" Type="tttModel.Store.trnsalesorder" Multiplicity="0..1" />
+          <End Role="lnksalesorder" Type="tttModel.Store.lnksalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trnsalesorder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksalesorder">
+              <PropertyRef Name="SalesOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_trendpriority_trend">
+          <End Role="reftrend" Type="tttModel.Store.reftrend" Multiplicity="1" />
+          <End Role="lnktrendpriority" Type="tttModel.Store.lnktrendpriority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reftrend">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnktrendpriority">
+              <PropertyRef Name="TrendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kf_modelsize_colourdesc">
+          <End Role="refcolourdesc" Type="tttModel.Store.refcolourdesc" Multiplicity="1" />
+          <End Role="lnkmodelsize" Type="tttModel.Store.lnkmodelsize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelsize">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kf_modelsize_model">
+          <End Role="refmodel" Type="tttModel.Store.refmodel" Multiplicity="1" />
+          <End Role="lnkmodelsize" Type="tttModel.Store.lnkmodelsize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelsize">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="modelcolourdesc_colourdesc">
+          <End Role="refcolourdesc" Type="tttModel.Store.refcolourdesc" Multiplicity="1" />
+          <End Role="lnkmodelcolourdesc" Type="tttModel.Store.lnkmodelcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="modelcolourdesc_model">
+          <End Role="refmodel" Type="tttModel.Store.refmodel" Multiplicity="1" />
+          <End Role="lnkmodelcolourdesc" Type="tttModel.Store.lnkmodelcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wishlistitem_modelcolour">
+          <End Role="refcolourdesc" Type="tttModel.Store.refcolourdesc" Multiplicity="0..1" />
+          <End Role="lnkwishlist" Type="tttModel.Store.lnkwishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkwishlist">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wishlistitem_modelsize">
+          <End Role="lnkmodelsize" Type="tttModel.Store.lnkmodelsize" Multiplicity="0..1" />
+          <End Role="lnkwishlist" Type="tttModel.Store.lnkwishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelsize">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkwishlist">
+              <PropertyRef Name="ModelSizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wishlistitem_wishlist">
+          <End Role="trnwishlist" Type="tttModel.Store.trnwishlist" Multiplicity="1" />
+          <End Role="lnkwishlist" Type="tttModel.Store.lnkwishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trnwishlist">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkwishlist">
+              <PropertyRef Name="WishlistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tttModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="TTTEntities" p1:LazyLoadingEnabled="true">
+          <EntitySet Name="lnkcollectionmodels" EntityType="tttModel.lnkcollectionmodel" />
+          <EntitySet Name="lnkcolourpriorities" EntityType="tttModel.lnkcolourpriority" />
+          <EntitySet Name="lnktrendpriorities" EntityType="tttModel.lnktrendpriority" />
+          <EntitySet Name="refbrands" EntityType="tttModel.refbrand" />
+          <EntitySet Name="refcategories" EntityType="tttModel.refcategory" />
+          <EntitySet Name="refcollections" EntityType="tttModel.refcollection" />
+          <EntitySet Name="refcolours" EntityType="tttModel.refcolour" />
+          <EntitySet Name="refcolourdescs" EntityType="tttModel.refcolourdesc" />
+          <EntitySet Name="reflifestyles" EntityType="tttModel.reflifestyle" />
+          <EntitySet Name="reftrends" EntityType="tttModel.reftrend" />
+          <EntitySet Name="tblvouchers" EntityType="tttModel.tblvoucher" />
+          <AssociationSet Name="fk_collectionmodel_collection" Association="tttModel.fk_collectionmodel_collection">
+            <End Role="refcollection" EntitySet="refcollections" />
+            <End Role="lnkcollectionmodel" EntitySet="lnkcollectionmodels" />
+          </AssociationSet>
+          <AssociationSet Name="fk_colourpriority_colour" Association="tttModel.fk_colourpriority_colour">
+            <End Role="refcolour" EntitySet="refcolours" />
+            <End Role="lnkcolourpriority" EntitySet="lnkcolourpriorities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_trendpriority_trend" Association="tttModel.fk_trendpriority_trend">
+            <End Role="reftrend" EntitySet="reftrends" />
+            <End Role="lnktrendpriority" EntitySet="lnktrendpriorities" />
+          </AssociationSet>
+          <AssociationSet Name="fk_brand_category" Association="tttModel.fk_brand_category">
+            <End Role="refcategory" EntitySet="refcategories" />
+            <End Role="refbrand" EntitySet="refbrands" />
+          </AssociationSet>
+          <AssociationSet Name="fk_colourdesc_colour" Association="tttModel.fk_colourdesc_colour">
+            <End Role="refcolour" EntitySet="refcolours" />
+            <End Role="refcolourdesc" EntitySet="refcolourdescs" />
+          </AssociationSet>
+          <EntitySet Name="trnwishlists" EntityType="tttModel.trnwishlist" />
+          <EntitySet Name="lnkmodelsizes" EntityType="tttModel.lnkmodelsize" />
+          <AssociationSet Name="kf_modelsize_colourdesc" Association="tttModel.kf_modelsize_colourdesc">
+            <End Role="refcolourdesc" EntitySet="refcolourdescs" />
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsizes" />
+          </AssociationSet>
+          <EntitySet Name="lnkmodelimages" EntityType="tttModel.lnkmodelimage" />
+          <EntitySet Name="refstatus" EntityType="tttModel.refstatu" />
+          <EntitySet Name="refcountries" EntityType="tttModel.refcountry" />
+          <EntitySet Name="tblaccesses" EntityType="tttModel.tblaccess" />
+          <EntitySet Name="tbladdresses" EntityType="tttModel.tbladdress" />
+          <AssociationSet Name="fk_address_country" Association="tttModel.fk_address_country">
+            <End Role="refcountry" EntitySet="refcountries" />
+            <End Role="tbladdress" EntitySet="tbladdresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_address_access" Association="tttModel.fk_address_access">
+            <End Role="tblaccess" EntitySet="tblaccesses" />
+            <End Role="tbladdress" EntitySet="tbladdresses" />
+          </AssociationSet>
+          <EntitySet Name="lnkwishlists" EntityType="tttModel.lnkwishlist" />
+          <AssociationSet Name="wishlistitem_modelsize" Association="tttModel.wishlistitem_modelsize">
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsizes" />
+            <End Role="lnkwishlist" EntitySet="lnkwishlists" />
+          </AssociationSet>
+          <AssociationSet Name="wishlistitem_modelcolour" Association="tttModel.wishlistitem_modelcolour">
+            <End Role="refcolourdesc" EntitySet="refcolourdescs" />
+            <End Role="lnkwishlist" EntitySet="lnkwishlists" />
+          </AssociationSet>
+          <AssociationSet Name="wishlistitem_wishlist" Association="tttModel.wishlistitem_wishlist">
+            <End Role="trnwishlist" EntitySet="trnwishlists" />
+            <End Role="lnkwishlist" EntitySet="lnkwishlists" />
+          </AssociationSet>
+          <EntitySet Name="lnkcustomizemodelimages" EntityType="tttModel.lnkcustomizemodelimage" />
+          <EntitySet Name="refcustomizemodels" EntityType="tttModel.refcustomizemodel" />
+          <EntitySet Name="lnksoaddresses" EntityType="tttModel.lnksoaddress" />
+          <AssociationSet Name="fk_lso_country" Association="tttModel.fk_lso_country">
+            <End Role="refcountry" EntitySet="refcountries" />
+            <End Role="lnksoaddress" EntitySet="lnksoaddresses" />
+          </AssociationSet>
+          <EntitySet Name="tblrecentviews" EntityType="tttModel.tblrecentview" />
+          <EntitySet Name="trnsalesorders" EntityType="tttModel.trnsalesorder" />
+          <AssociationSet Name="fk_lso_so" Association="tttModel.fk_lso_so">
+            <End Role="trnsalesorder" EntitySet="trnsalesorders" />
+            <End Role="lnksoaddress" EntitySet="lnksoaddresses" />
+          </AssociationSet>
+          <AssociationSet Name="fk_so_status" Association="tttModel.fk_so_status">
+            <End Role="refstatu" EntitySet="refstatus" />
+            <End Role="trnsalesorder" EntitySet="trnsalesorders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_so_voucher" Association="tttModel.fk_so_voucher">
+            <End Role="tblvoucher" EntitySet="tblvouchers" />
+            <End Role="trnsalesorder" EntitySet="trnsalesorders" />
+          </AssociationSet>
+          <EntitySet Name="lnksalesorders" EntityType="tttModel.lnksalesorder" />
+          <AssociationSet Name="fk_soitem_modelsize" Association="tttModel.fk_soitem_modelsize">
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsizes" />
+            <End Role="lnksalesorder" EntitySet="lnksalesorders" />
+          </AssociationSet>
+          <AssociationSet Name="fk_soitem_soid" Association="tttModel.fk_soitem_soid">
+            <End Role="trnsalesorder" EntitySet="trnsalesorders" />
+            <End Role="lnksalesorder" EntitySet="lnksalesorders" />
+          </AssociationSet>
+          <EntitySet Name="lnkmodelcolourdescs" EntityType="tttModel.lnkmodelcolourdesc" />
+          <AssociationSet Name="fk_modelimage_modelcolourdesc" Association="tttModel.fk_modelimage_modelcolourdesc">
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
+            <End Role="lnkmodelimage" EntitySet="lnkmodelimages" />
+          </AssociationSet>
+          <AssociationSet Name="modelcolourdesc_colourdesc" Association="tttModel.modelcolourdesc_colourdesc">
+            <End Role="refcolourdesc" EntitySet="refcolourdescs" />
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
+          </AssociationSet>
+          <EntitySet Name="logpayments" EntityType="tttModel.logpayment" />
+          <EntitySet Name="refmodels" EntityType="tttModel.refmodel" />
+          <AssociationSet Name="fk_collectionmode_model" Association="tttModel.fk_collectionmode_model">
+            <End Role="refmodel" EntitySet="refmodels" />
+            <End Role="lnkcollectionmodel" EntitySet="lnkcollectionmodels" />
+          </AssociationSet>
+          <AssociationSet Name="modelcolourdesc_model" Association="tttModel.modelcolourdesc_model">
+            <End Role="refmodel" EntitySet="refmodels" />
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
+          </AssociationSet>
+          <AssociationSet Name="kf_modelsize_model" Association="tttModel.kf_modelsize_model">
+            <End Role="refmodel" EntitySet="refmodels" />
+            <End Role="lnkmodelsize" EntitySet="lnkmodelsizes" />
+          </AssociationSet>
+          <AssociationSet Name="fk_model_brand" Association="tttModel.fk_model_brand">
+            <End Role="refbrand" EntitySet="refbrands" />
+            <End Role="refmodel" EntitySet="refmodels" />
+          </AssociationSet>
+          <EntitySet Name="lnkmodellifestyles" EntityType="tttModel.lnkmodellifestyle" />
+          <EntitySet Name="lnkmodeltrends" EntityType="tttModel.lnkmodeltrend" />
+          <AssociationSet Name="fk_modellifestyle_lifestyle" Association="tttModel.fk_modellifestyle_lifestyle">
+            <End Role="reflifestyle" EntitySet="reflifestyles" />
+            <End Role="lnkmodellifestyle" EntitySet="lnkmodellifestyles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modellifestyle_model" Association="tttModel.fk_modellifestyle_model">
+            <End Role="refmodel" EntitySet="refmodels" />
+            <End Role="lnkmodellifestyle" EntitySet="lnkmodellifestyles" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modeltrend_model" Association="tttModel.fk_modeltrend_model">
+            <End Role="refmodel" EntitySet="refmodels" />
+            <End Role="lnkmodeltrend" EntitySet="lnkmodeltrends" />
+          </AssociationSet>
+          <AssociationSet Name="fk_modeltrend_trend" Association="tttModel.fk_modeltrend_trend">
+            <End Role="reftrend" EntitySet="reftrends" />
+            <End Role="lnkmodeltrend" EntitySet="lnkmodeltrends" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="lnkcollectionmodel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CollectionID" Nullable="false" />
+          <Property Type="Int32" Name="ModelID" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="refcollection" Relationship="tttModel.fk_collectionmodel_collection" FromRole="lnkcollectionmodel" ToRole="refcollection" />
+          <NavigationProperty Name="refmodel" Relationship="tttModel.fk_collectionmode_model" FromRole="lnkcollectionmodel" ToRole="refmodel" />
+        </EntityType>
+        <EntityType Name="lnkcolourpriority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ColourID" Nullable="false" />
+          <Property Type="Int32" Name="Sequence" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="refcolour" Relationship="tttModel.fk_colourpriority_colour" FromRole="lnkcolourpriority" ToRole="refcolour" />
+        </EntityType>
+        <EntityType Name="lnktrendpriority">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="TrendID" Nullable="false" />
+          <Property Type="Int32" Name="Sequence" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="reftrend" Relationship="tttModel.fk_trendpriority_trend" FromRole="lnktrendpriority" ToRole="reftrend" />
+        </EntityType>
+        <EntityType Name="refbrand">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CategoryID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="refcategory" Relationship="tttModel.fk_brand_category" FromRole="refbrand" ToRole="refcategory" />
+          <NavigationProperty Name="refmodels" Relationship="tttModel.fk_model_brand" FromRole="refbrand" ToRole="refmodel" />
+        </EntityType>
+        <EntityType Name="refcategory">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Image" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="refbrands" Relationship="tttModel.fk_brand_category" FromRole="refcategory" ToRole="refbrand" />
+        </EntityType>
+        <EntityType Name="refcollection">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="lnkcollectionmodels" Relationship="tttModel.fk_collectionmodel_collection" FromRole="refcollection" ToRole="lnkcollectionmodel" />
+        </EntityType>
+        <EntityType Name="refcolour">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="lnkcolourpriorities" Relationship="tttModel.fk_colourpriority_colour" FromRole="refcolour" ToRole="lnkcolourpriority" />
+          <NavigationProperty Name="refcolourdescs" Relationship="tttModel.fk_colourdesc_colour" FromRole="refcolour" ToRole="refcolourdesc" />
+        </EntityType>
+        <EntityType Name="refcolourdesc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ColourID" Nullable="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="refcolour" Relationship="tttModel.fk_colourdesc_colour" FromRole="refcolourdesc" ToRole="refcolour" />
+          <NavigationProperty Name="lnkmodelsizes" Relationship="tttModel.kf_modelsize_colourdesc" FromRole="refcolourdesc" ToRole="lnkmodelsize" />
+          <NavigationProperty Name="lnkwishlists" Relationship="tttModel.wishlistitem_modelcolour" FromRole="refcolourdesc" ToRole="lnkwishlist" />
+          <NavigationProperty Name="lnkmodelcolourdescs" Relationship="tttModel.modelcolourdesc_colourdesc" FromRole="refcolourdesc" ToRole="lnkmodelcolourdesc" />
+        </EntityType>
+        <EntityType Name="reflifestyle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="lnkmodellifestyles" Relationship="tttModel.fk_modellifestyle_lifestyle" FromRole="reflifestyle" ToRole="lnkmodellifestyle" />
+        </EntityType>
+        <EntityType Name="reftrend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="lnktrendpriorities" Relationship="tttModel.fk_trendpriority_trend" FromRole="reftrend" ToRole="lnktrendpriority" />
+          <NavigationProperty Name="lnkmodeltrends" Relationship="tttModel.fk_modeltrend_trend" FromRole="reftrend" ToRole="lnkmodeltrend" />
+        </EntityType>
+        <EntityType Name="tblvoucher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Code" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Value" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="trnsalesorders" Relationship="tttModel.fk_so_voucher" FromRole="tblvoucher" ToRole="trnsalesorder" />
+        </EntityType>
+        <Association Name="fk_collectionmodel_collection">
+          <End Type="tttModel.refcollection" Role="refcollection" Multiplicity="1" />
+          <End Type="tttModel.lnkcollectionmodel" Role="lnkcollectionmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcollection">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkcollectionmodel">
+              <PropertyRef Name="CollectionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_colourpriority_colour">
+          <End Type="tttModel.refcolour" Role="refcolour" Multiplicity="1" />
+          <End Type="tttModel.lnkcolourpriority" Role="lnkcolourpriority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkcolourpriority">
+              <PropertyRef Name="ColourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_trendpriority_trend">
+          <End Type="tttModel.reftrend" Role="reftrend" Multiplicity="1" />
+          <End Type="tttModel.lnktrendpriority" Role="lnktrendpriority" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reftrend">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnktrendpriority">
+              <PropertyRef Name="TrendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_brand_category">
+          <End Type="tttModel.refcategory" Role="refcategory" Multiplicity="1" />
+          <End Type="tttModel.refbrand" Role="refbrand" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcategory">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refbrand">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_colourdesc_colour">
+          <End Type="tttModel.refcolour" Role="refcolour" Multiplicity="1" />
+          <End Type="tttModel.refcolourdesc" Role="refcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolour">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refcolourdesc">
+              <PropertyRef Name="ColourID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="trnwishlist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="lnkwishlists" Relationship="tttModel.wishlistitem_wishlist" FromRole="trnwishlist" ToRole="lnkwishlist" />
+        </EntityType>
+        <EntityType Name="lnkmodelsize">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModelID" Nullable="false" />
+          <Property Type="Int32" Name="ColourDescID" Nullable="false" />
+          <Property Type="String" Name="Size" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="refcolourdesc" Relationship="tttModel.kf_modelsize_colourdesc" FromRole="lnkmodelsize" ToRole="refcolourdesc" />
+          <NavigationProperty Name="lnkwishlists" Relationship="tttModel.wishlistitem_modelsize" FromRole="lnkmodelsize" ToRole="lnkwishlist" />
+          <NavigationProperty Name="lnksalesorders" Relationship="tttModel.fk_soitem_modelsize" FromRole="lnkmodelsize" ToRole="lnksalesorder" />
+          <NavigationProperty Name="refmodel" Relationship="tttModel.kf_modelsize_model" FromRole="lnkmodelsize" ToRole="refmodel" />
+        </EntityType>
+        <Association Name="kf_modelsize_colourdesc">
+          <End Type="tttModel.refcolourdesc" Role="refcolourdesc" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelsize" Role="lnkmodelsize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelsize">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnkmodelimage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModelColourDescID" Nullable="false" />
+          <Property Type="String" Name="Image" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Thumbnail" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="lnkmodelcolourdesc" Relationship="tttModel.fk_modelimage_modelcolourdesc" FromRole="lnkmodelimage" ToRole="lnkmodelcolourdesc" />
+        </EntityType>
+        <EntityType Name="refstatu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <NavigationProperty Name="trnsalesorders" Relationship="tttModel.fk_so_status" FromRole="refstatu" ToRole="trnsalesorder" />
+        </EntityType>
+        <EntityType Name="refcountry">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Code" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <NavigationProperty Name="tbladdresses" Relationship="tttModel.fk_address_country" FromRole="refcountry" ToRole="tbladdress" />
+          <NavigationProperty Name="lnksoaddresses" Relationship="tttModel.fk_lso_country" FromRole="refcountry" ToRole="lnksoaddress" />
+        </EntityType>
+        <EntityType Name="tblaccess">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Email" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Password" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsAdmin" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="FacebookAccessToken" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FacebookID" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="FirstName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Gender" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BirthDateDay" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BirthDateMonth" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="BirthDateYear" MaxLength="4" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbladdresses" Relationship="tttModel.fk_address_access" FromRole="tblaccess" ToRole="tbladdress" />
+        </EntityType>
+        <EntityType Name="tbladdress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="AccessID" Nullable="false" />
+          <Property Type="String" Name="AddressLine1" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddressLine2" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CountryID" />
+          <Property Type="String" Name="CityTown" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Postcode" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <NavigationProperty Name="refcountry" Relationship="tttModel.fk_address_country" FromRole="tbladdress" ToRole="refcountry" />
+          <NavigationProperty Name="tblaccess" Relationship="tttModel.fk_address_access" FromRole="tbladdress" ToRole="tblaccess" />
+          <Property Type="Boolean" Name="IsPrimary" Nullable="false" />
+          <Property Type="Boolean" Name="IsBilling" Nullable="false" />
+          <Property Type="Boolean" Name="IsShipping" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_address_country">
+          <End Type="tttModel.refcountry" Role="refcountry" Multiplicity="0..1" />
+          <End Type="tttModel.tbladdress" Role="tbladdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcountry">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbladdress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_address_access">
+          <End Type="tttModel.tblaccess" Role="tblaccess" Multiplicity="1" />
+          <End Type="tttModel.tbladdress" Role="tbladdress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblaccess">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="tbladdress">
+              <PropertyRef Name="AccessID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnkwishlist">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="WishlistID" Nullable="false" />
+          <Property Type="Int32" Name="ColourDescID" />
+          <Property Type="Int32" Name="ModelSizeID" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Size" MaxLength="5" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="lnkmodelsize" Relationship="tttModel.wishlistitem_modelsize" FromRole="lnkwishlist" ToRole="lnkmodelsize" />
+          <NavigationProperty Name="refcolourdesc" Relationship="tttModel.wishlistitem_modelcolour" FromRole="lnkwishlist" ToRole="refcolourdesc" />
+          <NavigationProperty Name="trnwishlist" Relationship="tttModel.wishlistitem_wishlist" FromRole="lnkwishlist" ToRole="trnwishlist" />
+        </EntityType>
+        <Association Name="wishlistitem_modelsize">
+          <End Type="tttModel.lnkmodelsize" Role="lnkmodelsize" Multiplicity="0..1" />
+          <End Type="tttModel.lnkwishlist" Role="lnkwishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelsize">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkwishlist">
+              <PropertyRef Name="ModelSizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wishlistitem_modelcolour">
+          <End Type="tttModel.refcolourdesc" Role="refcolourdesc" Multiplicity="0..1" />
+          <End Type="tttModel.lnkwishlist" Role="lnkwishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkwishlist">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="wishlistitem_wishlist">
+          <End Type="tttModel.trnwishlist" Role="trnwishlist" Multiplicity="1" />
+          <End Type="tttModel.lnkwishlist" Role="lnkwishlist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trnwishlist">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkwishlist">
+              <PropertyRef Name="WishlistID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnkcustomizemodelimage">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="CustomizeModelID" Nullable="false" />
+          <Property Type="String" Name="Colour" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="HeelHeight" Nullable="false" />
+          <Property Type="String" Name="MainImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="Priority" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refcustomizemodel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Style" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Type" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="MainImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+        </EntityType>
+        <EntityType Name="lnksoaddress">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SalesOrderID" Nullable="false" />
+          <Property Type="String" Name="FirstName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LastName" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Phone" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddressLine1" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddressLine2" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="CountryID" />
+          <Property Type="String" Name="CityTown" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Postcode" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="IsBilling" Nullable="false" />
+          <Property Type="Boolean" Name="IsShipping" Nullable="false" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <NavigationProperty Name="refcountry" Relationship="tttModel.fk_lso_country" FromRole="lnksoaddress" ToRole="refcountry" />
+          <Property Type="Int32" Name="ChooseAddress" Nullable="false" />
+          <NavigationProperty Name="trnsalesorder" Relationship="tttModel.fk_lso_so" FromRole="lnksoaddress" ToRole="trnsalesorder" />
+        </EntityType>
+        <Association Name="fk_lso_country">
+          <End Type="tttModel.refcountry" Role="refcountry" Multiplicity="0..1" />
+          <End Type="tttModel.lnksoaddress" Role="lnksoaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcountry">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksoaddress">
+              <PropertyRef Name="CountryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="tblrecentview">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="CookieID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ImageUrl" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LinkUrl" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+        </EntityType>
+        <EntityType Name="trnsalesorder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="StatusID" Nullable="false" />
+          <Property Type="Int32" Name="PaymentID" />
+          <Property Type="String" Name="Receipient" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddressLine1" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AddressLine2" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="State" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Postcode" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Contact" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Email" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="DeliveryDT" />
+          <Property Type="Decimal" Name="SubTotal" Nullable="false" />
+          <Property Type="Decimal" Name="GrandTotal" Nullable="false" />
+          <Property Type="Int32" Name="VoucheID" />
+          <Property Type="String" Name="Remarks" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <NavigationProperty Name="lnksoaddresses" Relationship="tttModel.fk_lso_so" FromRole="trnsalesorder" ToRole="lnksoaddress" />
+          <NavigationProperty Name="refstatu" Relationship="tttModel.fk_so_status" FromRole="trnsalesorder" ToRole="refstatu" />
+          <NavigationProperty Name="tblvoucher" Relationship="tttModel.fk_so_voucher" FromRole="trnsalesorder" ToRole="tblvoucher" />
+          <NavigationProperty Name="lnksalesorders" Relationship="tttModel.fk_soitem_soid" FromRole="trnsalesorder" ToRole="lnksalesorder" />
+          <Property Type="String" Name="PaymentGatewayTransID" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="fk_lso_so">
+          <End Type="tttModel.trnsalesorder" Role="trnsalesorder" Multiplicity="1" />
+          <End Type="tttModel.lnksoaddress" Role="lnksoaddress" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trnsalesorder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksoaddress">
+              <PropertyRef Name="SalesOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_so_status">
+          <End Type="tttModel.refstatu" Role="refstatu" Multiplicity="1" />
+          <End Type="tttModel.trnsalesorder" Role="trnsalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refstatu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="trnsalesorder">
+              <PropertyRef Name="StatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_so_voucher">
+          <End Type="tttModel.tblvoucher" Role="tblvoucher" Multiplicity="0..1" />
+          <End Type="tttModel.trnsalesorder" Role="trnsalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblvoucher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="trnsalesorder">
+              <PropertyRef Name="VoucheID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnksalesorder">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="SalesOrderID" />
+          <Property Type="Int32" Name="ModelSizeID" />
+          <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Size" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CookieID" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="UnitPrice" Nullable="false" />
+          <NavigationProperty Name="lnkmodelsize" Relationship="tttModel.fk_soitem_modelsize" FromRole="lnksalesorder" ToRole="lnkmodelsize" />
+          <NavigationProperty Name="trnsalesorder" Relationship="tttModel.fk_soitem_soid" FromRole="lnksalesorder" ToRole="trnsalesorder" />
+        </EntityType>
+        <Association Name="fk_soitem_modelsize">
+          <End Type="tttModel.lnkmodelsize" Role="lnkmodelsize" Multiplicity="0..1" />
+          <End Type="tttModel.lnksalesorder" Role="lnksalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelsize">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksalesorder">
+              <PropertyRef Name="ModelSizeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_soitem_soid">
+          <End Type="tttModel.trnsalesorder" Role="trnsalesorder" Multiplicity="0..1" />
+          <End Type="tttModel.lnksalesorder" Role="lnksalesorder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="trnsalesorder">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnksalesorder">
+              <PropertyRef Name="SalesOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnkmodelcolourdesc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModelID" Nullable="false" />
+          <Property Type="Int32" Name="ColourDescID" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="MainImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="HeelHeight" Nullable="false" />
+          <NavigationProperty Name="lnkmodelimages" Relationship="tttModel.fk_modelimage_modelcolourdesc" FromRole="lnkmodelcolourdesc" ToRole="lnkmodelimage" />
+          <NavigationProperty Name="refcolourdesc" Relationship="tttModel.modelcolourdesc_colourdesc" FromRole="lnkmodelcolourdesc" ToRole="refcolourdesc" />
+          <NavigationProperty Name="refmodel" Relationship="tttModel.modelcolourdesc_model" FromRole="lnkmodelcolourdesc" ToRole="refmodel" />
+        </EntityType>
+        <Association Name="fk_modelimage_modelcolourdesc">
+          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelimage" Role="lnkmodelimage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelimage">
+              <PropertyRef Name="ModelColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="modelcolourdesc_colourdesc">
+          <End Type="tttModel.refcolourdesc" Role="refcolourdesc" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="logpayment">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="MerchantCode" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="PaymentId" />
+          <Property Type="String" Name="RefNo" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Amount" />
+          <Property Type="String" Name="Currency" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Remark" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="TransId" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="AuthCode" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Status" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ErrDesc" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Signature" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RequestReferrerUrl" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+        </EntityType>
+        <EntityType Name="refmodel">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="BrandID" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="Price" Nullable="false" />
+          <Property Type="Int32" Name="HeelHeight" Nullable="false" />
+          <Property Type="String" Name="MainImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Decimal" Name="DiscountPrice" />
+          <NavigationProperty Name="lnkcollectionmodels" Relationship="tttModel.fk_collectionmode_model" FromRole="refmodel" ToRole="lnkcollectionmodel" />
+          <NavigationProperty Name="lnkmodelcolourdescs" Relationship="tttModel.modelcolourdesc_model" FromRole="refmodel" ToRole="lnkmodelcolourdesc" />
+          <NavigationProperty Name="lnkmodelsizes" Relationship="tttModel.kf_modelsize_model" FromRole="refmodel" ToRole="lnkmodelsize" />
+          <NavigationProperty Name="refbrand" Relationship="tttModel.fk_model_brand" FromRole="refmodel" ToRole="refbrand" />
+          <NavigationProperty Name="lnkmodellifestyles" Relationship="tttModel.fk_modellifestyle_model" FromRole="refmodel" ToRole="lnkmodellifestyle" />
+          <NavigationProperty Name="lnkmodeltrends" Relationship="tttModel.fk_modeltrend_model" FromRole="refmodel" ToRole="lnkmodeltrend" />
+        </EntityType>
+        <Association Name="fk_collectionmode_model">
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
+          <End Type="tttModel.lnkcollectionmodel" Role="lnkcollectionmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkcollectionmodel">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="modelcolourdesc_model">
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="kf_modelsize_model">
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelsize" Role="lnkmodelsize" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelsize">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_model_brand">
+          <End Type="tttModel.refbrand" Role="refbrand" Multiplicity="1" />
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refbrand">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="refmodel">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnkmodellifestyle">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModelID" Nullable="false" />
+          <Property Type="Int32" Name="LifeStyleID" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Int32" Name="ColourDescID" Nullable="false" />
+          <NavigationProperty Name="reflifestyle" Relationship="tttModel.fk_modellifestyle_lifestyle" FromRole="lnkmodellifestyle" ToRole="reflifestyle" />
+          <NavigationProperty Name="refmodel" Relationship="tttModel.fk_modellifestyle_model" FromRole="lnkmodellifestyle" ToRole="refmodel" />
+        </EntityType>
+        <EntityType Name="lnkmodeltrend">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModelID" Nullable="false" />
+          <Property Type="Int32" Name="TrendID" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="Int32" Name="ColourDescID" Nullable="false" />
+          <NavigationProperty Name="refmodel" Relationship="tttModel.fk_modeltrend_model" FromRole="lnkmodeltrend" ToRole="refmodel" />
+          <NavigationProperty Name="reftrend" Relationship="tttModel.fk_modeltrend_trend" FromRole="lnkmodeltrend" ToRole="reftrend" />
+        </EntityType>
+        <Association Name="fk_modellifestyle_lifestyle">
+          <End Type="tttModel.reflifestyle" Role="reflifestyle" Multiplicity="1" />
+          <End Type="tttModel.lnkmodellifestyle" Role="lnkmodellifestyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reflifestyle">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodellifestyle">
+              <PropertyRef Name="LifeStyleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modellifestyle_model">
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
+          <End Type="tttModel.lnkmodellifestyle" Role="lnkmodellifestyle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodellifestyle">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modeltrend_model">
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
+          <End Type="tttModel.lnkmodeltrend" Role="lnkmodeltrend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodeltrend">
+              <PropertyRef Name="ModelID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_modeltrend_trend">
+          <End Type="tttModel.reftrend" Role="reftrend" Multiplicity="1" />
+          <End Type="tttModel.lnkmodeltrend" Role="lnkmodeltrend" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="reftrend">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodeltrend">
+              <PropertyRef Name="TrendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tttModelStoreContainer" CdmEntityContainer="TTTEntities">
+          <EntitySetMapping Name="lnkcollectionmodels">
+            <EntityTypeMapping TypeName="tttModel.lnkcollectionmodel">
+              <MappingFragment StoreEntitySet="lnkcollectionmodel">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="CollectionID" ColumnName="CollectionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkcolourpriorities">
+            <EntityTypeMapping TypeName="tttModel.lnkcolourpriority">
+              <MappingFragment StoreEntitySet="lnkcolourpriority">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="ColourID" ColumnName="ColourID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnktrendpriorities">
+            <EntityTypeMapping TypeName="tttModel.lnktrendpriority">
+              <MappingFragment StoreEntitySet="lnktrendpriority">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Sequence" ColumnName="Sequence" />
+                <ScalarProperty Name="TrendID" ColumnName="TrendID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refbrands">
+            <EntityTypeMapping TypeName="tttModel.refbrand">
+              <MappingFragment StoreEntitySet="refbrand">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refcategories">
+            <EntityTypeMapping TypeName="tttModel.refcategory">
+              <MappingFragment StoreEntitySet="refcategory">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refcollections">
+            <EntityTypeMapping TypeName="tttModel.refcollection">
+              <MappingFragment StoreEntitySet="refcollection">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refcolours">
+            <EntityTypeMapping TypeName="tttModel.refcolour">
+              <MappingFragment StoreEntitySet="refcolour">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refcolourdescs">
+            <EntityTypeMapping TypeName="tttModel.refcolourdesc">
+              <MappingFragment StoreEntitySet="refcolourdesc">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ColourID" ColumnName="ColourID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reflifestyles">
+            <EntityTypeMapping TypeName="tttModel.reflifestyle">
+              <MappingFragment StoreEntitySet="reflifestyle">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="reftrends">
+            <EntityTypeMapping TypeName="tttModel.reftrend">
+              <MappingFragment StoreEntitySet="reftrend">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblvouchers">
+            <EntityTypeMapping TypeName="tttModel.tblvoucher">
+              <MappingFragment StoreEntitySet="tblvoucher">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trnwishlists">
+            <EntityTypeMapping TypeName="tttModel.trnwishlist">
+              <MappingFragment StoreEntitySet="trnwishlist">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkmodelsizes">
+            <EntityTypeMapping TypeName="tttModel.lnkmodelsize">
+              <MappingFragment StoreEntitySet="lnkmodelsize">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkmodelimages">
+            <EntityTypeMapping TypeName="tttModel.lnkmodelimage">
+              <MappingFragment StoreEntitySet="lnkmodelimage">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Thumbnail" ColumnName="Thumbnail" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+                <ScalarProperty Name="ModelColourDescID" ColumnName="ModelColourDescID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refstatus">
+            <EntityTypeMapping TypeName="tttModel.refstatu">
+              <MappingFragment StoreEntitySet="refstatus">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refcountries">
+            <EntityTypeMapping TypeName="tttModel.refcountry">
+              <MappingFragment StoreEntitySet="refcountry">
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblaccesses">
+            <EntityTypeMapping TypeName="tttModel.tblaccess">
+              <MappingFragment StoreEntitySet="tblaccess">
+                <ScalarProperty Name="BirthDateYear" ColumnName="BirthDateYear" />
+                <ScalarProperty Name="BirthDateMonth" ColumnName="BirthDateMonth" />
+                <ScalarProperty Name="BirthDateDay" ColumnName="BirthDateDay" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="FacebookID" ColumnName="FacebookID" />
+                <ScalarProperty Name="FacebookAccessToken" ColumnName="FacebookAccessToken" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbladdresses">
+            <EntityTypeMapping TypeName="tttModel.tbladdress">
+              <MappingFragment StoreEntitySet="tbladdress">
+                <ScalarProperty Name="IsShipping" ColumnName="IsShipping" />
+                <ScalarProperty Name="IsBilling" ColumnName="IsBilling" />
+                <ScalarProperty Name="IsPrimary" ColumnName="IsPrimary" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CityTown" ColumnName="CityTown" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="AccessID" ColumnName="AccessID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkwishlists">
+            <EntityTypeMapping TypeName="tttModel.lnkwishlist">
+              <MappingFragment StoreEntitySet="lnkwishlist">
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="ModelSizeID" ColumnName="ModelSizeID" />
+                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
+                <ScalarProperty Name="WishlistID" ColumnName="WishlistID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkcustomizemodelimages">
+            <EntityTypeMapping TypeName="tttModel.lnkcustomizemodelimage">
+              <MappingFragment StoreEntitySet="lnkcustomizemodelimage">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Priority" ColumnName="Priority" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Colour" ColumnName="Colour" />
+                <ScalarProperty Name="CustomizeModelID" ColumnName="CustomizeModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refcustomizemodels">
+            <EntityTypeMapping TypeName="tttModel.refcustomizemodel">
+              <MappingFragment StoreEntitySet="refcustomizemodel">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnksoaddresses">
+            <EntityTypeMapping TypeName="tttModel.lnksoaddress">
+              <MappingFragment StoreEntitySet="lnksoaddress">
+                <ScalarProperty Name="ChooseAddress" ColumnName="ChooseAddress" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="IsShipping" ColumnName="IsShipping" />
+                <ScalarProperty Name="IsBilling" ColumnName="IsBilling" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="CityTown" ColumnName="CityTown" />
+                <ScalarProperty Name="CountryID" ColumnName="CountryID" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="SalesOrderID" ColumnName="SalesOrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblrecentviews">
+            <EntityTypeMapping TypeName="tttModel.tblrecentview">
+              <MappingFragment StoreEntitySet="tblrecentview">
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="LinkUrl" ColumnName="LinkUrl" />
+                <ScalarProperty Name="ImageUrl" ColumnName="ImageUrl" />
+                <ScalarProperty Name="CookieID" ColumnName="CookieID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="trnsalesorders">
+            <EntityTypeMapping TypeName="tttModel.trnsalesorder">
+              <MappingFragment StoreEntitySet="trnsalesorder">
+                <ScalarProperty Name="PaymentGatewayTransID" ColumnName="PaymentGatewayTransID" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VoucheID" ColumnName="VoucheID" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="SubTotal" ColumnName="SubTotal" />
+                <ScalarProperty Name="DeliveryDT" ColumnName="DeliveryDT" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Contact" ColumnName="Contact" />
+                <ScalarProperty Name="Postcode" ColumnName="Postcode" />
+                <ScalarProperty Name="State" ColumnName="State" />
+                <ScalarProperty Name="AddressLine2" ColumnName="AddressLine2" />
+                <ScalarProperty Name="AddressLine1" ColumnName="AddressLine1" />
+                <ScalarProperty Name="Receipient" ColumnName="Receipient" />
+                <ScalarProperty Name="PaymentID" ColumnName="PaymentID" />
+                <ScalarProperty Name="StatusID" ColumnName="StatusID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnksalesorders">
+            <EntityTypeMapping TypeName="tttModel.lnksalesorder">
+              <MappingFragment StoreEntitySet="lnksalesorder">
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="CookieID" ColumnName="CookieID" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="ModelSizeID" ColumnName="ModelSizeID" />
+                <ScalarProperty Name="SalesOrderID" ColumnName="SalesOrderID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkmodelcolourdescs">
+            <EntityTypeMapping TypeName="tttModel.lnkmodelcolourdesc">
+              <MappingFragment StoreEntitySet="lnkmodelcolourdesc">
+                <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="logpayments">
+            <EntityTypeMapping TypeName="tttModel.logpayment">
+              <MappingFragment StoreEntitySet="logpayment">
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="RequestReferrerUrl" ColumnName="RequestReferrerUrl" />
+                <ScalarProperty Name="Signature" ColumnName="Signature" />
+                <ScalarProperty Name="ErrDesc" ColumnName="ErrDesc" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="AuthCode" ColumnName="AuthCode" />
+                <ScalarProperty Name="TransId" ColumnName="TransId" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="Currency" ColumnName="Currency" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+                <ScalarProperty Name="PaymentId" ColumnName="PaymentId" />
+                <ScalarProperty Name="MerchantCode" ColumnName="MerchantCode" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="refmodels">
+            <EntityTypeMapping TypeName="tttModel.refmodel">
+              <MappingFragment StoreEntitySet="refmodel">
+                <ScalarProperty Name="DiscountPrice" ColumnName="DiscountPrice" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkmodellifestyles">
+            <EntityTypeMapping TypeName="tttModel.lnkmodellifestyle">
+              <MappingFragment StoreEntitySet="lnkmodellifestyle">
+                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="LifeStyleID" ColumnName="LifeStyleID" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkmodeltrends">
+            <EntityTypeMapping TypeName="tttModel.lnkmodeltrend">
+              <MappingFragment StoreEntitySet="lnkmodeltrend">
+                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="TrendID" ColumnName="TrendID" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

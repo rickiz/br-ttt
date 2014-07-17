@@ -1,0 +1,40 @@
+﻿@model BR.ToteToToe.Web.ViewModels.ModelResult
+
+<a href="@Url.Action("Details", new { modelID = Model.ModelID, colourDescID = Model.ColourDescID })">
+@*<img src="@Url.Content(string.Format("~/Images/{0}/{1}",
+                        Model.CategoryName,
+                        Model.ModelMainImage))"
+    id="@string.Format("shoes_{0}", Model.ModelID)"  
+    name="@string.Format("shoes_{0}", Model.ModelID)" 
+    width="236" height="160" onmouseout="MM_swapImgRestore()" style="border:none;"
+    onmouseover="MM_swapImage('@string.Format("shoes_{0}", Model.ModelID)',
+                                '',
+                                '@(Url.Content(string.Format("~/Images/{0}/{1}",
+                                    Model.CategoryName,
+                                    Model.ModelSubImage)))',
+                                1)" /></a><br />*@
+<img src="@Url.Content(string.Format("~/Images/{0}/{1}",
+                        Model.CategoryName.Replace(" ",""),
+                        Model.ModelMainImage))"
+    id="@string.Format("shoes_{0}", Model.ModelID)"  
+    name="@string.Format("shoes_{0}", Model.ModelID)" 
+    width="236" height="160" style="border:none;"
+    onmouseout="ChangeImage(this,
+                            '@Url.Content(string.Format("~/Images/{0}/{1}",
+                            Model.CategoryName.Replace(" ",""),
+                            Model.ModelMainImage))')"
+    onmouseover="ChangeImage(this,
+                            '@Url.Content(string.Format("~/Images/{0}/{1}",
+                            Model.CategoryName.Replace(" ",""),
+                            Model.ModelSubImage))')" /></a><br />
+<span style="font-weight: bold">@Model.BrandName</span><br />
+<span style="font-style: italic">@Model.ModelName<br /></span>
+@if (Model.DiscountPrice > 0)
+{
+    <span style="text-decoration: line-through; color: #666666">RM @(Model.Price.ToString("0.00"))</span> 
+    <span style="color: #C00">RM @(Model.DiscountPrice.ToString("0.00"))</span>
+}
+else
+{
+    <span style="color: #666666">RM @(Model.Price.ToString("0.00"))</span>
+}

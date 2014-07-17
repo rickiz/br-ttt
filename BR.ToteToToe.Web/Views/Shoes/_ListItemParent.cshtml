@@ -1,0 +1,72 @@
+﻿@using BR.ToteToToe.Web.ViewModels
+@model ModelListViewModel
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border: 0;">
+@if(Model.Models12.Count>0)
+{
+    <tr>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[0])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[1])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[2])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[3])
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[4])
+        </td>
+        <td colspan="2" rowspan="2">
+            <img src="@Url.Content(string.Format("~/Images/{0}/{1}", Model.Models12[0].CategoryName, Model.Models12[0].CategoryImage))" width="473" height="473" /></td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[5])
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[6])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[7])
+        </td>
+    </tr>
+    <tr>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[8])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[9])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[10])
+        </td>
+        <td>
+            @Html.Partial("_ListItem",Model.Models12[11])
+        </td>
+    </tr>
+}
+
+@{ 
+    var row = Model.Models.Count / 4;
+    var remaining = Model.Models.Count % 4;
+
+    for (int i = 0; i <= row; i++)
+    {
+        if (i == row)
+        {
+            @Html.Partial("_ListItems", Model.Models.Skip(i * 4).Take(remaining).ToList())
+        }
+        else
+        {
+            @Html.Partial("_ListItems", Model.Models.Skip(i * 4).Take(4).ToList())                       
+        }
+    }
+}
+</table>
+

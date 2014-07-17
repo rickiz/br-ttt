@@ -1,0 +1,190 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.ViewModels
+@model ShoppingBagIndexViewModel
+@{
+    ViewBag.Title = "Index";
+}
+
+<div id="mainbody">
+    <div id="wrap"><br />
+	    <div class="copy">
+	      <div class="formbox">
+              @using(Html.BeginForm())
+              {
+                  <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                      <td align="left" style="font-size: 18px; color: #666;">Your Shopping Bag<br />
+                        <hr class="divline" /></td>
+                    </tr>
+                    <tr>
+                      <td><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                          <td colspan="5" align="center" valign="top">&nbsp;</td>
+                        </tr>
+                        <tr>
+                          <td align="left" valign="top">Product</td>
+                          <td width="28%" align="left" valign="top">Description</td>
+                          <td width="16%" align="left" valign="top">Price/Unit</td>
+                          <td width="18%" align="left" valign="top">Quantity</td>
+                          <td width="12%" align="left" valign="top">Subtotal</td>
+                          </tr>
+                        <tr>
+                          <td colspan="5" align="center" valign="top">
+                              <br />
+                                <br />
+                          </td>
+                          </tr>
+                          @for (int i = 0; i < Model.ShoppingBagItems.Count; i++)
+                          {
+                              var link1 = Model.ShoppingBagItems[i].ModelSizeID > 0 ?
+                                                (Model.ShoppingBagItems[i].ModelSizeID > 0 ? Url.Action("Details", "Shoes", new { modelID = Model.ShoppingBagItems[i].ModelID, colourDescID = Model.ShoppingBagItems[i].ColourDescID, modelSizeID = Model.ShoppingBagItems[i].ModelSizeID }) :
+                                                Url.Action("Details", "Shoes", new { modelID = Model.ShoppingBagItems[i].ModelID, colourDescID = Model.ShoppingBagItems[i].ColourDescID })) :
+                                                Url.Action("ShoeDetails", "Customize", new { sku = Model.ShoppingBagItems[i].SKU });
+                      
+                            <tr>
+                                <td width="26%" align="left" valign="top">
+                                    <a href="@link1">
+                                        <img src="@Url.Content(Model.ShoppingBagItems[i].Image)" width="153" height="130" />
+                                    </a>
+                                </td>
+                                <td align="left" valign="top"><span style="font-weight: bold">
+                                    @Model.ShoppingBagItems[i].ModelName</span><br />
+                                    Color: @Model.ShoppingBagItems[i].ColourDescName<br />
+                                    Size: @Model.ShoppingBagItems[i].Size
+                                    <p>
+                                        <span style="font-weight: bold">Availability:</span> @Model.ShoppingBagItems[i].Availability
+                                        <br />
+                                        @if (Request.IsAuthenticated && !string.IsNullOrEmpty(Model.ShoppingBagItems[i].CookieID))
+                                        {
+                                            <text><span style="font-weight: bold">Status: </span> Pending link to account</text>
+                                        }
+                                    </p>
+                                    <p>@Html.ActionLink("Remove", "Remove", new { soID = Model.ShoppingBagItems[i].SalesOrderItemID })</p>
+                                </td>
+                                <td align="left" valign="top">
+                                  RM @Model.ShoppingBagItems[i].Price
+                                </td>
+                              <td align="left" valign="top">
+                                  @Html.Hidden(string.Format("AvailableQty_{0}", Model.ShoppingBagItems[i].SalesOrderItemID), Model.ShoppingBagItems[i].AvailableQuantity)
+                                  @{var txtQtyName = string.Format("qty_{0}", Model.ShoppingBagItems[i].SalesOrderItemID);}
+                                  @Html.TextBox(txtQtyName, Model.ShoppingBagItems[i].Quantity, new { @class = "txtfield validateqty", size = "70", maxlength = "10", onchange = string.Format("ValidateAvailableQty({0},{1})", Model.ShoppingBagItems[i].SalesOrderItemID, Model.ShoppingBagItems[i].ModelSizeID) })
+                                  <br />
+                                  <label id="@string.Format("lbl_{0}",Model.ShoppingBagItems[i].SalesOrderItemID)" 
+                                      style="color:red;font-weight:bold;display:none;">
+                                      Insufficient Quantity
+                                  </label>
+                                  <label id="@string.Format("lbl0_{0}",Model.ShoppingBagItems[i].SalesOrderItemID)" 
+                                      style="color:red;font-weight:bold;display:none;">
+                                      Invalid quantity
+                                  </label>
+                                  @Html.Hidden(string.Format("price_{0}", Model.ShoppingBagItems[i].SalesOrderItemID), Model.ShoppingBagItems[i].Price)
+                                  @*<input name="@txtQtyName" type="text" class="txtfield" id="@txtQtyName" size="70" maxlength="10" value="@Model.ShoppingBagItems[i].Quantity" />*@
+                              </td>
+                              <td align="left" valign="top">
+                                  RM @(Model.ShoppingBagItems[i].Quantity * Model.ShoppingBagItems[i].Price)
+                              </td>
+                            </tr>  
+                              }
+                          
+                        <tr>
+                            <td colspan="5" align="left" valign="top"><hr class="divline" /></td>
+                        </tr>  
+                        <tr>
+                          <td colspan="5" align="left" valign="top"><br />
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td width="26%" align="left">
+                                        @*<form action="/Shoes">*@
+                                        @if(Model.HasReturn)
+                                        {
+                                            <input name="continueshopping" type="button" class="whitebutton" id="continueshopping" value="CONTINUE SHOPPING"  onclick="javascript:history.go(-1);" />
+                                        }
+                                        @*</form>*@
+                                    </td>
+                                    <td width="48%" align="right">
+                                        <input name="submit" type="submit" class="whitebutton" value="VIEW WISH LIST" />
+                                    </td>
+                                    @if(Model.ShoppingBagItems.Count > 0)
+                                    {
+                                        <td width="26%" align="right">
+                                            <input name="submit" type="submit" class="whitebutton validateqty" id="updateshoppingbag" value="UPDATE SHOPPING BAG" />    
+                                        </td>
+                                    }
+                                </tr>
+                            </table>
+                            <br />
+                          </td>
+                        </tr>
+                        <tr>
+                          <td colspan="5" align="right" valign="top"><span style="font-size: 16px"><br />
+                            TOTAL <span style="font-weight: bold;">RM <label id="grandTotal">@Model.GrandTotal</label><br />
+                            <br />
+                            </span></span></td>
+                        </tr>
+                        @if(Model.ShoppingBagItems.Count > 0)
+                        {
+                            <tr>
+                              <td colspan="5" align="right" valign="top"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                  <td></td>
+                                  <td>
+                                    @*<div style="float:right;padding-left:8px;">
+                                        <form action="/ShoppingBag/LinkToAccount">
+                                            <input name="linktoacc" type="submit" class="darkbutton validateqty" id="linktoacc" value="LINK TO ACCOUNT" />
+                                        </form>
+                                    </div>*@
+                                    <div style="float:right;">
+                                        <input name="submit" type="submit" class="darkbutton validateqty" value="PROCEED TO CHECKOUT" />
+                                    </div>
+                                  </td>
+                                </tr>
+                              </table></td>
+                            </tr>
+                        }
+                      </table></td>
+                    </tr>
+                  </table>
+              }
+          </div>
+	    </div>
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+
+        function ValidateAvailableQty(id, modelSizeID) {
+            if (modelSizeID > 0) {
+               
+                var availableQty = $('#AvailableQty_' + id).val();
+                var qty = $('#qty_' + id).val();
+
+                //alert(qty + "|" + availableQty);
+                if (parseInt(qty) > parseInt(availableQty)) {
+                    //alert('hahaa');
+                    $('#lbl_' + id).show();
+                    $('.validateqty').attr('disabled', 'disabled');
+                    $('#qty_' + id).removeAttr('disabled');
+                }
+                else if (parseInt(qty) == 0) {
+                    $('#lbl0_' + id).show();
+                    $('.validateqty').attr('disabled', 'disabled');
+                    $('#qty_' + id).removeAttr('disabled');
+                }
+                else {
+                    //alert('hehee');
+                    $('#lbl_' + id).hide();
+                    $('.validateqty').removeAttr('disabled');
+                }
+            }
+        }
+    </script>
+
+}
+
+@section styles
+{
+    <link href="@(Links.Content.shoppingbag_css)" rel="stylesheet" type="text/css" />
+}

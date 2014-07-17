@@ -1,0 +1,141 @@
+﻿@charset "utf-8";
+/* CSS Document */
+#wrap
+{
+	width: 950px;
+	top: 0px;
+	/* height: auto !important;*/
+	/* overflow:auto; */
+	background-color: white;
+	margin: auto 0;
+	height: 790px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: relative;
+	padding-bottom: 213px;
+}
+
+.copy
+{
+	width: 950px;
+	top: 0px;
+	background-color: white;
+	height: 724px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.txtbox
+{
+	width: 813px;
+	height: 31px;
+	top: 63px;
+	left: 138px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+}
+
+.formbox
+{
+	width: 405px;
+	height: 192px;
+	top: 23px;
+	left: 138px;
+	background-color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+}
+
+.fbshare
+{
+	width: 391px;
+	height: 192px;
+	top: 23px;
+	left: 559px;
+	background-color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+}
+table, th, td
+{
+border: 1px solid #e6e6e6;
+border-collapse:collapse;
+font-family:Arial, Helvetica, sans-serif;
+font-size: 12px;
+}
+.divline
+{ 
+color: #666; 
+background-color: #FFF; 
+border: 1px dashed #b2b2b2; 
+border-style: none none dashed; 
+}
+.whitebutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #6d6d6f;
+	background: #fff;
+	background-image:url(../images/whitebutton_dottedline.gif);
+	width: 100px;
+	height: 28px;
+	border: 1px solid #939395;
+	cursor: pointer;
+}
+.whitebutton:hover {
+	background: #3f3f3f;
+	background-image:url(../images/whitebutton_dottedline.gif);
+	color: white;
+}
+
+.darkbutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: white;
+	background: #47443b;
+	background-image:url(../images/main_nav_dottedline.gif);
+	width: 203px;
+	height: 28px;
+	border: 0px;
+	
+	cursor: pointer;
+}
+
+.darkbutton:hover {
+	background: #666;
+	background-image:url(../images/main_nav_dottedline.gif);
+	color: white;
+}
+
+a:link {
+	color: #000;
+}
+a:visited {
+	color: #000;
+}
+a:hover {
+	color: #999;
+}
+a:active {
+	color: #000;
+}
+
+.btn-link{
+    text-decoration: none;
+    padding: 6px 35px;
+    color: white;
+}
+
+a.btn-link:link {
+	color: white;
+}
+a.btn-link:visited {
+	color: white;
+}
+a.btn-link:hover {
+	color: #999;
+}
+a.btn-link:active {
+	color: white;
+}

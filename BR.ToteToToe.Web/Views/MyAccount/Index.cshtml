@@ -1,0 +1,209 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.MyAccountViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : My Account";
+}
+
+<div id="wrap">
+    <br />
+    @*<form id="form1" name="form1" method="post" action="">*@
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="left" style="font-size: 18px; color: #666;">My Account<br />
+                    <br />
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table width="76%" border="0" cellspacing="0" cellpadding="0">
+                        <tr>
+                            <td width="100%" align="left" valign="top">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="51%"><span style="font-weight: bold">DETAILS</span></td>
+                                        <td width="49%" align="right">
+                                            <div style="height:28px; position: relative;">
+                                                <div style="position:absolute; bottom: 5px; right: 0px;">
+                                                    @Html.ActionLink("EDIT", MVC.MyAccount.Edit(), new { @class = "editaddviewbutton btn-link" })
+                                                </div>                                                
+                                            </div>
+                                            
+                                        </td>
+                                    </tr>
+                                </table>
+                                <hr class="divline" />
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td bgcolor="#e8e5d2" style="padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">First name: @Model.User.FirstName<br />
+                                            Last name: @Model.User.LastName<br />
+                                            Email: @Model.User.Email<br />
+                                            Date of birth: @Util.ConcatenateStrings("/", Model.User.BirthDateDay, Model.User.BirthDateMonth, Model.User.BirthDateYear)<br />
+                                            Gender: @Model.User.Gender<br />
+                                            Phone: @Model.User.Phone<br />
+                                        </td>
+                                    </tr>
+                                </table>
+                                <br />
+                                <span style="font-weight: bold">ADDRESS BOOK</span><br />
+
+                                <hr class="divline" />
+
+                                @if (Model.Addresses.Count > 0)
+                                {
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#FFFFFF" style="padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">Address</td>
+                                            <td align="left" valign="top" bgcolor="#FFFFFF" style="padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">Defaults</td>
+                                        </tr>
+                                        @foreach (var address in Model.Addresses)
+                                        {
+                                            var country = address.refcountry == null ? "" : address.refcountry.Name;
+                                            var defaults = address.IsBilling ? "Billing" : "";
+                                            defaults = address.IsShipping ? string.IsNullOrEmpty(defaults) ? "Shipping" : defaults + "/Shipping" : defaults;
+                                            defaults = string.IsNullOrEmpty(defaults) ? "" : defaults + " Address";
+        
+                                            <tr>
+                                                <td width="75%" align="left" valign="top" bgcolor="#f3f3f5" style="padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                                                    @Util.ConcatenateStrings(", ", address.AddressLine1, address.AddressLine2, address.CityTown, address.State, address.Postcode, country)
+                                                </td>
+                                                <td width="25%" align="left" valign="top" bgcolor="#f3f3f5" style="padding-left: 10px; padding-top: 10px; padding-bottom: 10px;">
+                                                    @defaults
+                                                </td>
+                                            </tr>
+                                        }
+                                    </table>
+                                }
+                                else
+                                {
+                                    @: Do update your HOME and WORK address to start making a purchase!
+                                    <br />
+                                }
+
+                                <br />
+                                <br />
+                                <br />                                
+                                @*<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                  <tr>
+                                    <td width="51%"><span style="font-weight: bold">RECENT ORDERS</span></td>
+                                    <td width="49%" align="right"><span style="font-weight: bold">
+                                      <input name="viewall" type="submit" class="editaddviewbutton" id="viewall" value="VIEW ALL" />
+                                    </span></td>
+                                  </tr>
+                                </table>
+                                <hr class="divline" />
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td width="14%" align="center" bgcolor="#fff" style="padding-top: 10px; padding-bottom: 10px;">Order No</td>
+                                        <td width="16%" align="center" bgcolor="#fff" style="padding-top: 10px; padding-bottom: 10px;">Order Date</td>
+                                        <td width="18%" align="center" bgcolor="#fff" style="padding-top: 10px; padding-bottom: 10px;">Status</td>
+                                        <td width="20%" align="center" bgcolor="#fff" style="padding-top: 10px; padding-bottom: 10px;">Shipped</td>
+                                        <td width="14%" align="center" bgcolor="#fff" style="padding-top: 10px; padding-bottom: 10px;">ETA</td>
+                                        <td width="18%" align="center" bgcolor="#fff" style="padding-top: 10px; padding-bottom: 10px;">Details</td>
+                                    </tr>
+                                    @foreach (var order in Model.RecentOrders)
+                                    {
+                                        <tr>
+                                            <td align="center" bgcolor="#f3f3f5" style="padding-top: 10px; padding-bottom: 10px;">@order.ID</td>
+                                            <td align="center" valign="middle" bgcolor="#f3f3f5" style="padding-top: 10px; padding-bottom: 10px;">
+                                                @order.CreateDT.ToString("dd/MM/yy")
+                                            </td>
+                                            <td align="center" valign="middle" bgcolor="#f3f3f5" style="padding-top: 10px; padding-bottom: 10px;">@order.refstatu.Name</td>
+                                            <td align="center" valign="middle" bgcolor="#f3f3f5" style="padding-top: 10px; padding-bottom: 10px;">
+                                                @Util.FormatDate(order.DeliveryDT)
+                                            </td>
+                                            <td align="center" valign="middle" bgcolor="#f3f3f5" style="padding-top: 10px; padding-bottom: 10px;"></td>
+                                            <td align="center" valign="middle" bgcolor="#f3f3f5" style="padding-top: 10px; padding-bottom: 10px;"><a href="#">View Order</a></td>
+                                        </tr>
+                                    }
+                                </table>
+                                <p>
+                                    <br />
+                                </p>*@
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="padding-bottom: 10px">
+                                    <tr>
+                                        <td width="39%">
+                                            <form action="/MyAccount/orderhistory">
+                                                <input name="viewall" type="submit" class="whitebutton" id="viewall" value="MY VIRTUAL FASHION WARDROBE" />
+                                            </form>
+                                        </td>
+                                        <td width="61%">View all your previous TOTE-TO-TOE purchases here. You may also check on the status and ETA of your new orders!</td>
+                                    </tr>
+                                </table>
+                                <hr class="divline" />
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="right" valign="top">
+                                @*<input name="continueshopping" type="submit" class="darkbutton" id="continueshopping" value="CONTINUE SHOPPING" />*@</td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    @*</form>*@
+
+    <div class="recentwishlistbox">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td align="left"><a href="#" onclick="MM_showHideLayers('recentbox','','show','wishlistbox','','hide')">
+                    <div id="recentbutton" onclick="MM_showHideLayers('arrowdownrecent','','show','arrowdownwish','','hide')">Recent</div>
+                </a></td>
+                <td align="right"><a href="#" onclick="MM_showHideLayers('recentbox','','hide','wishlistbox','','show')">
+                    <div id="wishbutton" onclick="MM_showHideLayers('arrowdownrecent','','hide','arrowdownwish','','show')">Wish List</div>
+                </a></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="recentbox">
+        @foreach (var imageDetails in Model.RecentOrderImages)
+        {
+            <a href="@imageDetails.LinkUrl">
+                <img src="@Url.Content(imageDetails.ImageContentUrl.Replace(" ",""))" width="153" height="153" />
+            </a>
+            <br /><br />
+        }
+    </div>
+
+    <div id="wishlistbox">
+        @foreach (var imageDetails in Model.WishlistImages)
+        {
+            if (imageDetails.ModelSizeID.HasValue)
+            {                
+                @:<a href="@Url.Action(MVC.Shoes.Details(imageDetails.ModelID.Value, imageDetails.ColourDescID.Value, imageDetails.ModelSizeID.Value))">
+            }
+            else
+            { 
+                @:<a href="@Url.Action(MVC.Customize.ShoeDetails(imageDetails.SKU))">
+            }
+            <img src="@Url.Content(imageDetails.ImageContentUrl.Replace(" ",""))" width="153" height="153" />
+            @:</a>
+            <br /><br />
+        }
+    </div>
+    <div id="arrowdownrecent"><img src="images/arrowrecentwish.gif" width="14" height="12" /></div>
+    <div id="arrowdownwish"><img src="images/arrowrecentwish.gif" width="14" height="12" /></div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.myaccount_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function MM_showHideLayers() { //v9.0
+            var i, p, v, obj, args = MM_showHideLayers.arguments;
+            for (i = 0; i < (args.length - 2) ; i += 3)
+                with (document) if (getElementById && ((obj = getElementById(args[i])) != null)) {
+                    v = args[i + 2];
+                    if (obj.style) { obj = obj.style; v = (v == 'show') ? 'visible' : (v == 'hide') ? 'hidden' : v; }
+                    obj.visibility = v;
+                }
+        }
+    </script>
+}

@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "TOTE TO TOE";
+}
+
+<div id="mainbody">
+<table width="950" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td height="394" align="left" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="left" valign="top">
+                        <img src="@(Links.Images.main_pic1_jpg)" width="649" height="394" border="0" /></td>
+                    <td align="right" valign="top">
+                        <img src="@(Links.Images.main_pic2_jpg)" width="286" height="394" border="0" /></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td align="left" valign="top">&nbsp;</td>
+    </tr>
+    <tr>
+        <td height="19" align="left" valign="top">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="left" valign="top"><a href="@(Url.Action(MVC.Order.Index()))">
+                        <img src="@(Links.Images.main_pic3_jpg)" width="483" height="207" border="0" /></a></td>
+                    <td align="right"><a href="@(Url.Action(MVC.Trending.Index()))">
+                        <img src="@(Links.Images.main_pic4_jpg)" width="448" height="207" border="0" /></a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+    <tr>
+        <td>&nbsp;</td>
+    </tr>
+    <tr>
+        <td>
+            <img src="@(Links.Images.main_pic5_jpg)" width="950" height="180" border="0" /></td>
+    </tr>
+</table>
+<p>&nbsp;</p>
+    </div>

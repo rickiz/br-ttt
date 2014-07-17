@@ -1,0 +1,161 @@
+﻿@charset "utf-8";
+/* CSS Document */
+#wrap
+{
+	width: 950px;
+	top: 0px;
+	/* height: auto !important;*/
+	/* overflow:auto; */
+	background-color: white;
+	margin: auto 0;
+	height: 800px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: relative;
+	padding-bottom: 213px;
+}
+
+.copy
+{
+	width: 950px;
+	top: -7px;
+	background-color: white;
+	height: 530px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.greybg
+{
+	width: 600px;
+	height: 739px;
+	top: 0px;
+	left: 350px;
+	background-color: #d3d3d3;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.formbox
+{
+	width: 442px;
+	height: 597px;
+	top: 119px;
+	left: 407px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+}
+
+.txtfield {
+	border:0px;
+	height: 35px;
+	width: 442px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	padding: 1px;
+}
+
+.dropdown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:20px;
+    border: 1px solid #dcdddf;
+    width: 442px;
+	padding: 4px 5px;
+    overflow: hidden;
+	float:left;
+    background: #fff url("../images/arrowdown2.gif") no-repeat 100% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
+
+}
+
+.dropdown select {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:20px;
+    
+    width: 100%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
+
+}
+
+.dropdown select:focus {
+    outline: none;
+}
+
+.commentsbox {
+	border:0px;
+	height: 160px;
+	width: 442px;
+	font-size: 20px;
+	font-family:Arial, Helvetica, sans-serif;
+	padding: 1px;
+}
+
+.submitbutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: white;
+	background: #47443b;
+	width: 100px;
+	height: 28px;
+	border: 0px;
+	cursor: pointer;
+}
+
+.lines1
+{
+	background: url(images/about/lines.png);
+	background-repeat: no-repeat;
+	top: 96px;
+	display: block;
+	width: 909px;
+	height: 676px;
+	position: absolute;
+	float: left;
+	left: 0px;
+}
+
+.pic1
+{
+	top: 284px;
+	left: 0px;
+	display: block;
+	width: 327px;
+	height: 455px;
+	position: absolute;
+	float: left;
+}
+
+.title
+{
+	top: 0px;
+	left: 350px;
+	display: block;
+	width: 600px;
+	height: 737px;
+	position: absolute;
+	float: left;
+}
+
+.bodycopy
+{
+	top: 8px;
+	left: 0px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #966a66;
+	width: 320px;
+	height: 268px;
+	position: absolute;
+	text-align: left;
+	float: left;
+}

@@ -1,0 +1,47 @@
+﻿@model List<BR.ToteToToe.Web.ViewModels.ModelResult>
+
+<tr>
+    @{var count = 1;}
+    @foreach (var model in Model)
+    {
+        <td>
+            <a href="@Url.Action("Details", new { modelID = model.ModelID, colourDescID = model.ColourDescID })">
+            <img src="@Url.Content(string.Format("~/Images/{0}/{1}",
+                                    model.CategoryName.Replace(" ",""),
+                                    model.ModelMainImage))"
+                id="@string.Format("shoes_{0}", model.ModelID)"  
+                name="@string.Format("shoes_{0}", model.ModelID)" 
+                width="236" height="160" 
+                onmouseout="ChangeImage(this,
+                            '@Url.Content(string.Format("~/Images/{0}/{1}",
+                            model.CategoryName.Replace(" ",""),
+                            model.ModelMainImage))')"
+                onmouseover="ChangeImage(this,
+                            '@Url.Content(string.Format("~/Images/{0}/{1}",
+                            model.CategoryName.Replace(" ",""),
+                            model.ModelSubImage))')" /></a><br />
+            <span style="font-weight: bold">@(model.BrandName)</span><br />
+            <span style="font-style: italic">@(model.ModelName)<br /></span>
+            
+            @if (model.DiscountPrice > 0)
+            {
+                <span style="text-decoration: line-through; color: #666666">RM @(model.Price.ToString("0.00"))</span> 
+                <span style="color: #C00">RM @(model.DiscountPrice.ToString("0.00"))</span>
+            }
+            else
+            {
+                <span style="color: #666666">RM @(model.Price.ToString("0.00"))</span>
+            }
+        </td>
+        
+        count++;
+    }
+
+    @if (count != 4)
+    {
+        for (int i = count; i <= 4; i++)
+        {
+            <td style="border:none;"></td>
+        }
+    }
+</tr>

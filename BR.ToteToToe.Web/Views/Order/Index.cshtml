@@ -1,0 +1,69 @@
+﻿@{
+    ViewBag.Title = "TOTE TO TOE : Made to Order";
+}
+
+<div id="orderwrap">
+    <br />
+    <div class="ordercopy">
+        <div class="pic1">
+            <img src="@(Links.Images.order.pic1_jpg)" width="670" height="349" /></div>
+        <div class="lines1"></div>
+        <div class="title">
+            <img src="@(Links.Images.order.title_png)" width="499" height="141" /></div>
+        <div class="sil">
+            <img src="@(Links.Images.order.sil1_png)" width="241" height="166" /></div>
+        <div class="bodycopy">
+            If you are mental about shoes, here’s are some easy steps to build the wardrobe of your dreams and institue envy to your girlfriends. With an array of colours, materials , heel heights and style to choose from, it’s truly valid to say it’s never enough. Now you can own ; appropriate colours to piss your boss off and command admiration from colleagues; heels that are pointy enough to nonchalantly chase dogs away and inspire pole dancing in front of the mirror – on your own please.
+        </div>
+        <div class="sil2">
+            <img src="@(Links.Images.order.sil2_png)" width="363" height="309" /></div>
+        <div class="pic2">
+            <img src="@(Links.Images.order.pic2_jpg)" width="451" height="219" /></div>
+        <div class="bodycopy2">
+            Customization is a different process than mass production. Unlike the latter, there are many hands at work in producing a pair of shoe. Customized shoe are undertaken by a pair of hands only therefore its modus operandi is time consuming. As for the upper materials for the shoe, we scout around for unique and limited pieces so you wont have to worry about stumbling upon someone else with the same shoe...YIKES! 
+            <br />
+            <br />
+            As for the sizing, we reckon that you TAKE A TOP VIEW PICTURE of you wearing your own favourite pair of high heel shoe and the bottom of the shoe with the size and possibly the brand in view and send it to us via whatever medium you want; whatsup, facebook, email or post, for us to better grasp. Also , Read here on how to be sure of your size.<br />
+            <br />
+            Now, just follow these simple steps and you are ready to be put in an anticipation that will drive you crazy...
+            <br /><br />
+            <p><a class="startcustom" href="@Url.Action("ShoeStyle", "Customize")">Start Customising</a></p>
+        </div>
+
+        @*<div>
+            <a href="#" onclick="testShare()">Test Share</a>
+        <a href="http://www.facebook.com/sharer/sharer.php?s=100&p[url]=http://www.asp.net/mvc/tutorials/security/using-oauth-providers-with-mvc&p[images][0]=&p[title]=test&p[summary]=">Share on Facebook</a>
+        <div class="fb-share-button" data-href="http://developers.facebook.com/docs/plugins/" data-type="button_count"></div>
+        </div>*@
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.order_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function testShare() {
+            FB.ui(
+            {
+                method: 'feed',
+                name: 'Facebook Dialogs',
+                link: 'http://youtubeplaylist.net',
+                picture: 'http://fbrell.com/f8.jpg',
+                caption: 'Reference Documentation',
+                description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+            },
+                function (response) {
+                    if (response && response.post_id) {
+                        alert('Post was published.');
+                    } else {
+                        alert('Post was not published.');
+                    }
+                }
+            );
+        }
+    </script>
+}

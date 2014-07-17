@@ -1,0 +1,293 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.ViewModels
+@model ModelDetailsViewModel
+@{
+    ViewBag.Title = "TOTE TO TOE";
+}
+
+<div id="wrap">
+    <br />
+    <div class="copy">
+        
+        <div id="DetailsImages">
+            @Html.Partial("_DetailsImages", Model)
+        </div>
+
+        <div class="formbox">
+            @using(Html.BeginForm())
+            {
+                @Html.HiddenFor(model => model.SKU)
+                @Html.HiddenFor(model => model.Price)
+                @Html.HiddenFor(model => model.DiscountPrice)
+                @Html.HiddenFor(model => model.ModelID)
+
+                <div style="font-size:small;">
+                    @Html.ValidationSummary(false)
+                </div>
+
+                <div>
+                    @Html.DropDownListFor(model => model.ColourDescID, 
+                    Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
+                                new { @class="dropdown", onchange = "changeModelColour();" })
+                </div>
+                <div id="divModelSize" >
+                    @Html.DropDownListFor(model => model.ModelSizeID, 
+                    Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, defaultValue:"", defaultText:"SIZE"),
+                                                 new { @class = "dropdown" })
+                    @*<input name="sizechart" type="button" class="sizechartbutton cancel" id="sizechart" value="SIZE REF." onclick="SizeDialog();">*@
+                    <br />
+                    @*@Ajax.ActionLink("Open popup", "_SizeChart", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divsizechart", InsertionMode = InsertionMode.Replace, OnSuccess="SizeDialog" })*@
+                </div>
+                <br />
+                <div style="float:left;">
+                    @*<input type="submit" name="submit" class="sharebutton" value="SHARE" />*@
+                    <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" /> @*onclick="@string.Format("alert('{0},,{1}')",Model.ModelID,Model.ModelColourDescID )"*@
+                    <input type="submit" name="submit" class="addtobagbutton" value="+ ADD TO BAG" />
+                    <p align="left" style="font-size: 12px">
+                        <div id="divDesc" style="display:none;font-size: 12px;padding-bottom:5px;">
+                            Availability: <label id="ModelQty"></label> • Ships in 3-5 business days
+                        </div>
+                        <div class="fb-share-button" data-href="@Model.ShareUrl" data-type="button"></div>
+                    </p>
+
+                    <p align="left" style="font-size: 12px">
+                        <div>
+                            
+                        </div>
+                    </p>
+                </div>            
+            }
+        </div>
+
+        <div class="maylike">
+            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                <tr>
+                    <td align="left" style="font-size: 14px">You may also like<br />
+                        <hr class="divline" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table>
+                            @*<tr>
+                                <td colspan="5" align="center" valign="top">&nbsp;</td>
+                            </tr>*@
+                            <tr>
+                                @foreach (var model in Model.ReommendedModels)
+                                {
+                                    <td align="center" valign="top">
+                                        <a href="@Url.Action("Details", new { modelID = model.ModelID, colourDescID = model.ColourDescID })">
+                                            <img src="@Url.Content(string.Format("~/Images/{0}/{1}", model.CategoryName.Replace(" ",""), model.MainImage))" width="153" height="130" /><br />
+                                        </a>
+                                        <span style="font-weight: bold">@Html.Raw(model.BrandName)</span><br />
+                                        <span style="font-style: italic">@Html.Raw(model.ModelName)<br />
+                                        <span style="color: #666666">RM @Html.Raw(model.Price)</span>
+                                    </td>
+                                }
+
+                                @*<td align="center" valign="top">
+                                    <img src="@(Links.Images.pumps.sampleshoes2_jpg)" width="153" height="130" /><br />
+                                    <span style="font-weight: bold">RED LACY</span><br />
+                                    <span style="font-style: italic">Crystal-embellished<br />
+                                        lace pumps</span><br />
+                                    <span style="color: #666666">RM 180.00</span></td>
+                                <td align="center" valign="top">
+                                    <img src="@(Links.Images.pumps.sampleshoes2_jpg)" width="153" height="130" /><br />
+                                    <span style="font-weight: bold">RED LACY</span><br />
+                                    <span style="font-style: italic">Crystal-embellished<br />
+                                        lace pumps</span><br />
+                                    <span style="color: #666666">RM 180.00</span></td>
+                                <td align="center" valign="top">
+                                    <img src="@(Links.Images.pumps.sampleshoes2_jpg)" width="153" height="130" /><br />
+                                    <span style="font-weight: bold">RED LACY</span><br />
+                                    <span style="font-style: italic">Crystal-embellished<br />
+                                        lace pumps</span><br />
+                                    <span style="color: #666666">RM 180.00</span></td>
+                                <td align="center" valign="top">
+                                    <img src="@(Links.Images.pumps.sampleshoes2_jpg)" width="153" height="130" /><br />
+                                    <span style="font-weight: bold">RED LACY</span><br />
+                                    <span style="font-style: italic">Crystal-embellished<br />
+                                        lace pumps</span><br />
+                                    <span style="color: #666666">RM 180.00</span></td>
+                                <td align="center" valign="top">
+                                    <img src="@(Links.Images.pumps.sampleshoes2_jpg)" width="153" height="130" /><br />
+                                    <span style="font-weight: bold">RED LACY</span><br />
+                                    <span style="font-style: italic">Crystal-embellished<br />
+                                        lace pumps</span><br />
+                                    <span style="color: #666666">RM 180.00</span></td>*@
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+        @Html.Partial("_SizeChart")
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.proddetail_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function() {
+            pupulateModelSize();
+
+            GetQtyByModelSize();
+
+            $("#divsizechart").dialog({
+                autoOpen: false,
+                title: 'Size Chart',
+                width: 800,
+                height: 'auto',
+                modal: true
+            });
+
+        });
+
+        function SizeDialog() {
+            $('#divsizechart').dialog("open");
+        }
+
+        function MM_showHideLayers() { //v9.0
+            var i, p, v, obj, args = MM_showHideLayers.arguments;
+            for (i = 0; i < (args.length - 2) ; i += 3)
+                with (document) if (getElementById && ((obj = getElementById(args[i])) != null)) {
+                    v = args[i + 2];
+                    if (obj.style) { obj = obj.style; v = (v == 'show') ? 'visible' : (v == 'hide') ? 'hidden' : v; }
+                    obj.visibility = v;
+                }
+        }
+
+        function pupulateModelSize(){
+
+            var modelID = $('#ModelID').val();
+            var colourDescID = $('#ColourDescID').val();
+            var modelSizeID = $('#ModelSizeID').val();
+
+            if (modelSizeID == '') {
+                modelSizeID = '0';
+            }
+
+            if (colourDescID == '') {
+                colourDescID = '0';
+            }
+
+            var url = '@(Url.Content("~/Shoes/GetModelSizeByModel"))';
+            $.post(url, { modelID: modelID, colourDescID: colourDescID, modelSizeID: modelSizeID }, function (result) {
+                if (result != '') {
+                    $("#divModelSize").html(result);
+
+                    $('#ModelSizeID option[value=-1]').each(function (i, item) {
+                        item.disabled = true;
+                    });
+                }
+                else {
+                    //fail
+                }
+            });
+
+        }
+
+        function changeModelColour() {
+
+            var modelID = $('#ModelID').val();
+            var colourDescID = $('#ColourDescID').val();
+
+            var url = '@(Url.Content("~/Shoes/GetModelImagesByColour"))';
+            $.post(url, { modelID: modelID, colourDescID: colourDescID }, function (result) {
+                if (result != '') {
+                    $("#DetailsImages").html(result.htmlString);
+
+                    $('#SKU').val(result.sku);
+
+                    pupulateModelSize();
+
+                    $('#divDesc').hide();
+                }
+                else {
+                    //fail
+                }
+            });
+
+            $('#ModelSizeID option[value=-1]').each(function (i, item) {
+                item.disabled = true;
+            });
+
+            //changing fb share url***************
+            var newShareUrl = 'http://www.tote-to-toe.com/Shoes/Details?modelID=' + modelID + '&colourDescID=' + colourDescID;
+            $('.fb-share-button').attr('data-href', newShareUrl);
+            FB.XFBML.parse();
+            //************************************
+        }
+
+        function GetQtyByModelSize(){
+
+            var modelSizeID = $("#ModelSizeID").val();
+
+            var url = '@(Url.Content("~/Shoes/GetQtyByModelSize"))';
+            $.post(url, { modelSizeID: modelSizeID }, function (result) {
+
+                $("#ModelQty").text(result.message);
+
+                if (result.availableQty == 0) {
+                    $('.addtobagbutton').attr('disabled', 'disabled');
+                }
+                else {
+                    $('.addtobagbutton').removeAttr('disabled');
+                }
+
+                PopulateQtyDesc(modelSizeID);
+
+                //if (result != '') {
+                //    $("#ModelQty").text(result);
+                //}
+                //else {
+                //    //fail
+                //}
+            });
+        }
+
+        function PopulateQtyDesc(modelSizeID) {
+            if (parseInt(modelSizeID) > 0) {
+                $('#divDesc').show();
+            }
+            else {
+                $('#divDesc').hide();
+            }
+        }
+
+        function testShare() {
+            FB.ui(
+            {
+                method: 'feed',
+                name: 'Facebook Dialogs',
+                link: 'http://youtubeplaylist.net',
+                picture: 'http://fbrell.com/f8.jpg',
+                caption: 'Reference Documentation',
+                description: 'Dialogs provide a simple, consistent interface for applications to interface with users.'
+            },
+                function (response) {
+                    if (response && response.post_id) {
+                        alert('Post was published.');
+                    } else {
+                        alert('Post was not published.');
+                    }
+                }
+            );
+        }
+
+    </script>
+}
+
+@section fbheader
+{
+    <meta property="fb:app_id" content="267986850024373" />
+    <meta property="og:title" content="Designer comment" />
+    <meta property="og:url" content="http://www.tote-to-toe.com/Shoes/Details?modelID=@Model.ModelID&colourDescID=@Model.ColourDescID" />
+    <meta property="og:description" content="@Html.Raw(Model.Description)" />
+}

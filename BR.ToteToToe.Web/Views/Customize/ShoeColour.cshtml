@@ -1,0 +1,70 @@
+﻿@using BR.ToteToToe.Web.ViewModels
+@model ShoeColourViewModel
+@{
+    ViewBag.Title = "ShoeColour";
+}
+
+<div id="mainbody">
+    <br />
+    <div class="cp">
+        Customising Progress&nbsp;&nbsp;<img src="@Url.Content("~/Images/arrow_next.gif")" width="5" height="8" />
+    </div> 
+    <a href="@Url.Action("ShoeStyle")" class="Step 1">
+        <div class="navstep1nolink">
+            <strong>STEP 1:</strong> Shoe Style
+        </div>
+    </a>
+    &nbsp;&nbsp;
+    <div class="navstep1selected">
+        <strong>STEP 2:</strong> Material & Color
+    </div>
+    &nbsp;&nbsp;
+    <div class="navstep1nolink">
+        <strong>STEP 3:</strong> Make my Shoe
+    </div>
+
+    <div class="forfilter">
+        <div class="select-style" style="margin-right:3px;">
+          <select id="ddlHeelHeight" onchange="HeelHeightChange();">
+            <option value="0">HEEL HEIGHT</option>
+            <option value="2">2 inches</option>
+            <option value="3">3 inches</option>
+            <option value="4">4 inches</option>
+          </select>
+        </div>
+    </div>
+    <br /><br />
+
+    @Html.HiddenFor(model => model.CustomizeModelID)
+
+    <div id="divShoeColour">
+        @Html.Partial("_ShoeColour", Model)
+    </div>
+    
+</div>
+    
+@section styles
+{
+    <link href="@(Links.Content.customise_list_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function HeelHeightChange() {
+
+            var url = '@(Url.Content("~/Customize/FilterHeelHeight"))';
+            $.post(url, { id: $("#CustomizeModelID").val(), heelHeight: $("#ddlHeelHeight").val() }, function (result) {
+                if (result != '') {
+                    $("#divShoeColour").html(result);
+                }
+                else {
+                    //fail
+                }
+            });
+
+        }
+
+    </script>
+}

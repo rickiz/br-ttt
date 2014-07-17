@@ -1,0 +1,159 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.CheckoutBillingViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : Checkout";
+}
+
+<div id="wrap">
+    <br />
+    <div class="copy">
+        <div class="checkoutprog">
+            <strong>Checkout Progress</strong> &nbsp;<img src="@Url.Content(Links.Images.arrow_next_gif)" width="5" height="8" />&nbsp; <span style="color: #666; font-weight: bold;">Billing Information</span> |  <span style="color: #666">Shipping Address</span> |<span style="color: #666"> Order Summary</span>
+        </div>
+        <div class="txtbox"><strong>BILLING  INFORMATION</strong></div>
+        <div class="formbox">
+            @using (Html.BeginForm(MVC.Checkout.Billing()))
+            {
+                @Html.HiddenFor(m => m.SalesOrderBillingAddressID)
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="4">
+                    <tr>
+                        <td width="15%" align="left">First Name:</td>
+                        <td width="39%">
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "txtfield", size = "70", maxlength = "70", tabindex = "1" })
+                            <span class="required-flag">*</span>
+                            <br />
+                        </td>
+                        <td align="left">Choose Address:</td>
+                        <td align="left">
+                            @Html.DropDownListFor(m => m.AddressTypeID, Util.GetAddressTypeList(), 
+                                new { @class = "dropdown", tabindex = "4" })
+                        </td>
+                        
+                    </tr>
+                    <tr>
+                        <td align="left">Last Name:</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "txtfield", size = "70", maxlength = "70", tabindex = "2" })
+                            <span class="required-flag">*</span>
+                        </td>
+                        <td align="left">Address:</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Address.AddressLine1, new { @class = "txtfield address", size = "70", maxlength = "70", tabindex = "5" })
+                            <span class="required-flag">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Phone:</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Phone, new { @class = "txtfield", size = "70", maxlength = "70", tabindex = "3" })
+                            <span class="required-flag">*</span>
+                        </td>
+                        <td>&nbsp;</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Address.AddressLine2, new { @class = "txtfield address", size = "70", maxlength = "70", tabindex = "6" })
+                            <span class="required-flag">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td width="10%">City/Town:</td>
+                        <td width="36%">
+                            @Html.TextBoxFor(model => model.Address.CityTown, new { @class = "txtfield address", size = "70", maxlength = "70", tabindex = "7" })
+                            <span class="required-flag">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>State:</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Address.State, new { @class = "txtfield address", size = "70", maxlength = "70", tabindex = "8" })
+                            <span class="required-flag">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Post Code:</td>
+                        <td>
+                            @Html.TextBoxFor(model => model.Address.Postcode, new { @class = "txtfield address", size = "70", maxlength = "70", tabindex = "9" })
+                            <span class="required-flag">*</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>Country:</td>
+                        <td style="line-height: 40px;">
+                            @if (Model.IsAddressReadOnly)
+                            {
+                                @Html.DropDownListFor(model => model.Address.CountryID,
+                                    Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", disabled = "disabled", tabindex = "10" })
+                                @Html.HiddenFor(m => m.Address.CountryID)
+                            }
+                            else
+                            { 
+                                @Html.DropDownListFor(model => model.Address.CountryID, 
+                                    Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", tabindex = "10" })
+                                <span class="required-flag">&nbsp;*</span>
+                            }                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;<br />&nbsp;</td>
+                        <td></td>
+                        <td></td>
+                        <td>                            
+                            @if (Model.AddressType != CheckoutAddressType.Primary && Model.AddressType != CheckoutAddressType.Secondary)
+                            {
+                                @: The address information will only be used for this transaction
+                            } 
+                            
+                            @if (Model.IsAddressReadOnly && (Model.AddressType == CheckoutAddressType.Primary || Model.AddressType == CheckoutAddressType.Secondary))
+                            {
+                                @: If you wish to edit your address information, please go to @Html.ActionLink("my account", MVC.MyAccount.Edit())
+                            }                              
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3"></td>
+                        <td align="left" valign="bottom">
+                            <input name="continue" type="submit" class="submitbutton" id="continue" value="CONTINUE" tabindex="11" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="4" align="right" valign="top">&nbsp;</td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.checkout_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $("#AddressTypeID").change(function () {
+                window.location.href = '@(Url.Action("Billing", "Checkout"))' + '?chooseAddress=' + $(this).val();
+            });
+
+            @if (Model.IsAddressReadOnly)
+            {
+                <text>
+                    $(".address").attr("readonly", true).attr("tabindex", "").css("color", "lightgray");
+                    $(".address").next(".required-flag").hide();
+                </text>
+            }
+        });        
+
+    </script>
+}

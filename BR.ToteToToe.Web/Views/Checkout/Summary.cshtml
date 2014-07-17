@@ -1,0 +1,219 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.CheckoutSummaryViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : Order Summary";
+}
+
+<div id="wrap">
+    <br />
+        <div id="wrap2">
+            <table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+                <tr>
+                    @*<td align="left" style="font-size: 18px; color: #666;">Order Summary<br />
+                        <hr class="divline" />
+                    </td>*@
+                    <td align="left" style="font-size: 18px; color: #666;">
+                        <div class="checkoutprog">
+                            <strong>Checkout Progress</strong> &nbsp;
+                            <img src="@Url.Content(Links.Images.arrow_next_gif)" width="5" height="8" />&nbsp; 
+                            <span style="color: #666;">
+                                @Html.ActionLink("Billing Information", MVC.Checkout.Billing(), new { @class = "checkout-progress-link" })
+
+                            </span> |  
+                            <span style="color: #666;">
+                                @Html.ActionLink("Shipping Address", MVC.Checkout.Shipping(), new { @class = "checkout-progress-link" })
+
+                            </span> |
+                            <span style="color: #666"> Order Summary</span>
+                        </div>
+                        <hr class="divline" />
+                    </td>
+                </tr>
+                <tr>
+                    <td valign="top">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                            <tr>
+                                <td width="34%" align="left" valign="top">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="8">
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#E8E8E8">ORDER DETAILS</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#E8E8E8"><span style="font-weight: bold">Billing Address:</span><br />
+                                                <br />
+                                                @Util.ConcatenateStrings(" ", Model.BillingAddress.FirstName, Model.BillingAddress.LastName),
+                                                <br />
+                                                @Util.ConcatenateStrings(", ", Model.BillingAddress.AddressLine1, Model.BillingAddress.AddressLine2, Model.BillingAddress.CityTown),<br />
+                                                @Util.ConcatenateStrings(", ", Model.BillingAddress.Postcode, Model.BillingAddress.State, Model.BillingAddress.refcountry.Name)</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#E8E8E8">
+                                                <hr noshade="noshade" class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="middle" bgcolor="#E0DFBE"><span style="font-weight: bold">Shipping Address:</span><br />
+                                                <br />
+                                                @Util.ConcatenateStrings(" ", Model.ShippingAddress.FirstName, Model.ShippingAddress.LastName),
+                                                <br />
+                                                @Util.ConcatenateStrings(", ", Model.ShippingAddress.AddressLine1, Model.ShippingAddress.AddressLine2, Model.ShippingAddress.CityTown),<br />
+                                                @Util.ConcatenateStrings(", ", Model.ShippingAddress.Postcode, Model.ShippingAddress.State, Model.ShippingAddress.refcountry.Name)
+                                                <br />
+                                                <br />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="66%" align="left" valign="top">
+                                    <br />
+                                    <table width="93%" border="0" align="right" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            @*<td colspan="2" style="font-weight: bold">Product</td>
+                                            <td width="26%" style="font-weight: bold">Quantity</td>
+                                            <td width="18%" style="font-weight: bold">Price</td>*@
+                                            <td colspan="2" style="font-weight: bold">Product</td>
+                                            <td width="21%" style="font-weight: bold">Price/Unit</td>
+                                            <td width="18%" style="font-weight: bold">Quantity</td>
+                                            <td width="18%" style="font-weight: bold">Sub Total</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            <tr>
+                                                <td width="17%" align="left" valign="middle">
+                                                    <img src="@Url.Content(item.ImageUrl.Replace(" ",""))" width="80" height="52" />
+
+                                                </td>
+                                                <td width="26%" align="left" valign="middle">@item.Name<br />
+                                                    Color: @item.Color<br />
+                                                    Size: @item.Size</td>
+                                                <td align="left" valign="middle">RM @item.Price</td>
+                                                <td align="left" valign="middle">@item.Quantity</td>
+                                                <td align="left" valign="middle">RM @(item.Quantity*item.Price)</td>
+                                            </tr>
+                                        }
+
+                                        <tr>
+                                            <td colspan="5">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" style="font-weight: bold">Order Total</td>
+                                            <td>RM @Model.Subtotal</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">Shipping & Handling Charges</td>
+                                            <td>RM @Model.ShippingPrice</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">
+                                                Discount Voucher Code: @Html.TextBox("txtVoucherCode",Model.VoucherCode) 
+                                                <input name="btnVoucherCode" type="button" id="btnVoucherCode" value="Get Discount" onclick="ValidateVoucherCode();" />
+                                                @*@Html.TextBoxFor(a => a.VoucherCode, new { onchange="ValidateVoucherCode();" })*@
+                                                @Html.HiddenFor(a => a.VoucherCode)
+                                                @Html.HiddenFor(a => a.SalesOrderID)
+                                                <div>
+                                                    <label id="lblVoucherMessage" style="color:red;"></label>
+                                                </div>
+                                            </td>
+                                            <td>RM <label id="lblVoucherValue">@Model.RebateCashValue</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" style="font-weight: bold">GRAND TOTAL</td>
+                                            <td style="font-weight: bold">RM <label id="lblGrandTotal">@Model.OrderTotalPrice</label></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right" valign="top">
+                        <br />
+                        @if (Model.AllowPayment)
+                        {
+                            <form method="post" name="ePayment" action="@Model.PaymentInfo.EntryUrl">
+                            <input type="hidden" name="MerchantCode" value="@Model.PaymentInfo.MerchantCode">
+                            <input type="hidden" name="PaymentId" value="@Model.PaymentInfo.PaymentId">
+                            <input type="hidden" name="RefNo" value="@Model.PaymentInfo.RefNo">
+                            <input type="hidden" name="Amount" value="@Model.PaymentInfo.Amount">
+                            <input type="hidden" name="Currency" value="@Model.PaymentInfo.Currency">
+                            <input type="hidden" name="ProdDesc" value="@Model.PaymentInfo.ProdDesc">
+                            <input type="hidden" name="UserName" value="@Model.PaymentInfo.UserName">
+                            <input type="hidden" name="UserEmail" value="@Model.PaymentInfo.UserEmail">
+                            <input type="hidden" name="UserContact" value="@Model.PaymentInfo.UserContact">
+                            <input type="hidden" name="Remark" value="@Model.PaymentInfo.Remark">
+                            <input type="hidden" name="Lang" value="@Model.PaymentInfo.Lang">
+                            <input type="hidden" name="Signature" value="@Model.PaymentInfo.Signature">
+                            <input type="hidden" name="ResponseURL" value="@Model.PaymentInfo.ResponseUrl">
+                            <input type="hidden" name="BackendURL" value="@Model.PaymentInfo.BackendUrl">
+                            <input name="proceedtopayment" type="submit" class="darkbutton" id="proceedtopayment" 
+                                value="PROCEED TO PAYMENT" />
+                        </form>
+                        }                        
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.ordersummary_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script>
+
+        function ValidateVoucherCode() {
+
+            var voucherCode = $("#txtVoucherCode").val();
+            var soID = $("#SalesOrderID").val();
+
+            if (voucherCode != '') {
+                var url = '@(Url.Content("~/Checkout/ValidateVoucherCode"))';
+                $.post(url, { voucherCode: voucherCode, soID: soID }, function (result) {
+
+                    $('#lblVoucherMessage').text(result.message);
+                    $('#lblVoucherValue').text(result.voucherValue);
+                    $('#lblGrandTotal').text(result.grandTotal);
+                    $("#VoucherCode").val(voucherCode);
+                });
+            }
+            else {
+                $('#lblVoucherMessage').text("Invalid voucher code");
+            }
+        }
+
+    </script>
+}

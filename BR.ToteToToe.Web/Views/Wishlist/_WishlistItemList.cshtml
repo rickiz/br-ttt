@@ -1,0 +1,109 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.ViewModels
+@model WishlistIndexViewModel
+
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    @if (Model.WishlistItems.Count == 0)
+    {
+        <tr>
+            <td>
+                @Html.Raw("Your wish list is still empty!")
+            </td>
+        </tr>
+    }
+    @for(int i = 0; i< Model.WishlistItems.Count;i+=2)
+    {
+        <tr>
+            <td width="26%" align="left" valign="top">
+                @*<a href="@link1">*@
+                <a href="@Model.WishlistItems[i].DetailsUrl">
+                    <img src="@Url.Content(Model.WishlistItems[i].Image)" width="153" height="130" />
+                </a>
+            </td>
+            <td width="29%" align="left" valign="top">
+                <p>
+                <span style="font-weight: bold">
+                    <br />@Model.WishlistItems[i].ModelName
+                </span><br />
+                Color: @Model.WishlistItems[i].ColourName<br />
+                Size: @Model.WishlistItems[i].Size</p>
+                
+                @if(!Model.IsShareWishlist)
+                {
+                    <p>
+                        @Html.ActionLink("Remove", "Remove", new { wishlistItemID = Model.WishlistItems[i].WishlistItemID }) | 
+
+                        @if (Model.WishlistItems[i].ModelSizeID > 0)
+                        {
+                            @Html.ActionLink("Add To Bag", "AddToCartNormal", new { modelSizeID = Model.WishlistItems[i].ModelSizeID, sku = Model.WishlistItems[i].SKU })
+                        }
+                        else
+                        {
+                            @Html.ActionLink("Add To Bag", "AddToCartCustomize", new { size = Model.WishlistItems[i].Size, sku = Model.WishlistItems[i].SKU })
+                        }
+                    </p>
+                }
+            </td>
+
+            @if (i+1 < Model.WishlistItems.Count)
+            {
+                var link2 = string.IsNullOrEmpty(Model.WishlistItems[i + 1].SKU) ?
+                                Url.Action("Details", "Shoes", new { modelID = Model.WishlistItems[i + 1].ModelID, colourDescID = Model.WishlistItems[i + 1].ColourDescID }) :
+                                Url.Action("ShoeDetails", "Customize", new { sku = Model.WishlistItems[i + 1].SKU });
+                
+                <td width="26%" align="left" valign="top">
+                @*<a href="@link2">*@
+                    <a href="@Model.WishlistItems[i+1].DetailsUrl">
+                        <img src="@Url.Content(Model.WishlistItems[i+1].Image)" width="153" height="130" />
+                    </a>
+                </td>
+                <td width="29%" align="left" valign="top">
+                    <p>
+                    <span style="font-weight: bold">
+                        <br />@Model.WishlistItems[i+1].ModelName
+                    </span><br />
+                    Color: @Model.WishlistItems[i+1].ColourName<br />
+                    Size: @Model.WishlistItems[i+1].Size</p>
+
+                    @if(!Model.IsShareWishlist)
+                    {
+                        <p>
+                            @Html.ActionLink("Remove", "Remove", new { wishlistItemID = Model.WishlistItems[i+1].WishlistItemID }) | 
+
+                            @if (Model.WishlistItems[i].ModelSizeID > 0)
+                            {
+                                @Html.ActionLink("Add To Bag", "AddToCartNormal", new { modelSizeID = Model.WishlistItems[i+1].ModelSizeID, sku = Model.WishlistItems[i+1].SKU })
+                            }
+                            else
+                            {
+                                @Html.ActionLink("Add To Bag", "AddToCartCustomize", new { size = Model.WishlistItems[i+1].Size, sku = Model.WishlistItems[i+1].SKU })
+                            }
+                        </p>
+                    }
+                </td>
+            }
+            else
+            {
+                <td width="26%" align="left" valign="top"></td>
+                <td width="29%" align="left" valign="top"></td>
+            }
+        </tr>
+    }
+    <tr>
+        <td colspan="4" align="center" valign="top"><hr class="divline" /></td>
+        </tr>
+    <tr>
+        <td colspan="4" align="center" valign="top">&nbsp;</td>
+    </tr>
+    @if (!Model.IsShareWishlist && Model.WishlistItems.Count > 0)
+    {
+        <tr>
+            <td colspan="4" align="right" valign="top">
+                @*<br />   
+                <a href="facebook.com/sharer.php?u=http://google.com">SEND WISH LIST</a>          
+                <input name="sendwishlist" type="submit" class="darkbutton" id="sendwishlist" value="SEND WISH LIST"  />*@
+                <div class="fb-share-button" data-href="@Model.ShareUrl" data-type="button"></div>
+            </td>
+        </tr>
+    }
+</table>

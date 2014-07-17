@@ -1,0 +1,85 @@
+﻿@using BR.ToteToToe.Web.ViewModels
+@model ShoeDetailsViewModel
+
+<div id="wrap">
+    <br />
+    <div class="cp">
+        Customising Progress&nbsp;&nbsp;<img src="~/Images/arrow_next.gif" width="5" height="8" />
+    </div> 
+    <a href="#" class="Step 1">
+        <div class="navstep1nolink">
+            <strong>STEP 1:</strong> Shoe Style
+        </div>
+    </a>
+    &nbsp;&nbsp;
+    <div class="navstep1nolink">
+        <strong>STEP 2:</strong> Material & Color
+    </div>
+    &nbsp;&nbsp;
+    <div class="navstep1selected">
+        <strong>STEP 3:</strong> Make my Shoe
+    </div>
+
+    <br /><br />
+
+    <div class="copy">
+        @{
+            var mainImagePrefix = string.Format("{0}_{1}_Main_{2}_", Model.CustomizeModel.Style, Model.CustomizeModel.Type, Model.ModelImage.Colour);
+            var subImagePrefix = string.Format("{0}_{1}_Sub_{2}_", Model.CustomizeModel.Style, Model.CustomizeModel.Type, Model.ModelImage.Colour);
+        }
+        <div id="pic1"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_1.jpg",mainImagePrefix))" width="413" height="337" /></div>
+        <div id="pic2"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_2.jpg",mainImagePrefix))" width="413" height="337" /></div>
+        <div id="pic3"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_3.jpg",mainImagePrefix))" width="413" height="337" /></div>
+        <div id="pic4"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_4.jpg",mainImagePrefix))" width="413" height="337" /></div>
+        <div class="thumbnail1"><a href="#"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_1.jpg",subImagePrefix))" name="shoe1" width="175" height="175" border="0" id="shoe1" onclick="MM_showHideLayers('pic1','','show','pic2','','hide','pic3','','hide','pic4','','hide')" /></a></div>
+        <div class="thumbnail2"><a href="#"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_2.jpg",subImagePrefix))" name="shoes2" width="175" height="175" border="0" id="shoes2" onclick="MM_showHideLayers('pic1','','hide','pic2','','show','pic3','','hide','pic4','','hide')" /></a></div>
+        <div class="thumbnail3"><a href="#"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_3.jpg",subImagePrefix))" name="shoes3" width="175" height="175" border="0" id="shoes3" onclick="MM_showHideLayers('pic1','','hide','pic2','','hide','pic3','','show','pic4','','hide')" /></a></div>
+        <div class="thumbnail4"><a href="#"><img src="@Url.Content(string.Format("~/Images/Customize/ShoeDetails/{0}_4.jpg",subImagePrefix))" name="shoes4" width="175" height="175" border="0" id="shoes4" onclick="MM_showHideLayers('pic1','','hide','pic2','','hide','pic3','','hide','pic4','','show')" /></a></div>
+
+        <div class="bodycopy">
+            <span style="font-size: 18px">@string.Format("{0} {1}", Model.CustomizeModel.Style, Model.CustomizeModel.Type)</span>
+            <br />
+	        <span style="color: #666; font-weight: bold; font-size: 14px;">RM @Model.CustomizeModel.Price</span>
+            <br />
+	      <br />
+	      <span style="font-weight: bold">Designer’s comment</span><br />
+            @Model.CustomizeModel.Description
+        </div>
+
+        <div class="formbox">
+            <select name="size" class="dropdown" id="size">
+            <option selected="selected">Size</option>
+                <option>US 4  | UK 3</option>
+                <option>US 5  | UK 4</option>               
+                <option>US 6  | UK 5</option>
+                <option>US 7  | UK 6</option>
+                <option>US 8  | UK 7</option>
+                <option>US 9  | UK 8</option>
+                <option>US 10 | UK 9</option>
+                <option>US 11 | UK 10</option>
+            </select>
+            &nbsp;
+                <input name="sizechart" type="button" class="sizechartbutton" id="sizechart" value="Size Chart" />
+            <br />
+            <br />     
+
+            <p align="left">
+            &nbsp;
+            <input name="addtowishlist" type="submit" class="addtowistlistbutton" id="addtowishlist" value="+ ADD TO WISH LIST" />
+             
+            &nbsp;&nbsp;
+            <input name="addtobag" type="submit" class="addtobagbutton" id="addtobag" value="+ ADD TO BAG" />
+            <br />
+            <br />
+          
+            <p align="left" style="font-size: 12px">Availability: Running out fast  • Ships in 3-5 business days</p>
+            <p align="left" style="font-size: 12px">&nbsp;</p>
+            <p align="left" style="font-size: 12px">&nbsp;          </p>
+            <p align="left" style="font-size: 12px">
+            <input name="addtobag3" type="submit" class="sharebutton" id="addtobag3" value="SHARE" />
+            <img src="images/likebtn.gif" width="92" height="30" style="vertical-align:middle" /><br />
+            </p>
+            <p align="left" style="font-size: 12px">&nbsp;</p>
+      </div>
+    </div>
+</div>

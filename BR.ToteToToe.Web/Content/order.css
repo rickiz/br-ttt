@@ -1,0 +1,138 @@
+﻿@charset "utf-8";
+/* CSS Document */
+#orderwrap
+{
+	width: 950px;
+	top: 0px;
+	/* height: auto !important;*/
+	/* overflow:auto; */
+	background-color: white;
+	margin: auto 0;
+	height: 900px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: relative;
+	padding-bottom: 213px;
+}
+
+.ordercopy
+{
+	width: 950px;
+	top: -7px;
+	background-color: #92d4d2;
+	height: 430px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.lines1
+{
+	background: url(images/order/lines.png);
+	background-repeat: no-repeat;
+	top: 40px;
+	display: block;
+	width: 950px;
+	height: 323px;
+	position: absolute;
+	float: left;
+	left: 0px;
+}
+
+.pic1
+{
+	top: 13px;
+	left: 25px;
+	display: block;
+	width: 670px;
+	height: 349px;
+	position: absolute;
+	float: left;
+}
+
+.pic2
+{
+	top: 607px;
+	left: 0px;
+	display: block;
+	width: 451px;
+	height: 219px;
+	position: absolute;
+	float: left;
+}
+
+.title
+{
+	top: 44px;
+	left: 373px;
+	display: block;
+	width: 338px;
+	height: 141px;
+	position: absolute;
+	float: left;
+	font-style: italic;
+	font-size: 70px;
+	color: #32978A;
+}
+
+.bodycopy
+{
+	top: 122px;
+	left: 713px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #966a66;
+	width: 220px;
+	height: 216px;
+	position: absolute;
+	text-align: left;
+	float: left;
+}
+
+.bodycopy2
+{
+	top: 455px;
+	left: 482px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #247c80;
+	width: 453px;
+	height: 371px;
+	text-align: left;
+	position: absolute;
+	float: left;
+	border-bottom: #7fbcb5 1px dotted;
+}
+
+.sil
+{
+	top: 274px;
+	left: 622px;
+	display: block;
+	width: 241;
+	height: 166px;
+	position: absolute;
+	float: left;
+}
+
+.sil2
+{
+	top: 271px;
+	left: 165px;
+	display: block;
+	width: 363px;
+	height: 309px;
+	position: absolute;
+	float: left;
+}
+
+.startcustom {
+	display: block;
+	width: 453px;
+	height: 57px;
+	background: url(../images/startcustom_button.gif) bottom;
+	text-indent: -99999px;
+}
+.startcustom:hover {
+	opacity: 0.8;
+}

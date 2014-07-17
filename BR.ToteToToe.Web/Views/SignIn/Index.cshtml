@@ -1,0 +1,229 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.SignInViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : Sign In or Register An Account";
+    var loginErrors = ViewData.ModelState.Where(a => a.Key == "LoginForm");
+    var registerErrors = ViewData.ModelState.Where(a => a.Key == "RegisterForm"); 
+}
+
+<div id="wrap">
+    <br />
+    <div class="copy">
+        <div class="pic1">
+            <img src="@(Links.Images.signin.pic1_jpg)" width="468" height="828" />
+        </div>
+        <div class="signinbox"></div>
+        <div class="formbox">
+            <p style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px; text-align: center;">SIGN IN</p>
+            <p>
+                Have an account? Please enter your username and password.<br />
+            </p>
+
+            @using (Html.BeginForm(MVC.SignIn.Index().AddRouteValue("returnUrl", Model.ReturnUrl)))
+            { 
+                @Html.AntiForgeryToken()
+
+                if (loginErrors.Count() > 0)
+                {
+                    <div class="validation-summary-errors">
+                        <ul>
+                            @foreach (var loginError in loginErrors)
+                            {
+                                foreach (var error in loginError.Value.Errors)
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            }                            
+                        </ul>
+                    </div>
+                }                
+
+                <p>
+                    Email Address<br />
+                    @Html.TextBoxFor(model => model.Email, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    @*@Html.ValidationMessageFor(model => model.Email)*@
+                    <br />
+                    <br />
+                    Password<br />
+                    @Html.PasswordFor(model => model.Password, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    @*@Html.ValidationMessageFor(model => model.Password)*@
+                    <br />
+                    <a href="#" class="forgotpwd">Forgot Password?</a>
+                </p>
+                <p align="right">
+                    <input name="login" type="submit" class="submitbutton" id="login" value="LOGIN" />
+                </p>
+            }
+
+            @using (Html.BeginForm("FacebookLogin", "SignIn", new { returnUrl = Model.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+
+                <p align="center">
+                    - - - - - - - - - - - - - - - - - - - - - - - - <span style="font-weight: bold; font-size: 18px;">&nbsp;&nbsp;OR&nbsp;&nbsp;</span> - - - - - - - - - - - - - - - - - - - - - - - - -
+                    <br />
+                    <br />
+                    <span style="font-size: 18px">Login with 
+                        <button type="submit" class="fb" name="provider" value="facebook" title="Log in using your Facebook account">
+                            Facebook
+                        </button>
+                    </span>
+                </p>
+            }
+        </div>
+
+        <div class="register"></div>
+        <div class="formbox2">
+            <p align="center" style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px;">REGISTER AN ACCOUNT</p>
+            <p>
+                No account yet? Register today to enjoy personalized services, including order status updates, an address book, and a wish list.<br />
+                <br />
+                <span style="font-style: italic"><span style="color: #C00">*</span> Required field</span><br />
+            </p>
+            @using (Html.BeginForm(MVC.SignIn.Register()))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.RegisterViewModel.ReturnUrl)
+
+                if (registerErrors.Count() > 0)
+                {
+                    <div class="validation-summary-errors">
+                        <ul>
+                            @foreach (var registerError in registerErrors)
+                            {
+                                foreach (var error in registerError.Value.Errors)
+                                {
+                                    <li>@error.ErrorMessage</li>
+                                }
+                            }                            
+                        </ul>
+                    </div>
+                }
+                
+                <p>
+                    Email Address <span style="color: #C00">*</span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.Email, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    @Html.ValidationMessageFor(model => model.RegisterViewModel.Email)
+                    <br />
+                    <br />
+                    Password <span style="color: #C00">*</span><br />
+                    @Html.PasswordFor(model => model.RegisterViewModel.Password, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    @Html.ValidationMessageFor(model => model.RegisterViewModel.Password)
+                    <br />
+                    <br />
+                    Confirm Password <span style="color: #C00">*</span><br />
+                    @Html.PasswordFor(model => model.RegisterViewModel.ConfirmPassword, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    @Html.ValidationMessageFor(model => model.RegisterViewModel.ConfirmPassword)
+                    <br />
+                    @*<br />
+                    First Name <span style="color: #C00">*</span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.FirstName, new { @class = "txtfield", size = "70", maxlength = "70" })
+
+                    <br />
+                    <br />
+                    Last Name <span style="color: #C00">*</span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.LastName, new { @class = "txtfield", size = "70", maxlength = "70" })
+
+                    <br />
+                    <br />
+                    Country <span style="color: #C00">*</span><br />
+                    @Html.DropDownListFor(model => model.RegisterViewModel.CountryID, Util.GetList(RefType.Country, defaultText: "Choose One", defaultValue: ""), new { @class = "dropdown" })
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    Address 1<br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.AddressLine1, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    Address 2<br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.AddressLine2, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    City/Town<br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.CityTown, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    State<br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.State, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    Post Code<span style="color: #C00"></span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.Postcode, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    Phone<span style="color: #C00"></span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.Phone, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    Gender<span style="color: #C00"></span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.Gender, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />*@
+                </p>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="53%">First Name <span style="color: #C00">*</span></td>
+                        <td width="47%">Last Name <span style="color: #C00">*</span></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="lastname"></label>
+                            @Html.TextBoxFor(model => model.RegisterViewModel.FirstName, new { @class = "txtfield2" })
+                        </td>
+                        <td>
+                            <label for="lastname"></label>
+                            @Html.TextBoxFor(model => model.RegisterViewModel.LastName, new { @class = "txtfield2" })
+                        </td>
+                    </tr>
+              </table>
+                @*<table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td colspan="3">Birthdate</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            @(Html.DropDownListFor(model => model.RegisterViewModel.BirthDateMonth, 
+                                Util.GetList(RefType.Month, defaultText: "Month", defaultValue: ""), 
+                                new { @class = "dropdownbday" }))
+                        </td>
+                        <td align="center">
+                            @(Html.DropDownListFor(model => model.RegisterViewModel.BirthDateDay, 
+                                Util.GetList(RefType.Day, defaultText: "Day", defaultValue: ""), 
+                                new { @class = "dropdownbday" }))
+                        </td>
+                        <td align="right">
+                            @(Html.DropDownListFor(model => model.RegisterViewModel.BirthDateYear, 
+                                Util.GetList(RefType.Year, defaultText: "Year", defaultValue: ""), 
+                                new { @class = "dropdownbday" }))
+                        </td>
+                    </tr>
+                </table>*@
+                <p align="right">
+                    <input name="login" type="submit" class="submitbutton" id="login" value="REGISTER" />
+                </p>
+            }
+        </div>
+
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.signin_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        @if (registerErrors.Count() > 0)
+        { 
+            <text>
+            $(document).ready(function () {
+                $("#RegisterViewModel_Email").focus();
+            });
+            </text>
+        }
+    </script>
+}

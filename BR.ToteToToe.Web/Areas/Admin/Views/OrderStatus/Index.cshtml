@@ -1,0 +1,132 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+
+@model OrderStatusViewModel
+
+@{
+    ViewBag.Title = "Order Status";
+}
+
+@using (Html.BeginForm(MVC.Admin.OrderStatus.Index(), FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "frmMain" }))
+{
+    @Html.ValidationSummary(false)
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.SalesOrderID, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-4">
+            @Html.TextBoxFor(model => model.Criteria.SalesOrderID, new { @class = "form-control" })
+        </div>        
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.StatusID, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-4">
+            @Html.DropDownListFor(model => 
+                model.Criteria.StatusID, 
+                Util.GetList(RefType.OrderStatusUpdateStatus, defaultText: "All"), 
+                new { @class = "form-control" })
+        </div>        
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-1">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>    
+}
+
+@{
+    Html.Telerik().Grid(Model.Results)
+        .Name("grdResult")
+        .Columns(cols =>
+        {
+            cols.Bound(m => m.SalesOrderID).Title("Order Number");
+            cols.Bound(m => m.Email);
+            cols.Bound(m => m.Status);
+        })
+        .DataBinding(dataBinding => dataBinding.Ajax().OperationMode(GridOperationMode.Client))
+        .Pageable(paging => paging.PageSize(10))
+        .Sortable()
+        .Selectable()
+        .ClientEvents(events => events.OnRowSelect("onRowSelected_grdResult"))
+        .Render();        
+}
+
+@{
+    Html.Telerik().Window()
+        .Name("wdwUpdate")
+        .Title("Order Status Update")
+        .Width(400)
+        .Height(300)
+        .Resizable()
+        .Draggable(true)
+        .Modal(true)
+        .Visible(false)
+        .Content(@<text>
+            @using (Html.BeginForm(MVC.Admin.OrderStatus.Update(), FormMethod.Post, new { id = "frmUpdate", role = "form"}))
+            {
+                
+
+                <div class="form-group">
+                    <label class="control-label text-info">Order Number</label>
+                    @Html.TextBoxFor(model => model.UpdateModel.SalesOrderID, new { @class = "form-control", @readonly = true })
+                </div>
+                
+                <div class="form-group">
+                    <label class="control-label text-info">Status</label>
+                    <input type="text" readonly="true" id="UpdateModel_Status" class="form-control" />
+                </div>
+                
+                <div class="form-group" id="divDeliveryDT">
+                    <label class="control-label text-info">Delivery Date</label>
+                    <br />
+                    @(Html.Telerik().DatePickerFor(model => model.UpdateModel.DeliveryDT)
+                        .OpenOnFocus(true)
+                        .Format("dd/MM/yyyy")
+                        .InputHtmlAttributes(new { @class = "form-control", @readonly = true }))
+                </div>
+                
+                <button type="submit" class="btn btn-default" id="btnUpdate"></button>
+            }
+            </text>)
+        .Render();
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function onRowSelected_grdResult(e) {
+            var id = e.row.cells[0].innerHTML;
+            var status = e.row.cells[2].innerHTML;
+            var buttonText = "";
+            var $deliveryDatePicker = $("#UpdateModel_DeliveryDT").data("tDatePicker");
+            var $deliveryDiv = $("#divDeliveryDT");
+            var $updateWindow = $("#wdwUpdate").data('tWindow');
+            $("#UpdateModel_SalesOrderID").val(id);
+            $("#UpdateModel_Status").val(status);
+            $deliveryDatePicker.value(new Date());
+
+            if (status == '@Status.Pending.ToString()') {
+                buttonText = "Payment Verified";
+                $deliveryDiv.hide();
+                $deliveryDatePicker.disable();
+            }
+            else if (status == '@Status.Processing.ToString()') {
+                buttonText = "Delivery";
+                $deliveryDiv.show();
+                $deliveryDatePicker.enable();
+            }
+            else if (status == '@Status.Delivery.ToString()') {
+                buttonText = "Close Order";
+                $deliveryDiv.show();
+                $deliveryDatePicker.enable();
+            }
+
+            $("#btnUpdate").html(buttonText);
+
+            $updateWindow.center();
+            $updateWindow.open();
+        }
+    </script>
+}
+

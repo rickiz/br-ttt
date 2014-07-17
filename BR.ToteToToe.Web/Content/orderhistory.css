@@ -1,0 +1,229 @@
+@charset "utf-8";
+/* CSS Document */
+#wrap
+{
+	width: 950px;
+	top: 0px;
+	/* height: auto !important;*/
+	/* overflow:auto; */
+	background-color: white;
+	margin: auto 0;
+	height: 1150px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	position: relative;
+	padding-bottom: 213px;
+}
+
+.copy
+{
+	width: 950px;
+	top: -7px;
+	background-color: white;
+	height: 1131px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.txtbox
+{
+	width: 813px;
+	height: 31px;
+	top: 63px;
+	left: 138px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+}
+.select-style {
+    border: 1px solid #dcdddf;
+    width: 113px;
+    border-radius: 3px;
+    overflow: hidden;
+	float:left;
+    background: #dcdddf url("../images/arrowdown.gif") no-repeat 95% 50%;
+	
+}
+
+.select-style select {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:11px;
+    padding: 2px 5px;
+    width: 130%;
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+    -webkit-appearance: none;
+}
+
+.select-style select:focus {
+    outline: none;
+}
+
+.accountbox
+{
+	width: 680px;
+	height: 1091px;
+	top: 30px;
+	left: 0px;
+	background-color: #fff;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	position: absolute;
+}
+
+.txtfield {
+	border:0px;
+	height: 35px;
+	width: 52px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size: 20px;
+	background-color:#e7e7e9;
+	padding: 1px;
+}
+
+.divline
+{ 
+color: #666; 
+background-color: #FFF; 
+border: 1px dashed #b2b2b2; 
+border-style: none none dashed; 
+}
+
+.editaddviewbutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: black;
+	background: #b2b3b7;
+	background-image:url(../images/main_nav_dottedline.gif);
+	width: 100px;
+	height: 28px;
+	border: 0px;
+	cursor: pointer;
+}
+
+.editaddviewbutton:hover {
+	background: #d5d5d6;
+	background-image:url(../images/main_nav_dottedline.gif);
+	color: black;
+}
+
+.whitebutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	background: #8AD7CD;
+	background-image:url(../images/main_nav_dottedline.gif);
+	width: 270px;
+	height: 28px;
+	/*border: 1px solid #939395;*/
+	border: 0px;
+	cursor: pointer;
+}
+.whitebutton:hover {
+	background: #3CB0AB;
+	background-image:url(../images/main_nav_dottedline.gif);
+	color: white;
+}
+
+.darkbutton {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: white;
+	background: #47443b;
+	background-image:url(../images/main_nav_dottedline.gif);
+	width: 203px;
+	height: 28px;
+	border: 0px;
+	cursor: pointer;
+}
+
+.darkbutton:hover {
+	background: #666;
+	background-image:url(../images/main_nav_dottedline.gif);
+	color: white;
+}
+
+a:link {
+	color: #000;
+}
+a:visited {
+	color: #000;
+}
+a:hover {
+	color: #999;
+}
+a:active {
+	color: #000;
+}
+
+#recentbutton {
+  width: 60px;
+  height: 18px;
+  cursor: pointer;
+  background-color: #cecece;
+  background-image:url(../images/main_nav_dottedline.gif);
+  /*border: 1px solid #999;*/
+  text-decoration: none;
+  padding: 5px;
+  text-align:center;
+}
+#recentbutton a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000;
+	text-align:center;
+	text-decoration: none;
+}
+#recentbutton a:link {
+	text-decoration: none;
+}
+#recentbutton a:visited {
+	text-decoration: none;
+	color: #000;
+}
+#recentbutton a:active {
+	text-decoration: none;
+	color: #000;
+}
+#recentbutton a:hover {
+	text-decoration: none;
+	opacity: 0.8;
+	color: #999; 
+}
+
+#wishbutton {
+  width: 60px;
+  height: 18px;
+  cursor: pointer;
+  background-color: #cecece;
+  background-image:url(../images/main_nav_dottedline.gif);
+  /*border: 1px solid #999;*/
+  text-decoration: none;
+  padding: 5px;
+  text-align:center;
+}
+#wishbutton a {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	color: #000;
+	text-align:center;
+	text-decoration: none;
+}
+#wishbutton a:link {
+	text-decoration: none;
+}
+#wishbutton a:visited {
+	text-decoration: none;
+	color: #000;
+}
+#wishbutton a:active {
+	text-decoration: none;
+	color: #000;
+}
+#wishbutton a:hover {
+	text-decoration: none;
+	opacity: 0.8;
+	color: #999; 
+}

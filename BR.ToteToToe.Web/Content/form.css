@@ -1,0 +1,39 @@
+﻿@charset "utf-8";
+
+/* search form 
+-------------------------------------- */
+.searchform {
+	display: inline-block;
+	zoom: 1; /* ie7 hack for display:inline-block */
+	*display: inline;
+	border: solid 1px #d2d2d2;
+	padding: 3px 5px;
+	
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+
+}
+.searchform input {
+	font: normal 12px/100% Arial, Helvetica, sans-serif;
+}
+.searchform .searchfield {
+	background: #fff;
+	padding: 6px 6px 6px 6px;
+	width: 250px;
+	border: solid 0px #bcbbbb;
+	outline: none;
+
+	-webkit-border-radius: 2em;
+	-moz-border-radius: 2em;
+	border-radius: 2em;
+}
+.searchform .searchbutton {
+	color: #fff;
+	height: 18px;
+	width: 22px;
+	cursor: pointer;
+}
+
+/* search form END 
+-------------------------------------- */

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cd6b1d94655c4fd9a47a8b0f6f6bf4e7" Name="Diagram1" ZoomLevel="82">
+        <EntityTypeShape EntityType="tttModel.lnkcollectionmodel" Width="1.5" PointX="7.5" PointY="16.625" />
+        <EntityTypeShape EntityType="tttModel.lnkcolourpriority" Width="1.5" PointX="5.25" PointY="3.75" />
+        <EntityTypeShape EntityType="tttModel.lnktrendpriority" Width="1.5" PointX="10.5" PointY="1" />
+        <EntityTypeShape EntityType="tttModel.refbrand" Width="1.5" PointX="3" PointY="12.625" />
+        <EntityTypeShape EntityType="tttModel.refcategory" Width="1.5" PointX="0.75" PointY="12.625" />
+        <EntityTypeShape EntityType="tttModel.refcollection" Width="1.5" PointX="5.25" PointY="20.875" />
+        <EntityTypeShape EntityType="tttModel.refcolour" Width="1.5" PointX="3" PointY="7.75" />
+        <EntityTypeShape EntityType="tttModel.refcolourdesc" Width="1.5" PointX="5.25" PointY="7.5" />
+        <EntityTypeShape EntityType="tttModel.reflifestyle" Width="1.5" PointX="5.25" PointY="17.875" />
+        <EntityTypeShape EntityType="tttModel.reftrend" Width="1.5" PointX="8.25" PointY="0.75" />
+        <EntityTypeShape EntityType="tttModel.tblvoucher" Width="1.5" PointX="11.25" PointY="23.125" />
+        <AssociationConnector Association="tttModel.fk_collectionmodel_collection" />
+        <AssociationConnector Association="tttModel.fk_colourpriority_colour" />
+        <AssociationConnector Association="tttModel.fk_trendpriority_trend" />
+        <AssociationConnector Association="tttModel.fk_brand_category" />
+        <AssociationConnector Association="tttModel.fk_colourdesc_colour" />
+        <EntityTypeShape EntityType="tttModel.trnwishlist" Width="1.5" PointX="10.5" PointY="16.875" />
+        <EntityTypeShape EntityType="tttModel.lnkmodelsize" Width="1.5" PointX="10.5" PointY="12.25" />
+        <AssociationConnector Association="tttModel.kf_modelsize_colourdesc" />
+        <EntityTypeShape EntityType="tttModel.lnkmodelimage" Width="1.5" PointX="9.75" PointY="4.625" />
+        <EntityTypeShape EntityType="tttModel.refstatu" Width="1.5" PointX="11.25" PointY="20.25" />
+        <EntityTypeShape EntityType="tttModel.refcountry" Width="1.5" PointX="15.75" PointY="20.875" />
+        <EntityTypeShape EntityType="tttModel.tblaccess" Width="1.5" PointX="15.75" PointY="25" />
+        <EntityTypeShape EntityType="tttModel.tbladdress" Width="1.5" PointX="18" PointY="20.125" />
+        <AssociationConnector Association="tttModel.fk_address_country" />
+        <AssociationConnector Association="tttModel.fk_address_access" />
+        <EntityTypeShape EntityType="tttModel.lnkwishlist" Width="1.5" PointX="12.75" PointY="12.25" />
+        <AssociationConnector Association="tttModel.wishlistitem_modelsize" />
+        <AssociationConnector Association="tttModel.wishlistitem_modelcolour" />
+        <AssociationConnector Association="tttModel.wishlistitem_wishlist" />
+        <EntityTypeShape EntityType="tttModel.lnkcustomizemodelimage" Width="1.5" PointX="0.75" PointY="1.875" />
+        <EntityTypeShape EntityType="tttModel.refcustomizemodel" Width="1.5" PointX="12.75" PointY="1.875" />
+        <EntityTypeShape EntityType="tttModel.lnksoaddress" Width="1.5" PointX="21" PointY="20.625" />
+        <AssociationConnector Association="tttModel.fk_lso_country" />
+        <EntityTypeShape EntityType="tttModel.tblrecentview" Width="1.5" PointX="12.75" PointY="5.875" />
+        <EntityTypeShape EntityType="tttModel.trnsalesorder" Width="1.5" PointX="13.5" PointY="20.25" />
+        <AssociationConnector Association="tttModel.fk_lso_so" />
+        <AssociationConnector Association="tttModel.fk_so_status" />
+        <AssociationConnector Association="tttModel.fk_so_voucher" />
+        <EntityTypeShape EntityType="tttModel.lnksalesorder" Width="1.5" PointX="15.75" PointY="12.125" />
+        <AssociationConnector Association="tttModel.fk_soitem_modelsize" />
+        <AssociationConnector Association="tttModel.fk_soitem_soid" />
+        <EntityTypeShape EntityType="tttModel.lnkmodelcolourdesc" Width="1.5" PointX="7.5" PointY="8.125" />
+        <AssociationConnector Association="tttModel.fk_modelimage_modelcolourdesc" />
+        <AssociationConnector Association="tttModel.modelcolourdesc_colourdesc" />
+        <EntityTypeShape EntityType="tttModel.logpayment" Width="1.5" PointX="14.75" PointY="1.875" />
+        <EntityTypeShape EntityType="tttModel.refmodel" Width="1.5" PointX="5.25" PointY="11.625" />
+        <AssociationConnector Association="tttModel.fk_collectionmode_model" />
+        <AssociationConnector Association="tttModel.modelcolourdesc_model" />
+        <AssociationConnector Association="tttModel.kf_modelsize_model" />
+        <AssociationConnector Association="tttModel.fk_model_brand" />
+        <EntityTypeShape EntityType="tttModel.lnkmodellifestyle" Width="1.5" PointX="1.58065527751141" PointY="20.596852610165651" />
+        <EntityTypeShape EntityType="tttModel.lnkmodeltrend" Width="1.5" PointX="3.1517949267997381" PointY="29.610469563682781" />
+        <AssociationConnector Association="tttModel.fk_modellifestyle_lifestyle" />
+        <AssociationConnector Association="tttModel.fk_modellifestyle_model" />
+        <AssociationConnector Association="tttModel.fk_modeltrend_model" />
+        <AssociationConnector Association="tttModel.fk_modeltrend_trend" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

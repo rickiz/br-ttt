@@ -1,0 +1,191 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta charset="utf-8" />
+        <title>@ViewBag.Title</title>
+        @RenderSection("fbheader", required: false)
+
+        <link href="@(Links.Images.favicon_ico)" rel="shortcut icon" type="image/x-icon" />
+        <meta name="viewport" content="width=device-width" />
+        @Styles.Render("~/Content/css")
+        @Styles.Render("~/Content/themes/base/css")
+        @Scripts.Render("~/bundles/modernizr")
+
+        @RenderSection("styles", required: false)
+        
+        <!--[if !IE 7]>
+	        <style type="text/css">
+		        #wrap {display:table;height:100%}
+	        </style>
+        <![endif]-->
+
+        <!--[if IE]>
+          <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+    </head>
+    <body>
+        <div id="container">
+            <div class="header">
+                <div class="navtrending">
+                    @Html.ActionLink("TRENDING", MVC.Trending.Index(), new { @class = "trending" })
+                </div>
+                <div class="navshoes">
+                    @Html.ActionLink("SHOES", MVC.Shoes.Index(), new { @class = "shoes" })
+                </div>
+                <div class="navhandbags">
+                    @Html.ActionLink("HANDBAGS", MVC.Handbags.Index(), new { @class = "handbags" })
+                </div>
+                <div class="navorder">
+                    @Html.ActionLink("MADE TO ORDER", MVC.Order.Index(), new { @class = "order" })
+                </div>
+                <div class="navarticles">
+                    @Html.ActionLink("MEN", MVC.Articles.Index(), new { @class = "articles" })
+                </div>
+                <div class="navabout">
+                    @Html.ActionLink("ABOUT US", MVC.Home.About(), new { @class = "about" })
+                </div>
+                <div class="navcontact">
+                    @Html.ActionLink("CONTACT", MVC.Home.Contact(), new { @class = "contact" })
+                </div>
+                <div class="logo">
+                    <a href="@(Url.Action(MVC.Home.Index()))">
+                        <img src="@(Links.Images.totetotoe_logo_gif)" alt="Tote To Toe" width="93" height="100" border="0" />
+                    </a>
+                </div>
+                <div class="fu"></div>
+                <div class="verdotted"></div>
+                <div class="freeshipping"></div>
+                <div class="toplinks">
+                    @if (Request.IsAuthenticated)
+                    { 
+                        <text>
+                            Welcome @Util.SessionAccess.FirstName
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            <a href="@(Url.Action(MVC.SignIn.Logout()))">Logout</a>    
+                            &nbsp;&nbsp;|&nbsp;&nbsp;
+                            @Html.ActionLink(" My Account", MVC.MyAccount.Index())     
+                             &nbsp;&nbsp;|&nbsp;&nbsp; 
+                            @Html.ActionLink("My Wishlist", "Index", "Wishlist")  
+                            (<label id="wishlistItemCount">@Html.Action("PendingCheckoutCount", "Wishlist")</label>)             
+                        </text>
+                    }
+                    else
+                    { 
+                        <a href="@(Url.Action(MVC.SignIn.Index()))">Sign in / Register</a>
+                    }
+                    &nbsp;&nbsp;|&nbsp;&nbsp; 
+                    @Html.ActionLink("Shopping Bag", "Index", "ShoppingBag")  
+                    <img src="@(Links.Images.icon_shoppingbag_gif)" width="23" height="34" style="vertical-align: middle" />
+                    (<label id="shoppingItemCount">@Html.Action("PendingCheckoutCount", "ShoppingBag")</label>)  
+                </div>
+                <div class="searchbox">
+                    <form class="searchform">
+                        <input class="searchfield" type="text" value="SEARCH TOTE TO TOE" onfocus="if (this.value == 'SEARCH TOTE TO TOE') {this.value = '';}" onblur="if (this.value == '') {this.value = 'SEARCH TOTE TO TOE';}" />
+                        <input type="image" class="searchbutton" value="" src="@(Links.Images.button_search_png)" align="absmiddle" />
+                    </form>
+                </div>
+            </div>
+
+            @*<div id="mainbody">
+                @RenderBody()
+            </div>*@
+            @RenderBody()
+        </div>
+
+        <div class="footer">
+            <div class="foot">
+                <div class="bottom">Copyright Tote To Toe. All Rights Reserved.</div>
+                <div class="account">
+                    <span style="font-weight: bold">ACCOUNT</span><br />
+                    <br />
+                    <a href="@(Url.Action(MVC.MyAccount.Index()))">My Account</a><br />
+                    <a href="@(Url.Action(MVC.MyAccount.Index()))">Recent Items</a><br />
+                    <a href="@(Url.Action(MVC.Wishlist.Index()))">Wish list</a>
+                </div>
+
+                <div class="customer">
+                    <span style="font-weight: bold">CUSTOMER SERVICE</span><br />
+                    <br />
+                    @Html.ActionLink("Contact Us", MVC.Home.Contact())
+                    <br />
+                    <a href="@(Url.Action(MVC.Home.ReturnRefund()))">Returns & Refunds</a>
+                </div>
+
+                <div class="info">
+                    <span style="font-weight: bold">INFORMATION</span><br />
+                    <br />
+                    @Html.ActionLink("About Us", MVC.Home.About())
+                    <br />
+                    <a href="@(Url.Action(MVC.Home.Shipping()))">Shipping</a><br />
+                    <a href="@(Url.Action(MVC.Home.Payment()))">Payments</a><br />
+                    <a href="@(Url.Action(MVC.Home.SizeGuidelines()))">Size Guidelines</a>
+                </div>
+
+                <div class="legal">
+                    <span style="font-weight: bold">LEGAL</span><br />
+                    <br />
+                    @*<a href="#">Copyright</a><br />*@
+                    <a href="@(Url.Action(MVC.Home.TnC()))">Terms & Conditions</a><br />
+                    <a href="@(Url.Action(MVC.Home.Privacy()))">Privacy Policy</a><br />
+                    @*<a href="#">Disclaimer</a>*@
+                </div>
+
+                <div class="footverdotted"></div>
+
+                <div class="right">
+                    <span style="font-weight: bold">Follow us</span><br />
+                    <a href="#" title="">
+                        <img src="@(Links.Images.footer_icon_fb_gif)" alt="" border="0">
+                    </a>
+                    <a href="#">
+                        <img src="@(Links.Images.footer_icon_twit_gif)" width="40" height="40" border="0" />
+                    </a> 
+                    <a href="#">
+                        <img src="@(Links.Images.footer_icon_google_gif)" width="40" height="40" border="0" />
+                    </a> 
+                    <a href="#">
+                        <img src="@(Links.Images.footer_icon_tumblr_gif)" width="40" height="40" border="0" />
+                    </a> 
+                    <a href="#">
+                        <img src="@(Links.Images.footer_icon_pinterest_gif)" width="40" height="40" border="0" />
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        @Scripts.Render("~/bundles/jquery")
+        <script src="http://code.jquery.com/jquery-migrate-1.1.1.js"></script>
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+
+        <script type="text/javascript">
+            window.fbAsyncInit = function () {
+                FB.init({
+                    appId: '267986850024373',
+                    status: true,
+                    cookie: true,
+                    xfbml: true,
+                    oauth: true
+                });
+                FB.Event.subscribe('edge.create', function (response) {
+                    alert('You liked the URL: ' + response);
+                });
+            };
+            (function (d) {
+                var js, id = 'facebook-jssdk';
+                if (d.getElementById(id)) {
+                    return;
+                }
+                js = d.createElement('script');
+                js.id = id;
+                js.async = true;
+                js.src = "//connect.facebook.net/en_US/all.js";
+                d.getElementsByTagName('head')[0].appendChild(js);
+            }(document));
+        </script>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

@@ -1,0 +1,204 @@
+﻿@{
+    ViewBag.Title = "TOTE TO TOE : Shoes : Pumps";
+}
+
+<br />
+<div class="crumbs" style="margin-right: 7px; vertical-align: baseline">
+    <a href="#">Home</a> / <a href="@(Url.Action(MVC.Shoes.Index()))">Shoes</a>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">CATEGORY</option>
+        <option value="Pumps">Pumps</option>
+        <option value="Sandals">Sandals</option>
+        <option value="Platform">Platform</option>
+        <option value="Wedges">Wedges</option>
+        <option value="Peeptoe">Peeptoe</option>
+        <option value="Flats">Flats</option>
+        <option value="Ballerina">Ballerina</option>
+    </select>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">LIFESTYLE</option>
+        <option value="Casual">Casual</option>
+        <option value="Lookbook">Lookbook</option>
+        <option value="Class">Class</option>
+    </select>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">BRANDS</option>
+        <option value="saab">Avid Diva</option>
+        <option value="mercedes">Angel</option>
+        <option value="audi">Heely</option>
+    </select>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">SIZE</option>
+        <option value="US4">US 4  | UK 3</option>
+        <option value="US5">US 5  | UK 4</option>
+        <option value="US6">US 6  | UK 5</option>
+        <option value="US7">US 7  | UK 6</option>
+        <option value="US8">US 8  | UK 7</option>
+        <option value="US9">US 9  | UK 8</option>
+        <option value="US10">US 10 | UK 9</option>
+        <option value="US11">US 11 | UK 10</option>
+    </select>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">COLOR</option>
+        <option value="saab">Black</option>
+        <option value="mercedes">Red</option>
+        <option value="audi">Beige</option>
+    </select>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">PRICE</option>
+        <option value="saab">Below $100</option>
+        <option value="mercedes">Lowest to Highest</option>
+        <option value="audi">Highest to Lowest</option>
+    </select>
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    <select>
+        <option value="category">HEEL HEIGHT</option>
+        <option value="saab">2 inches</option>
+        <option value="mercedes">3 inches</option>
+        <option value="audi">4 inches</option>
+    </select>
+</div>
+<br />
+
+<p>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td><a href="@Url.Action(MVC.Shoes.Details())">
+                <img src="@(Links.Images.pumps.sampleshoes4_jpg)" name="shoes1" width="236" height="160" id="shoes1" onmouseover="MM_swapImage('shoes1','','@(Links.Images.pumps.sampleshoes4b_jpg)',1)" onmouseout="MM_swapImgRestore()" /></a><br />
+                <span style="font-weight: bold">MIU MIU</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td colspan="2" rowspan="2">
+                <img src="@(Links.Images.pumps.icon_jpg)" width="473" height="473" /></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+        </tr>
+        <tr>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+            <td>
+                <img src="@(Links.Images.pumps.sampleshoes_jpg)" width="236" height="160" /><br />
+                <span style="font-weight: bold">RED LACY</span><br />
+                <span style="font-style: italic">Crystal-embellished<br />
+                    lace pumps</span><br />
+                <span style="color: #666666">RM 180.00</span></td>
+        </tr>
+    </table>
+    <br />
+
+
+</p>
+
+@section styles
+{
+    <link href="@(Links.Content.productlist_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(function () {
+            MM_preloadImages('@(Links.Images.pumps.sampleshoes4b_jpg)')
+        });
+
+        function MM_preloadImages() { //v3.0
+            var d = document; if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+                var i, j = d.MM_p.length, a = MM_preloadImages.arguments; for (i = 0; i < a.length; i++)
+                    if (a[i].indexOf("#") != 0) { d.MM_p[j] = new Image; d.MM_p[j++].src = a[i]; }
+            }
+        }
+
+        function MM_swapImgRestore() { //v3.0
+            var i, x, a = document.MM_sr; for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++) x.src = x.oSrc;
+        }
+
+        function MM_findObj(n, d) { //v4.01
+            var p, i, x; if (!d) d = document; if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                d = parent.frames[n.substring(p + 1)].document; n = n.substring(0, p);
+            }
+            if (!(x = d[n]) && d.all) x = d.all[n]; for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+            for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+            if (!x && d.getElementById) x = d.getElementById(n); return x;
+        }
+
+        function MM_swapImage() { //v3.0
+            var i, j = 0, x, a = MM_swapImage.arguments; document.MM_sr = new Array; for (i = 0; i < (a.length - 2) ; i += 3)
+                if ((x = MM_findObj(a[i])) != null) { document.MM_sr[j++] = x; if (!x.oSrc) x.oSrc = x.src; x.src = a[i + 2]; }
+        }
+    </script>
+}

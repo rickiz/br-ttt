@@ -1,0 +1,271 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.MyAccountEditViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : Edit Account Details";
+}
+
+<div id="wrap">
+    <br />
+    <div class="copy">
+        <div class="register"></div>
+        <div class="formbox2">
+            <p>
+                <span style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px;">Edit your Account Details</span><br />
+                <br />
+                <br />
+                <span style="font-style: italic"><span style="color: #C00">*</span> Required field</span><br />
+            </p>
+
+            @using (Html.BeginForm(MVC.MyAccount.Edit()))
+            { 
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(m => m.AccessID)
+                @Html.HiddenFor(m => m.PrimaryAddress.ID)
+                @Html.HiddenFor(m => m.PrimaryAddress.IsPrimary)
+                @Html.HiddenFor(m => m.SecondaryAddress.ID)
+                @Html.HiddenFor(m => m.SecondaryAddress.IsPrimary)
+                @Html.HiddenFor(m => m.IsFBLogin)
+                @Html.ValidationSummary(false)
+                
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td width="52%" align="left" valign="top">Email Address <span style="color: #C00">*</span><br />
+                            @Html.TextBoxFor(model => model.Email, new { @class = "txtfield", size = "70", maxlength = "70" })
+                            <br />
+                            <br />
+                            Password <span style="color: #C00">*</span><br />
+                            @if (Model.IsFBLogin)
+                            {
+                                @: Login is tied to FB
+                            }
+                            else
+                            { 
+                                @Html.PasswordFor(model => model.Password, 
+                                new { @class = "txtfield", size = "70", maxlength = "70", value = Model.Password })
+                            }
+                            
+                            <br />
+                            <br />
+                            Confirm Password <span style="color: #C00">*</span><br />
+                            @if (Model.IsFBLogin)
+                            {
+                                @: Login is tied to FB
+                            }
+                            else
+                            { 
+                                @Html.PasswordFor(model => model.ConfirmPassword, 
+                                new { @class = "txtfield", size = "70", maxlength = "70", value = Model.ConfirmPassword })
+                            }
+                            <br />
+                            <br />
+                            First Name <span style="color: #C00">*</span><br />
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "txtfield", size = "70", maxlength = "70" })
+                            <br />
+                            <br />
+                            Last Name <span style="color: #C00">*</span><br />
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "txtfield", size = "70", maxlength = "70" })
+                            <br />
+                        </td>
+                        <td width="48%" align="left" valign="top">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td colspan="3">Phone<span style="color: #C00"></span><br />
+                                         @Html.TextBoxFor(model => model.Phone, new { @class = "txtfield", size = "70", maxlength = "70" })
+                                        <br />
+                                        <br />
+                                        Birthdate</td>
+                                </tr>
+                                <tr>
+                                    <td width="32%">
+                                        @(Html.DropDownListFor(model => model.BirthDateMonth, 
+                                            Util.GetList(RefType.Month, defaultText: "Month", defaultValue: ""), 
+                                            new { @class = "dropdownbday" }))
+                                    </td>
+                                    <td width="32%" align="center">
+                                        @(Html.DropDownListFor(model => model.BirthDateDay, 
+                                            Util.GetList(RefType.Day, defaultText: "Day", defaultValue: ""), 
+                                            new { @class = "dropdownbday" }))
+                                    </td>
+                                    <td width="36%" align="right">
+                                        @(Html.DropDownListFor(model => model.BirthDateYear, 
+                                            Util.GetList(RefType.Year, defaultText: "Year", defaultValue: ""), 
+                                            new { @class = "dropdownbday" }))
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            Gender<span style="color: #C00"></span><br />
+                            @(Html.DropDownListFor(model => model.Gender, 
+                                Util.GetEnumList<Gender>(defaultText: "Choose One", includeDefault: true), 
+                                new { @class = "dropdown" }))
+                            <br />
+                            <br />
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" align="left" valign="top"><span style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px;">
+                            <br />
+                        </span>
+                            <hr noshade="noshade" class="divline" />
+                            <span style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px;">
+                                <br />
+                                Edit Address Book<br />
+                                <br />
+                            </span></td>
+                    </tr>
+                    <tr>
+                        <td height="455" align="left" valign="top">
+                            <span style="font-weight: bold">HOME ADDRESS</span><br />
+                            <br />
+                            Address Line 1<br />
+                            @Html.TextBoxFor(model => model.PrimaryAddress.AddressLine1, new { @class = "txtfield home-add", size = "70", maxlength = "70" })
+                            <br />
+                            <br />
+                            Address Line 2<br />
+                            @Html.TextBoxFor(model => model.PrimaryAddress.AddressLine2, new { @class = "txtfield home-add", size = "70", maxlength = "70" })
+
+                            <p>
+                                City/Town<br />
+                                @Html.TextBoxFor(model => model.PrimaryAddress.CityTown, new { @class = "txtfield home-add", size = "70", maxlength = "70" })
+                                <br />
+                                <br />
+                                State<br />
+                                @Html.TextBoxFor(model => model.PrimaryAddress.State, new { @class = "txtfield home-add", size = "70", maxlength = "70" })
+                                <br />
+                                <br />
+                                Post Code<span style="color: #C00"></span><br />
+                                @Html.TextBoxFor(model => model.PrimaryAddress.Postcode, new { @class = "txtfield home-add", size = "70", maxlength = "70" })
+                                <br />
+                                <br />
+                                Country<br />
+                                @Html.DropDownListFor(model => model.PrimaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
+                                <br />
+                                <br />
+                                <br />
+
+                                <span class="home-incomplete-msg" style="font-size:smaller; font-style: italic; display:none;">You have not completed your address yet.</span>
+                                <br />
+
+                                @Html.RadioButtonFor(m => m.BillingFlag, 1, new { @class = "home-flag" })
+                                Use as Billing Address
+                                @Html.RadioButtonFor(m => m.ShippingFlag, 1, new { @class = "home-flag" })
+                                Use as Shipping Address
+
+                                
+                        </td>
+                        <td align="left" valign="top"><span style="font-weight: bold">WORK ADDRESS</span><br />
+                            <br />
+                            Address Line 1<br />
+                            @Html.TextBoxFor(model => model.SecondaryAddress.AddressLine1, new { @class = "txtfield work-add", size = "70", maxlength = "70" })
+                            <br />
+                            <br />
+                            Address Line 2<br />
+                            @Html.TextBoxFor(model => model.SecondaryAddress.AddressLine2, new { @class = "txtfield work-add", size = "70", maxlength = "70" })
+
+                            <p>
+                                City/Town<br />
+                                @Html.TextBoxFor(model => model.SecondaryAddress.CityTown, new { @class = "txtfield work-add", size = "70", maxlength = "70" })
+                                <br />
+                                <br />
+                                State<br />
+                                @Html.TextBoxFor(model => model.SecondaryAddress.State, new { @class = "txtfield work-add", size = "70", maxlength = "70" })
+                                <br />
+                                <br />
+                                Post Code<span style="color: #C00"></span><br />
+                                @Html.TextBoxFor(model => model.SecondaryAddress.Postcode, new { @class = "txtfield work-add", size = "70", maxlength = "70" })
+                                <br />
+                                <br />
+                                Country<br />
+                                @Html.DropDownListFor(model => model.SecondaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
+                                <br />
+                                <br />
+                                <br />
+                                <span class="work-incomplete-msg" style="font-size:smaller; font-style: italic; display:none;">You have not completed your address yet.</span>
+                                <br />
+
+                                @Html.RadioButtonFor(m => m.BillingFlag, 2, new { @class = "work-flag" })
+                                Use as Billing Address
+                                @Html.RadioButtonFor(m => m.ShippingFlag, 2, new { @class = "work-flag" })
+                                Use as Shipping Address
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                
+                <p align="center">
+                    <br />
+                    <input name="view my acc" type="submit" class="submitbutton" id="view my acc" value="SAVE AND VIEW MY ACCOUNT" />
+                    <br />
+                </p>
+                
+            }
+        </div>
+
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.edit_myacc_details_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            @if (!Model.EnableHomeFlag)
+	        {
+                <text>
+                    $(".home-flag").prop('disabled', true);
+                    $(".home-incomplete-msg").show();
+                </text>
+	        }
+
+            @if (!Model.EnableWorkFlag)
+	        {
+                <text>
+                    $(".work-flag").prop('disabled', true);
+                    $(".work-incomplete-msg").show();
+                </text>
+	        }
+
+            $('.home-add').on("propertychange change keyup paste input", function () {
+                var empty = false;
+                $('.home-add').each(function () {
+                    if ($(this).val() == '') {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    $(".home-flag").prop('disabled', true);
+                    $(".home-incomplete-msg").show();
+                } else {
+                    $(".home-flag").prop('disabled', false);
+                    $(".home-incomplete-msg").hide();
+                }
+            });
+
+            $('.work-add').on("propertychange change keyup paste input", function () {
+                var empty = false;
+                $('.work-add').each(function () {
+                    if ($(this).val() == '') {
+                        empty = true;
+                    }
+                });
+
+                if (empty) {
+                    $(".work-flag").prop('disabled', true);
+                    $(".work-incomplete-msg").show();
+                } else {
+                    $(".work-flag").prop('disabled', false);
+                    $(".work-incomplete-msg").hide();
+                }
+            });
+        });
+    </script>
+}

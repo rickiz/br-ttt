@@ -1,0 +1,131 @@
+﻿@using BR.ToteToToe.Web.Helpers;
+@using BR.ToteToToe.Web.ViewModels;
+@model ModelListViewModel
+@{
+    var xxx = Model;
+    ViewBag.Title = "TOTE TO TOE : Shoes : Pumps";
+}
+
+<div id="mainbody">
+<br />
+<div class="crumbs" style="margin-right: 7px; vertical-align: baseline">
+    <a href="@(Url.Action(MVC.Home.Index()))">Home</a> / <a href="@(Url.Action(MVC.Shoes.Index()))">Shoes</a>
+</div>
+<br />
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model=>model.CategoryID, Util.GetList(RefType.Category), new { onchange="FilterModel();" })
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model=>model.TrendID, Util.GetList(RefType.Trend), new { onchange="FilterModel();" })
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model=>model.LifestyleID, Util.GetList(RefType.Lifestyle), new { onchange="FilterModel();" })
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model=>model.BrandName, Util.GetList(RefType.Brand), new { onchange="FilterModel();" })
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model=>model.Size, Util.GetList(RefType.Size), new { onchange="FilterModel();", @class = "ddl-size" })
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model => model.ColourID, Util.GetList(RefType.Colour), new { onchange="FilterModel();" })
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model => model.Price, Util.GetList(RefType.Price), new { onchange="FilterModel();" })
+    @*@Html.DropDownListFor(model=>model.Size, Util.GetList(RefType.Size))*@
+    @*<select>
+        <option value="category">PRICE</option>
+        <option value="saab">Below $100</option>
+        <option value="mercedes">Lowest to Highest</option>
+        <option value="audi">Highest to Lowest</option>
+    </select>*@
+</div>
+<div class="select-style" style="margin-right: 3px;">
+    @Html.DropDownListFor(model=>model.HeelHeight, Util.GetList(RefType.HeelHeight), new { onchange="FilterModel();" })
+</div>
+<br />
+
+<p>
+    <div id="itemListResults">
+        @Html.Partial("_ListItemParent", Model)
+    </div>
+    <br />
+</p>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.productlist_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function FilterModel() {
+
+            var categoryid = $("#CategoryID").val();
+            var trendid = $("#TrendID").val();
+            var brandname = $("#BrandName").val();
+            var colourid = $("#ColourID").val();
+            var lifestyleid = $("#LifestyleID").val();
+            var heelheight = $("#HeelHeight").val();
+            var size = $("#Size").val();
+            var price = $("#Price").val();
+
+            if (brandname == '0') {
+                brandname = '';
+            }
+
+            var url = '@(Url.Content("~/Shoes/Filter"))';
+            $.post(url, { categoryID: categoryid, trendID: trendid, lifestyleID: lifestyleid, brandName: brandname, size: size, colourID: colourid, price: price, heelHeight: heelheight }, function (result) {
+                if (result != '') {
+                    $("#itemListResults").html(result);
+                }
+                else {
+                    //fail
+                }
+            });
+        }
+
+        function ChangeImage(img, imgSrc) {
+            $(img).attr("src", imgSrc);
+        }
+
+        $(function () {
+            $('#Size option[value=-1]').each(function (i, item) {
+                item.disabled = true;
+            });
+        });
+
+        @*$(function () {
+            //MM_preloadImages('@(Links.Images.pumps.sampleshoes4b_jpg)')
+        });
+
+        function MM_preloadImages() { //v3.0
+            var d = document; if (d.images) {
+                if (!d.MM_p) d.MM_p = new Array();
+                var i, j = d.MM_p.length, a = MM_preloadImages.arguments; for (i = 0; i < a.length; i++)
+                    if (a[i].indexOf("#") != 0) { d.MM_p[j] = new Image; d.MM_p[j++].src = a[i]; }
+            }
+        }
+
+        function MM_swapImgRestore() { //v3.0
+            var i, x, a = document.MM_sr; for (i = 0; a && i < a.length && (x = a[i]) && x.oSrc; i++) x.src = x.oSrc;
+        }
+
+        function MM_findObj(n, d) { //v4.01
+            var p, i, x; if (!d) d = document; if ((p = n.indexOf("?")) > 0 && parent.frames.length) {
+                d = parent.frames[n.substring(p + 1)].document; n = n.substring(0, p);
+            }
+            if (!(x = d[n]) && d.all) x = d.all[n]; for (i = 0; !x && i < d.forms.length; i++) x = d.forms[i][n];
+            for (i = 0; !x && d.layers && i < d.layers.length; i++) x = MM_findObj(n, d.layers[i].document);
+            if (!x && d.getElementById) x = d.getElementById(n); return x;
+        }
+
+        function MM_swapImage() { //v3.0
+            var i, j = 0, x, a = MM_swapImage.arguments; document.MM_sr = new Array; for (i = 0; i < (a.length - 2) ; i += 3)
+                if ((x = MM_findObj(a[i])) != null) { document.MM_sr[j++] = x; if (!x.oSrc) x.oSrc = x.src; x.src = a[i + 2]; }
+        }*@
+    </script>
+}

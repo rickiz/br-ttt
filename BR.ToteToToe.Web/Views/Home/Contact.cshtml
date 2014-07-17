@@ -1,0 +1,65 @@
+﻿@{
+    ViewBag.Title = "TOTE TO TOE : Contact Us";
+}
+
+<div id="wrap">
+    <br />
+    <div class="copy">
+        <div class="pic1">
+            <img src="@(Links.Images.contact.pic1_jpg)" width="327" height="455" /></div>
+        <div class="greybg"></div>
+
+        <div class="title">
+            <img src="@(Links.Images.contact.title_png)" width="600" height="737" /></div>
+        <div class="bodycopy">
+            <p>
+                If you have any suggestions you would like to leave us, we appreciate you generously taking time to fill us in. In life we must look forward to improvements to embrace our real potential.
+                <br />
+                <br />
+                And if you have some preference in terms of style and design that you have sleepless nights over and wish to return to sanity, you can also accord us your requirements and we shall ask our slave designers to burn the flames of midnight coconut oil, so to speak.
+            </p>
+        </div>
+        <div class="formbox">
+            Fill out the form below to send us feedback. To assist us in processing your enquiry, please select the most appropriate subject from the drop-down box.<br />
+            <br />
+            <form id="form1" name="form1" method="post" action="">
+                <p>
+                    First Name<br />
+                    <input name="firstname" type="text" class="txtfield" id="firstname" size="70" maxlength="70" />
+                    <br />
+                    <br />
+                    Last Name<br />
+                    <input name="lastname" type="text" class="txtfield" id="lastname" size="70" maxlength="70" />
+                    <br />
+                    <br />
+                    Email<br />
+                    <input name="email" type="text" class="txtfield" id="email" size="70" maxlength="70" />
+                    <br />
+                    <br />
+                    Email Subject<br />
+                    <label for="subject"></label>
+                    <select name="subject" class="dropdown" id="subject">
+                        <option selected="selected">Choose One</option>
+                        <option>My Order</option>
+                        <option>Shipping</option>
+                    </select>
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    Comments<br />
+                    <label for="textarea"></label>
+                    <textarea name="textarea" cols="45" rows="5" class="commentsbox" id="textarea"></textarea>
+                </p>
+                <p align="right">
+                    <input name="send" type="submit" class="submitbutton" id="send" value="SEND" />
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.contact_css)" rel="stylesheet" type="text/css" />
+}

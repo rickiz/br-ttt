@@ -1,0 +1,184 @@
+﻿@using BR.ToteToToe.Web.ViewModels
+@model ShoeColourViewModel
+
+@if(Model.Items.Count>0)
+{
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[0].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[0].Colour,
+                                            Model.Items[0].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[0].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[1].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[1].Colour,
+                                            Model.Items[1].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[1].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[2].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[2].Colour,
+                                            Model.Items[2].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[2].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[3].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[3].Colour,
+                                            Model.Items[3].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[3].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[4].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[4].Colour,
+                                            Model.Items[4].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[4].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[5].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[5].Colour,
+                                            Model.Items[5].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[5].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[6].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[6].Colour,
+                                            Model.Items[6].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[6].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[7].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[7].Colour,
+                                            Model.Items[7].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[7].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[8].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[8].Colour,
+                                            Model.Items[8].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[8].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[9].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[9].Colour,
+                                            Model.Items[9].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[9].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[10].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[10].Colour,
+                                            Model.Items[10].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[10].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+            <td>
+                <a href="@Url.Action("ShoeDetails", new { sku = Model.Items[11].SKU })">
+                    <img src="@Url.Content(string.Format("~/Images/Customize/ShoeColour/{0}_{1}_{2}_{3}_{4}.jpg", 
+                                            Model.Style, 
+                                            Model.Type,
+                                            Model.HeelHeight,
+                                            Model.Items[11].Colour,
+                                            Model.Items[11].Priority))" name="shoesp" width="236" height="160" />
+                </a>
+                <br />
+                <span style="font-weight: bold">@string.Format("{0} {1}",Model.Style, Model.Type)</span><br />
+                <span style="font-style: italic">@string.Format("{0} {1}", Model.Name, Model.Items[11].Colour)</span><br />
+                <span style="color: #666666">@string.Format("RM {0}", Model.Price)</span>
+            </td>
+        </tr>
+    </table>
+}

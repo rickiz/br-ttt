@@ -1,0 +1,200 @@
+﻿@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.MyAccountOrderSummaryViewModel
+
+@{
+    //Layout = null;
+    ViewBag.Title = "TOTE TO TOE : Order Invoice";
+}
+
+<div id="wrap">
+    <br />
+    <form id="form1" name="form1" method="post" action="">
+        <div id="wrap2">
+            <table width="100%" border="0" align="right" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td width="73%" align="left" valign="bottom" style="font-size: 20px; color: #666; font-weight: bold;">
+                        <br />
+                        Your Order Number: #12345</td>
+                    <td width="27%" align="right" style="font-size: 20px; color: #666; font-weight: bold;">
+                        <input name="printorderdetails" type="button" class="darkbutton no-print" id="printorderdetails" value="PRINT ORDER DETAILS" onclick="window.print();" /></td>
+                </tr>
+                <tr>
+                    <td colspan="2" valign="top">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                            <tr>
+                                <td colspan="2" align="left" valign="top">
+                                    <hr class="divline" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="34%" align="left" valign="top">
+                                    <table width="92%" border="0" cellspacing="0" cellpadding="8">
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#F2F2F2" style="font-style: italic">Placed @Model.PaymentDT</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#F2F2F2"><span style="font-weight: bold">Billing Address:</span><br />
+                                                @if (Model.BillingAddress != null)
+                                                {
+                                                    <text>
+                                                     <br />
+                                                    @Util.ConcatenateStrings(" ", Model.BillingAddress.FirstName, Model.BillingAddress.LastName),
+                                                    <br />
+                                                    @Util.ConcatenateStrings(", ", Model.BillingAddress.AddressLine1, Model.BillingAddress.AddressLine2, Model.BillingAddress.CityTown),<br />
+                                                    @Util.ConcatenateStrings(", ", Model.BillingAddress.Postcode, Model.BillingAddress.State, Model.BillingAddress.refcountry.Name)
+                                                    </text>
+                                                }
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#F2F2F2">
+                                                <hr noshade="noshade" class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left" valign="top" bgcolor="#F2F2F2"><span style="font-weight: bold">Shipping Address:</span><br />
+                                                @if (Model.ShippingAddress != null)
+	                                            {
+                                                    <text>
+                                                    <br />
+                                                    @Util.ConcatenateStrings(" ", Model.ShippingAddress.FirstName, Model.ShippingAddress.LastName),
+                                                    <br />
+                                                    @Util.ConcatenateStrings(", ", Model.ShippingAddress.AddressLine1, Model.ShippingAddress.AddressLine2, Model.ShippingAddress.CityTown),<br />
+                                                    @Util.ConcatenateStrings(", ", Model.ShippingAddress.Postcode, Model.ShippingAddress.State, Model.ShippingAddress.refcountry.Name)
+                                                    <br />
+                                                    </text>
+	                                            }
+                                                
+                                            </td>
+                                        </tr>
+                                        @*<tr>
+                                            <td align="left" valign="top" bgcolor="#F2F2F2">
+                                                <hr noshade="noshade" class="divline" />
+                                            </td>
+                                        </tr>*@
+                                        @*<tr>
+                                            <td align="left" valign="top" bgcolor="#F2F2F2"><span style="font-weight: bold">Payment Method:</span><br />
+                                                Credit card xxxx-xxxx-xxxx-678<br />
+                                                <br />
+                                            </td>
+                                        </tr>*@
+                                    </table>
+                                </td>
+                                <td width="66%" align="left" valign="top">
+                                    <table width="97%" border="0" align="right" cellpadding="0" cellspacing="0">
+                                        <tr>
+                                            <td colspan="6" style="font-weight: bold; padding-top: 7px;">ORDERED ITEMS<br />
+                                                <br />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td width="18%" style="font-weight: bold">Product Details</td>
+                                            <td width="24%" style="font-weight: bold">SKU</td>
+                                            <td width="16%" style="font-weight: bold">Price/Unit</td>
+                                            <td width="11%" style="font-weight: bold">Quantity</td>
+                                            <td width="16%" style="font-weight: bold">Discount</td>
+                                            <td width="15%" style="font-weight: bold">Sub Total</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" align="left" valign="middle">&nbsp;</td>
+                                        </tr>
+
+                                        @foreach (var item in Model.Items)
+                                        {
+                                            <tr>
+                                                <td align="left" valign="middle"><span style="font-weight: bold">@item.Name</span><br />
+                                                    Color: @item.Color<br />
+                                                    Size: @item.Size</td>
+                                                <td align="left" valign="middle">@item.SKU</td>
+                                                <td align="left" valign="middle">RM @item.Price</td>
+                                                <td align="left" valign="middle">@item.Quantity</td>
+                                                <td align="left" valign="middle">RM0.00</td>
+                                                <td align="left" valign="middle">RM @(item.Quantity*item.Price)</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="6" align="left" valign="middle">&nbsp;</td>
+                                            </tr>
+                                        }
+
+                                        <tr>
+                                            <td colspan="6">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" style="font-weight: bold">Order Total</td>
+                                            <td>RM @Model.Subtotal</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4">Shipping &amp; Handling Charges</td>
+                                            <td>&nbsp;</td>
+                                            <td>RM @Model.ShippingPrice</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5">
+                                                Discount Voucher Code: @Model.VoucherCode
+                                            </td>
+                                            <td>RM @Model.RebateCashValue</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <hr class="divline" />
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6" style="font-weight: bold">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" style="font-weight: bold">GRAND TOTAL*</td>
+                                            <td style="font-weight: bold">&nbsp;</td>
+                                            <td style="font-weight: bold">RM @Model.OrderTotalPrice</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" style="font-weight: bold">&nbsp;</td>
+                                            <td style="font-weight: bold">&nbsp;</td>
+                                            <td style="font-weight: bold">&nbsp;</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="4" style="font-weight: bold">&nbsp;</td>
+                                            <td colspan="2">*Tax is included if applicable</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="6">
+                                                <br />
+                                                Payment Status: @Model.PaymentStatus</td>
+                                        </tr>
+                                    </table>
+                                    <p>&nbsp;</p>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" align="right" valign="top">
+                        <br />
+                    </td>
+                </tr>
+            </table>
+            <br />
+        </div>
+    </form>
+</div>
+
+
+@section styles
+{
+    <link href="@(Links.Content.ordersummary_css)" rel="stylesheet" type="text/css" />
+}
+

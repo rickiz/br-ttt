@@ -1,0 +1,125 @@
+﻿@charset "utf-8";
+/* CSS Document */
+#wrap
+{
+	width: 950px;
+	top: 0px;
+	/* height: auto !important;*/
+	/* overflow:auto; */
+	background-color: white;
+	margin: auto 0;
+	height: 1080px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: relative;
+	padding-bottom: 213px;
+}
+
+.copy
+{
+	width: 950px;
+	top: -7px;
+	background-color: #e8e19b;
+	height: 445px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.lines1
+{
+	background: url(images/trending/lines1.png);
+	background-repeat: no-repeat;
+	top: 10px;
+	display: block;
+	width: 924px;
+	height: 407px;
+	position: absolute;
+	float: left;
+	left: 24px;
+}
+
+.lines2
+{
+	background: url(images/trending/lines2.png);
+	background-repeat: no-repeat;
+	top: 463px;
+	display: block;
+	width: 950px;
+	height: 383px;
+	position: absolute;
+	float: left;
+	left: 0px;
+}
+
+.bg2
+{
+	width: 486px;
+	height: 524px;
+	top: 472px;
+	left: 464px;
+	background-color: #c1e5e3;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.pic1
+{
+	top: 63px;
+	left: 25px;
+	display: block;
+	width: 603px;
+	height: 349px;
+	position: absolute;
+	float: left;
+}
+
+.pic2
+{
+	top: 502px;
+	left: 515px;
+	display: block;
+	width: 404px;
+	height: 446px;
+	position: absolute;
+	float: left;
+}
+
+.title1
+{
+	top: 11px;
+	left: 273px;
+	display: block;
+	width: 545px;
+	height: 116px;
+	position: absolute;
+	float: left;
+}
+
+.bodycopy
+{
+	top: 142px;
+	left: 655px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #534c53;
+	width: 266px;
+	height: 278px;
+	position: absolute;
+	text-align: left;
+	float: left;
+}
+
+.bodycopy2
+{
+	top: 450px;
+	left: 0px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #b38b72;
+	width: 420px;
+	height: 291px;
+	text-align: left;
+	position: absolute;
+	float: left;
+}

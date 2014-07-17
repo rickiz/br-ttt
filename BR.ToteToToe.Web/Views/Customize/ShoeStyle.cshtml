@@ -1,0 +1,78 @@
+﻿@using BR.ToteToToe.Web.DataModels
+@using BR.ToteToToe.Web.ViewModels
+@model CustomizeViewModels
+@{
+    ViewBag.Title = "ShoeStyle";
+}
+
+<div id="mainbody">
+    <br />
+    <div class="cp">
+        Customising Progress&nbsp;&nbsp;<img src="@Url.Content("~/Images/arrow_next.gif")"  width="5" height="8" />
+    </div> 
+    <a href="#" class="Step 1">
+        <div class="navstep1selected">
+            <strong>STEP 1:</strong> Shoe Style
+        </div>
+    </a>
+    &nbsp;&nbsp;
+    <div class="navstep1nolink">
+        <strong>STEP 2:</strong> Material & Color
+    </div>
+    &nbsp;&nbsp;
+    <div class="navstep1nolink">
+        <strong>STEP 3:</strong> Make my Shoe
+    </div>
+
+    <br /><br />
+
+    @foreach (var customizeModels in Model.CustomizeModelsList)
+    {
+        <p style="font-family: 'Trebuchet MS', Arial, Helvetica, sans-serif; font-weight: bold; text-align:left;">
+            @customizeModels.Style
+        </p>
+        <hr class="divline" />
+        
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+            @foreach (var item in customizeModels.Items)
+            {
+                var mainImage = string.Format("~/Images/Customize/ShoeStyle/{0}_{1}_Main.jpg", customizeModels.Style, item.Type);
+                var subImage = string.Format("~/Images/Customize/ShoeStyle/{0}_{1}_Sub.jpg", customizeModels.Style, item.Type);
+                <td>
+                    @*string.Format("~/Customize/ShoeColour/{0}", item.ID)*@
+                    <a href="@Url.Action("ShoeColour", new{ id=item.ID})">
+                        <img src="@Url.Content(mainImage)"
+                            onmouseout="ChangeImage(this,'@Url.Content(mainImage)')"
+                            onmouseover="ChangeImage(this,'@Url.Content(subImage)')" />
+                        @*<img src="~/Images/Customize/ShoeStyle/PeepToe_Pump_Main.jpg" name="shoes1" width="236" height="160" id="shoes1" 
+                            onmouseover="MM_swapImage('shoes1','','images/order/PeepToe_Pump_Sub.jpg',1)" onmouseout="MM_swapImgRestore()" />*@
+                    </a>
+                    <br />
+                    <span style="font-weight: bold">@item.Type</span><br />
+                    <span style="font-style: italic">@item.Name</span><br />
+                    <span style="color: #666666">RM @item.Price</span>
+                </td>
+            }
+            </tr>
+        </table>
+    }
+
+    <br />
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.customise_list_css)" rel="stylesheet" type="text/css" />
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function ChangeImage(img, imgSrc) {
+            $(img).attr("src", imgSrc);
+        }
+
+    </script>
+}

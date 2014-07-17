@@ -1,0 +1,134 @@
+@charset "utf-8";
+/* CSS Document */
+#wrap
+{
+	width: 950px;
+	top: 0px;
+	/* height: auto !important;*/
+	/* overflow:auto; */
+	background-color: white;
+	margin: auto 0;
+	height: 950px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: relative;
+	padding-bottom: 213px;
+}
+
+.copy
+{
+	width: 950px;
+	top: -7px;
+	background-color: #dbc7ae;
+	height: 430px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.bgwhite
+{
+	width: 267px;
+	top: 25px;
+	left: 669px;
+	background-color: white;
+	height: 349px;
+	font-family: Arial, Helvetica, sans-serif;
+	position: absolute;
+}
+
+.lines1
+{
+	background: url(../images/about/lines.png);
+	background-repeat: no-repeat;
+	top: 48px;
+	display: block;
+	width: 909px;
+	height: 676px;
+	position: absolute;
+	float: left;
+	left: 0px;
+}
+
+.pic1
+{
+	top: 25px;
+	left: 25px;
+	display: block;
+	width: 650px;
+	height: 349px;
+	position: absolute;
+	float: left;
+}
+
+.pic2
+{
+	top: 447px;
+	left: 688px;
+	display: block;
+	width: 261px;
+	height: 455px;
+	position: absolute;
+	float: left;
+}
+
+.title
+{
+	top: 151px;
+	left: 25px;
+	display: block;
+	width: 539px;
+	height: 115px;
+	position: absolute;
+	float: left;
+}
+
+.bodycopy
+{
+	top: 218px;
+	left: 689px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #966a66;
+	width: 225px;
+	height: 138px;
+	position: absolute;
+	text-align: left;
+	float: left;
+}
+
+.bodycopy2
+{
+	top: 446px;
+	left: 0px;
+	display: block;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 14px;
+	color: #966a66;
+	width: 586px;
+	height: 442px;
+	text-align: left;
+	position: absolute;
+	float: left;
+}
+
+.sil
+{
+	top: 0px;
+	left: 524px;
+	display: block;
+	width: 418px;
+	height: 230px;
+	position: absolute;
+	float: left;
+}
+
+.sil2
+{
+	top: 389px;
+	left: 332px;
+	display: block;
+	width: 470;
+	height: 400px;
+	position: absolute;
+	float: left;
+}

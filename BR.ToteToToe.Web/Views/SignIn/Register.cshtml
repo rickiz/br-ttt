@@ -1,0 +1,53 @@
+﻿@model BR.ToteToToe.Web.ViewModels.SignInViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : Register An Account";
+}
+
+<div id="wrap">
+    <br />
+    <div class="copy">
+        <div class="pic1">
+            <img src="@(Links.Images.signin.pic1_jpg)" width="468" height="828" /></div>
+
+        <div class="register2"></div>
+        <div class="formbox3">
+            <p align="center" style="font-family: Georgia, 'Times New Roman', Times, serif; font-size: 21px;">REGISTER AN ACCOUNT</p>
+            <p>
+                No account yet? Register today to enjoy personalized services, including order status updates, an address book, and a wish list.<br />
+                <br />
+                <span style="font-style: italic"><span style="color: #C00">*</span> Required field</span><br />
+            </p>
+            @using (Html.BeginForm(MVC.SignIn.Register()))
+            {
+                @Html.ValidationSummary(false)
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.RegisterViewModel.FacebookAccessToken)
+                @Html.HiddenFor(model => model.RegisterViewModel.FacebookID)
+                @Html.HiddenFor(model => model.RegisterViewModel.ReturnUrl)
+                <p>
+                    Email Address <span style="color: #C00">*</span><br />
+                    @Html.TextBoxFor(model => model.RegisterViewModel.Email, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    Password <span style="color: #C00">*</span><br />
+                    @Html.PasswordFor(model => model.RegisterViewModel.Password, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                    <br />
+                    Confirm Password <span style="color: #C00">*</span><br />
+                    @Html.PasswordFor(model => model.RegisterViewModel.ConfirmPassword, new { @class = "txtfield", size = "70", maxlength = "70" })
+                    <br />
+                </p>
+                <p align="right">
+                    <input name="login" type="submit" class="submitbutton" id="login" value="REGISTER" />
+                </p>
+            }
+        </div>
+
+    </div>
+</div>
+
+@section styles
+{
+    <link href="@(Links.Content.signin_css)" rel="stylesheet" type="text/css" />
+}

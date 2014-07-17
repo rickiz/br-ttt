@@ -1,0 +1,45 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="BR.ToteToToe.Web.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="CategoryImagePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">~/Images/Category/</Value>
+    </Setting>
+    <Setting Name="HeelsHeight" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1,6|1</Value>
+    </Setting>
+    <Setting Name="iPay88_MerchantKey" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">JXqVd2QZu7</Value>
+    </Setting>
+    <Setting Name="iPay88_MerchantCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">M04204</Value>
+    </Setting>
+    <Setting Name="iPay88_Currency" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MYR</Value>
+    </Setting>
+    <Setting Name="iPay88_EntryUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.mobile88.com/ePayment/entry.asp</Value>
+    </Setting>
+    <Setting Name="iPay88_Lang" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">UTF-8</Value>
+    </Setting>
+    <Setting Name="CountryCode" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">MY</Value>
+    </Setting>
+    <Setting Name="iPay88_Status_Success" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1</Value>
+    </Setting>
+    <Setting Name="iPay88_ReferrerUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">https://www.mobile88.com</Value>
+    </Setting>
+    <Setting Name="SizeReference" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">EU | US | UK | MY</Value>
+    </Setting>
+    <Setting Name="InitialSize" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">35|5|2|4,8</Value>
+    </Setting>
+    <Setting Name="ShippingFee" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
