@@ -228,14 +228,15 @@ namespace BR.ToteToToe.Web.Controllers
                     salesOrderBillingAddress.ChooseAddress = viewModel.AddressTypeID;
                 }
 
-                // TODO: Update other address IsBilling -> false
-
                 var addressType = (CheckoutAddressType)viewModel.AddressTypeID;
                 if (addressType != CheckoutAddressType.Others)
                 {
                     var isPrimary = addressType == CheckoutAddressType.Primary;
                     var accountAddress = context.tbladdresses
                         .FirstOrDefault(a => a.IsPrimary == isPrimary && a.Active && a.AccessID == access.ID);
+                    var billingExist = context.tbladdresses
+                        .Any(a => a.Active && a.AccessID == access.ID && a.IsBilling && a.IsPrimary != isPrimary);
+                    var isBilling = billingExist ? false : true;
 
                     if (accountAddress == null)
                     {
@@ -248,7 +249,7 @@ namespace BR.ToteToToe.Web.Controllers
                             CityTown = viewModel.Address.CityTown,
                             CountryID = viewModel.Address.CountryID,
                             CreateDT = DateTime.Now,
-                            IsBilling = true,
+                            IsBilling = isBilling,
                             IsPrimary = isPrimary,
                             Postcode = viewModel.Address.Postcode,
                             State = viewModel.Address.State
@@ -257,7 +258,7 @@ namespace BR.ToteToToe.Web.Controllers
                     }
                     else
                     {
-                        accountAddress.IsBilling = true;
+                        accountAddress.IsBilling = isBilling;
                     }
                 }
 
@@ -453,6 +454,9 @@ namespace BR.ToteToToe.Web.Controllers
                     var isPrimary = addressType == CheckoutAddressType.Primary;
                     var accountAddress = context.tbladdresses
                         .FirstOrDefault(a => a.IsPrimary == isPrimary && a.Active && a.AccessID == access.ID);
+                    var shippingExist = context.tbladdresses
+                        .Any(a => a.Active && a.AccessID == access.ID && a.IsShipping && a.IsPrimary != isPrimary);
+                    var isShipping = shippingExist ? false : true;
 
                     if (accountAddress == null)
                     {
@@ -465,7 +469,7 @@ namespace BR.ToteToToe.Web.Controllers
                             CityTown = viewModel.Address.CityTown,
                             CountryID = viewModel.Address.CountryID,
                             CreateDT = DateTime.Now,
-                            IsShipping = true,
+                            IsShipping = isShipping,
                             IsPrimary = isPrimary,
                             Postcode = viewModel.Address.Postcode,
                             State = viewModel.Address.State
@@ -474,7 +478,7 @@ namespace BR.ToteToToe.Web.Controllers
                     }
                     else
                     {
-                        accountAddress.IsShipping = true;
+                        accountAddress.IsShipping = isShipping;
                     }
                 }
 
