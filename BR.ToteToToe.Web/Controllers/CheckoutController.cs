@@ -515,7 +515,7 @@ namespace BR.ToteToToe.Web.Controllers
                     .Include(a => a.refcountry)
                     .Single(a => a.IsShipping && a.Active && a.SalesOrderID == salesOrder.ID);
 
-                viewModel.Items =
+                var items =
                     (from a in context.lnksalesorders
                      join b in context.lnkmodelsizes on a.ModelSizeID equals b.ID into bTemp
                      from bb in bTemp.DefaultIfEmpty()
@@ -537,16 +537,44 @@ namespace BR.ToteToToe.Web.Controllers
                      join j in context.refcustomizemodels on gg.CustomizeModelID equals j.ID into jTemp
                      from jj in jTemp.DefaultIfEmpty()
                      where a.SalesOrderID == salesOrder.ID && a.Active
-                     select new CheckoutSummaryItem
+                     select new
                      {
                          Color = a.ModelSizeID.HasValue ? hh.Name : gg.Colour,
-                         ImageUrl = a.ModelSizeID.HasValue ? "~/images/" + ff.Name + "/" + cc.MainImage 
+                         ImageUrl = a.ModelSizeID.HasValue ? "~/images/" + ff.Name + "/"
                             : "~/Images/Customize/ShoeColour/" + gg.MainImage,
                          Name = a.ModelSizeID.HasValue ? dd.Name : jj.Name,
                          Price = a.ModelSizeID.HasValue ? dd.Price : jj.Price,
                          Quantity = a.Quantity,
-                         Size = a.ModelSizeID.HasValue ? bb.Size : a.Size
-                     }).ToList();
+                         Size = a.ModelSizeID.HasValue ? bb.Size : a.Size,
+                         ModelSizeID = a.ModelSizeID,
+                         ModelColourDescID = a.ModelSizeID.HasValue ? cc.ID : 0
+                     }).Distinct().ToList();
+
+                viewModel.Items = new List<CheckoutSummaryItem>();
+
+                foreach (var item in items)
+                {
+                    var summaryItem = new CheckoutSummaryItem
+                    {
+                        Color = item.Color,
+                        ImageUrl = item.ImageUrl,
+                        Name = item.Name,
+                        Price = item.Price,
+                        Quantity = item.Quantity,
+                        Size = item.Size
+                    };
+
+                    if (item.ModelSizeID.HasValue)
+                    {
+                        var modelImage = 
+                            context.lnkmodelimages.FirstOrDefault(a => a.ModelColourDescID == item.ModelColourDescID);
+
+                        if (modelImage != null)
+                            summaryItem.ImageUrl += modelImage.Thumbnail;
+                    }
+
+                    viewModel.Items.Add(summaryItem);
+                }
 
                 viewModel.Subtotal = viewModel.Items.Sum(a => a.Price * a.Quantity);
                 viewModel.ShippingPrice = Properties.Settings.Default.ShippingFee;
