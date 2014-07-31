@@ -31,8 +31,8 @@
                             <span class="required-flag">*</span>
                             <br />
                         </td>
-                        <td align="left">Choose Address:</td>
-                        <td align="left">
+                        <td align="left" style="border-bottom: solid;">Choose Address:</td>
+                        <td align="left" style="border-bottom: solid;">
                             @Html.DropDownListFor(m => m.AddressTypeID, Util.GetAddressTypeList(),
                                 new { @class = "dropdown", tabindex = "4" })
                         </td>
@@ -64,7 +64,17 @@
                     </tr>
                     <tr>
                         <td></td>
-                        <td></td>
+                        <td>
+                            @if (Model.AddressType != CheckoutAddressType.Primary && Model.AddressType != CheckoutAddressType.Secondary)
+                            {
+                                @: The address information will only be used for this transaction
+                            } 
+                            
+                            @if (Model.IsAddressReadOnly && (Model.AddressType == CheckoutAddressType.Primary || Model.AddressType == CheckoutAddressType.Secondary))
+                            {
+                                @: If you wish to edit your address information, please go to @Html.ActionLink("my account", MVC.MyAccount.Edit())
+                            }    
+                        </td>
                         <td width="10%">City/Town:</td>
                         <td width="36%">
                             @Html.TextBoxFor(model => model.Address.CityTown, new { @class = "txtfield address", size = "70", maxlength = "70", tabindex = "7" })
@@ -106,22 +116,6 @@
                                     Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", tabindex = "10" })
                                 <span class="required-flag">&nbsp;*</span>
                             }                            
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>&nbsp;<br />&nbsp;</td>
-                        <td></td>
-                        <td></td>
-                        <td>                            
-                            @if (Model.AddressType != CheckoutAddressType.Primary && Model.AddressType != CheckoutAddressType.Secondary)
-                            {
-                                @: The address information will only be used for this transaction
-                            } 
-                            
-                            @if (Model.IsAddressReadOnly && (Model.AddressType == CheckoutAddressType.Primary || Model.AddressType == CheckoutAddressType.Secondary))
-                            {
-                                @: If you wish to edit your address information, please go to @Html.ActionLink("my account", MVC.MyAccount.Edit())
-                            }                              
                         </td>
                     </tr>
                     <tr>
