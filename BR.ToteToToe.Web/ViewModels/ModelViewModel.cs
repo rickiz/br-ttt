@@ -26,7 +26,7 @@ namespace BR.ToteToToe.Web.ViewModels
         public int LifestyleID { get; set; }
         public int Size { get; set; }
         public int ColourID { get; set; }
-        public int HeelHeight { get; set; }
+        public string HeelHeight { get; set; }
         public string Price { get; set; }
     }
 
@@ -66,7 +66,7 @@ namespace BR.ToteToToe.Web.ViewModels
         public string SKU { get; set; }
         public string ModelMainImage { get; set; }
         public string ShareUrl { get; set; }
-        public int HeelHeight { get; set; }
+        public decimal HeelHeight { get; set; }
 
         [Required(ErrorMessage="Please select Colour")]
         public int ColourDescID { get; set; }

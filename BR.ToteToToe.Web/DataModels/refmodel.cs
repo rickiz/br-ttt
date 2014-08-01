@@ -17,10 +17,10 @@ namespace BR.ToteToToe.Web.DataModels
         public refmodel()
         {
             this.lnkcollectionmodels = new HashSet<lnkcollectionmodel>();
-            this.lnkmodelcolourdescs = new HashSet<lnkmodelcolourdesc>();
             this.lnkmodelsizes = new HashSet<lnkmodelsize>();
             this.lnkmodellifestyles = new HashSet<lnkmodellifestyle>();
             this.lnkmodeltrends = new HashSet<lnkmodeltrend>();
+            this.lnkmodelcolourdescs = new HashSet<lnkmodelcolourdesc>();
         }
     
         public int ID { get; set; }
@@ -38,10 +38,10 @@ namespace BR.ToteToToe.Web.DataModels
         public Nullable<decimal> DiscountPrice { get; set; }
     
         public virtual ICollection<lnkcollectionmodel> lnkcollectionmodels { get; set; }
-        public virtual ICollection<lnkmodelcolourdesc> lnkmodelcolourdescs { get; set; }
         public virtual ICollection<lnkmodelsize> lnkmodelsizes { get; set; }
         public virtual refbrand refbrand { get; set; }
         public virtual ICollection<lnkmodellifestyle> lnkmodellifestyles { get; set; }
         public virtual ICollection<lnkmodeltrend> lnkmodeltrends { get; set; }
+        public virtual ICollection<lnkmodelcolourdesc> lnkmodelcolourdescs { get; set; }
     }
 }

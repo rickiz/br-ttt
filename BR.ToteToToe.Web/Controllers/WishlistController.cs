@@ -57,6 +57,7 @@ namespace BR.ToteToToe.Web.Controllers
                         join modelColourDesc in context.lnkmodelcolourdescs on
                             new { ColourDescID = modelSize.ColourDescID, ModelID = modelSize.ModelID } equals
                             new { ColourDescID = modelColourDesc.ColourDescID, ModelID = modelColourDesc.ModelID }
+                        join modelImage in context.lnkmodelimages on modelColourDesc.ID equals modelImage.ModelColourDescID
                         join colourDesc in context.refcolourdescs on modelColourDesc.ColourDescID equals colourDesc.ID
                         //join modelImages in context.lnkmodelimages on modelColourDesc.ID equals modelImages.ModelColourDescID
                         join category in context.refcategories on brand.CategoryID equals category.ID
@@ -71,7 +72,7 @@ namespace BR.ToteToToe.Web.Controllers
                             BrandName = brand.Name,
                             ColourName = colourDesc.Name,
                             Size = modelSize.Size,
-                            ModelImage = modelColourDesc.MainImage,
+                            ModelImage = modelImage.Thumbnail,
                             Active = wishlistItem.Active,
                             ModelID = model.ID,
                             ColourDescID = colourDesc.ID,
@@ -92,26 +93,53 @@ namespace BR.ToteToToe.Web.Controllers
             if (viewModel.WishlistID == 0)
                 viewModel.WishlistID = results.Select(a => a.WishlistID).Distinct().SingleOrDefault();
 
-            foreach (var item in results)
+            var uniqueSishlistItemIDs = results.Select(a => a.WishlistItemID).Distinct().ToList();
+
+            if (uniqueSishlistItemIDs.Count() > 0)
             {
-                viewModel.WishlistItems.Add(new WishlistItem()
+                foreach (var id in uniqueSishlistItemIDs)
                 {
-                    BrandName = item.BrandName,
-                    ColourName = item.ColourName,
-                    Description = item.Description,
-                    ModelName = item.ModelName,
-                    Size = item.Size,
-                    Image = string.Format("~/Images/{0}/{1}", item.CategoryName.Replace(" ",""), item.ModelImage),
-                    WishlistItemID = item.WishlistItemID,
-                    ModelID = item.ModelID,
-                    ColourDescID = item.ColourDescID,
-                    ModelSizeID = item.ModelSizeID,
-                    SKU = item.SKU,
-                    DetailsUrl = item.ModelSizeID > 0 ?
-                                Url.Action("Details", "Shoes", new { modelID = item.ModelID, colourDescID = item.ColourDescID, modelSizeID = item.ModelSizeID }) :
-                                Url.Action("Details", "Shoes", new { modelID = item.ModelID, colourDescID = item.ColourDescID })
-                });
+                    var item = results.Where(a => a.WishlistItemID == id).First();
+                    viewModel.WishlistItems.Add(new WishlistItem()
+                    {
+                        BrandName = item.BrandName,
+                        ColourName = item.ColourName,
+                        Description = item.Description,
+                        ModelName = item.ModelName,
+                        Size = item.Size,
+                        Image = string.Format("~/Images/{0}/{1}", item.CategoryName.Replace(" ", ""), item.ModelImage),
+                        WishlistItemID = item.WishlistItemID,
+                        ModelID = item.ModelID,
+                        ColourDescID = item.ColourDescID,
+                        ModelSizeID = item.ModelSizeID,
+                        SKU = item.SKU,
+                        DetailsUrl = item.ModelSizeID > 0 ?
+                                    Url.Action("Details", "Shoes", new { modelID = item.ModelID, colourDescID = item.ColourDescID, modelSizeID = item.ModelSizeID }) :
+                                    Url.Action("Details", "Shoes", new { modelID = item.ModelID, colourDescID = item.ColourDescID })
+                    });
+                }
             }
+
+            //foreach (var item in results)
+            //{
+            //    viewModel.WishlistItems.Add(new WishlistItem()
+            //    {
+            //        BrandName = item.BrandName,
+            //        ColourName = item.ColourName,
+            //        Description = item.Description,
+            //        ModelName = item.ModelName,
+            //        Size = item.Size,
+            //        Image = string.Format("~/Images/{0}/{1}", item.CategoryName.Replace(" ",""), item.ModelImage),
+            //        WishlistItemID = item.WishlistItemID,
+            //        ModelID = item.ModelID,
+            //        ColourDescID = item.ColourDescID,
+            //        ModelSizeID = item.ModelSizeID,
+            //        SKU = item.SKU,
+            //        DetailsUrl = item.ModelSizeID > 0 ?
+            //                    Url.Action("Details", "Shoes", new { modelID = item.ModelID, colourDescID = item.ColourDescID, modelSizeID = item.ModelSizeID }) :
+            //                    Url.Action("Details", "Shoes", new { modelID = item.ModelID, colourDescID = item.ColourDescID })
+            //    });
+            //}
         }
         private void GetCustomizeModel(WishlistIndexViewModel viewModel, TTTEntities context)
         {

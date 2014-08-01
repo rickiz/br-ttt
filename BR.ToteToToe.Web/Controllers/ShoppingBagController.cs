@@ -105,13 +105,14 @@ namespace BR.ToteToToe.Web.Controllers
                         join modelColourDesc in context.lnkmodelcolourdescs on
                             new { ColourDescID = modelSize.ColourDescID, ModelID = modelSize.ModelID } equals
                             new { ColourDescID = modelColourDesc.ColourDescID, ModelID = modelColourDesc.ModelID }
+                        join modelImage in context.lnkmodelimages on modelColourDesc.ID equals modelImage.ModelColourDescID
                         join brand in context.refbrands on model.BrandID equals brand.ID
                         join category in context.refcategories on brand.CategoryID equals category.ID
                         where soItemIDs.Contains(salesOrderItem.ID)
                         select new
                         {
                             SalesOrderItemID = salesOrderItem.ID,
-                            Image = modelColourDesc.MainImage,
+                            Image = modelImage.Thumbnail,
                             Description = model.Description,
                             ModelName = model.Name,
                             BrandName = brand.Name,
@@ -133,17 +134,21 @@ namespace BR.ToteToToe.Web.Controllers
 
             if (salesOrderDetails.Count > 0)
             {
-                shoppingBagViewModel.GrandTotal += salesOrderDetails.Sum(a => a.Price);
+                var uniqueSOItemIDs = salesOrderDetails.Select(a => a.SalesOrderItemID).Distinct().ToList();
 
-                foreach (var item in salesOrderDetails)
+                foreach (var id in uniqueSOItemIDs)
                 {
+                    var item = salesOrderDetails.Where(a => a.SalesOrderItemID == id).First();
+
+                    shoppingBagViewModel.GrandTotal += item.Price;
+
                     shoppingBagViewModel.ShoppingBagItems.Add(new ShoppingBagItem()
                     {
                         AvailableQuantity = item.AvailableQty,
                         Availability = item.AvailableQty >= 5 ? string.Format("{0} pairs left", item.AvailableQty) : string.Format("Only {0} pairs left", item.AvailableQty),
                         Brand = item.BrandName,
                         ColourDescName = item.Colour,
-                        Image = string.Format("~/Images/{0}/{1}", item.CategoryName.Replace(" ",""), item.Image),
+                        Image = string.Format("~/Images/{0}/{1}", item.CategoryName.Replace(" ", ""), item.Image),
                         ModelName = item.ModelName,
                         Price = item.Price,
                         Quantity = item.Quantity,
@@ -158,6 +163,33 @@ namespace BR.ToteToToe.Web.Controllers
                     });
                 }
             }
+            //if (salesOrderDetails.Count > 0)
+            //{
+            //    shoppingBagViewModel.GrandTotal += salesOrderDetails.Sum(a => a.Price);
+
+            //    foreach (var item in salesOrderDetails)
+            //    {
+            //        shoppingBagViewModel.ShoppingBagItems.Add(new ShoppingBagItem()
+            //        {
+            //            AvailableQuantity = item.AvailableQty,
+            //            Availability = item.AvailableQty >= 5 ? string.Format("{0} pairs left", item.AvailableQty) : string.Format("Only {0} pairs left", item.AvailableQty),
+            //            Brand = item.BrandName,
+            //            ColourDescName = item.Colour,
+            //            Image = string.Format("~/Images/{0}/{1}", item.CategoryName.Replace(" ",""), item.Image),
+            //            ModelName = item.ModelName,
+            //            Price = item.Price,
+            //            Quantity = item.Quantity,
+            //            //Size = Util.GetSizeText(Convert.ToInt32(item.Size)),
+            //            Size = item.Size,
+            //            SalesOrderItemID = item.SalesOrderItemID,
+            //            ModelSizeID = item.ModelSizeID,
+            //            ModelID = item.ModelID,
+            //            ColourDescID = item.ColourDescID,
+            //            SKU = item.SKU,
+            //            CookieID = item.CookieID
+            //        });
+            //    }
+            //}
         }
         private void GetCustomizeModel(ShoppingBagIndexViewModel shoppingBagViewModel, List<int> soItemIDs, TTTEntities context)
         {

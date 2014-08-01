@@ -52,10 +52,10 @@ namespace BR.ToteToToe.Web.DataModels
         public DbSet<tblrecentview> tblrecentviews { get; set; }
         public DbSet<trnsalesorder> trnsalesorders { get; set; }
         public DbSet<lnksalesorder> lnksalesorders { get; set; }
-        public DbSet<lnkmodelcolourdesc> lnkmodelcolourdescs { get; set; }
         public DbSet<logpayment> logpayments { get; set; }
         public DbSet<refmodel> refmodels { get; set; }
         public DbSet<lnkmodellifestyle> lnkmodellifestyles { get; set; }
         public DbSet<lnkmodeltrend> lnkmodeltrends { get; set; }
+        public DbSet<lnkmodelcolourdesc> lnkmodelcolourdescs { get; set; }
     }
 }

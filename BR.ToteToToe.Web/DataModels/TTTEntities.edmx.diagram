@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cd6b1d94655c4fd9a47a8b0f6f6bf4e7" Name="Diagram1" ZoomLevel="82">
+      <Diagram DiagramId="cd6b1d94655c4fd9a47a8b0f6f6bf4e7" Name="Diagram1" ZoomLevel="10">
         <EntityTypeShape EntityType="tttModel.lnkcollectionmodel" Width="1.5" PointX="7.5" PointY="16.625" />
         <EntityTypeShape EntityType="tttModel.lnkcolourpriority" Width="1.5" PointX="5.25" PointY="3.75" />
         <EntityTypeShape EntityType="tttModel.lnktrendpriority" Width="1.5" PointX="10.5" PointY="1" />
@@ -47,13 +47,9 @@
         <EntityTypeShape EntityType="tttModel.lnksalesorder" Width="1.5" PointX="15.75" PointY="12.125" />
         <AssociationConnector Association="tttModel.fk_soitem_modelsize" />
         <AssociationConnector Association="tttModel.fk_soitem_soid" />
-        <EntityTypeShape EntityType="tttModel.lnkmodelcolourdesc" Width="1.5" PointX="7.5" PointY="8.125" />
-        <AssociationConnector Association="tttModel.fk_modelimage_modelcolourdesc" />
-        <AssociationConnector Association="tttModel.modelcolourdesc_colourdesc" />
         <EntityTypeShape EntityType="tttModel.logpayment" Width="1.5" PointX="14.75" PointY="1.875" />
         <EntityTypeShape EntityType="tttModel.refmodel" Width="1.5" PointX="5.25" PointY="11.625" />
         <AssociationConnector Association="tttModel.fk_collectionmode_model" />
-        <AssociationConnector Association="tttModel.modelcolourdesc_model" />
         <AssociationConnector Association="tttModel.kf_modelsize_model" />
         <AssociationConnector Association="tttModel.fk_model_brand" />
         <EntityTypeShape EntityType="tttModel.lnkmodellifestyle" Width="1.5" PointX="1.58065527751141" PointY="20.596852610165651" />
@@ -62,6 +58,10 @@
         <AssociationConnector Association="tttModel.fk_modellifestyle_model" />
         <AssociationConnector Association="tttModel.fk_modeltrend_model" />
         <AssociationConnector Association="tttModel.fk_modeltrend_trend" />
+        <EntityTypeShape EntityType="tttModel.lnkmodelcolourdesc" Width="1.5" PointX="7.75" PointY="7.625" />
+        <AssociationConnector Association="tttModel.fk_modelimage_modelcolourdesc" />
+        <AssociationConnector Association="tttModel.modelcolourdesc_colourdesc" />
+        <AssociationConnector Association="tttModel.modelcolourdesc_model" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

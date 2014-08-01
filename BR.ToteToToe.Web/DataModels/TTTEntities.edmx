@@ -196,7 +196,7 @@
           <Property Name="MainImage" Type="varchar" MaxLength="45" />
           <Property Name="SubImage" Type="varchar" MaxLength="45" />
           <Property Name="SKU" Type="varchar" Nullable="false" MaxLength="20" />
-          <Property Name="HeelHeight" Type="int" Nullable="false" />
+          <Property Name="HeelHeight" Type="decimal" Nullable="false" Scale="2" />
         </EntityType>
         <EntityType Name="lnkmodelimage">
           <Key>
@@ -977,24 +977,11 @@
             <End Role="trnsalesorder" EntitySet="trnsalesorders" />
             <End Role="lnksalesorder" EntitySet="lnksalesorders" />
           </AssociationSet>
-          <EntitySet Name="lnkmodelcolourdescs" EntityType="tttModel.lnkmodelcolourdesc" />
-          <AssociationSet Name="fk_modelimage_modelcolourdesc" Association="tttModel.fk_modelimage_modelcolourdesc">
-            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
-            <End Role="lnkmodelimage" EntitySet="lnkmodelimages" />
-          </AssociationSet>
-          <AssociationSet Name="modelcolourdesc_colourdesc" Association="tttModel.modelcolourdesc_colourdesc">
-            <End Role="refcolourdesc" EntitySet="refcolourdescs" />
-            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
-          </AssociationSet>
           <EntitySet Name="logpayments" EntityType="tttModel.logpayment" />
           <EntitySet Name="refmodels" EntityType="tttModel.refmodel" />
           <AssociationSet Name="fk_collectionmode_model" Association="tttModel.fk_collectionmode_model">
             <End Role="refmodel" EntitySet="refmodels" />
             <End Role="lnkcollectionmodel" EntitySet="lnkcollectionmodels" />
-          </AssociationSet>
-          <AssociationSet Name="modelcolourdesc_model" Association="tttModel.modelcolourdesc_model">
-            <End Role="refmodel" EntitySet="refmodels" />
-            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
           </AssociationSet>
           <AssociationSet Name="kf_modelsize_model" Association="tttModel.kf_modelsize_model">
             <End Role="refmodel" EntitySet="refmodels" />
@@ -1021,6 +1008,19 @@
           <AssociationSet Name="fk_modeltrend_trend" Association="tttModel.fk_modeltrend_trend">
             <End Role="reftrend" EntitySet="reftrends" />
             <End Role="lnkmodeltrend" EntitySet="lnkmodeltrends" />
+          </AssociationSet>
+          <EntitySet Name="lnkmodelcolourdescs" EntityType="tttModel.lnkmodelcolourdesc" />
+          <AssociationSet Name="fk_modelimage_modelcolourdesc" Association="tttModel.fk_modelimage_modelcolourdesc">
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
+            <End Role="lnkmodelimage" EntitySet="lnkmodelimages" />
+          </AssociationSet>
+          <AssociationSet Name="modelcolourdesc_colourdesc" Association="tttModel.modelcolourdesc_colourdesc">
+            <End Role="refcolourdesc" EntitySet="refcolourdescs" />
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
+          </AssociationSet>
+          <AssociationSet Name="modelcolourdesc_model" Association="tttModel.modelcolourdesc_model">
+            <End Role="refmodel" EntitySet="refmodels" />
+            <End Role="lnkmodelcolourdesc" EntitySet="lnkmodelcolourdescs" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="lnkcollectionmodel">
@@ -1602,48 +1602,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="lnkmodelcolourdesc">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="ModelID" Nullable="false" />
-          <Property Type="Int32" Name="ColourDescID" Nullable="false" />
-          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
-          <Property Type="DateTime" Name="UpdateDT" />
-          <Property Type="Boolean" Name="Active" Nullable="false" />
-          <Property Type="String" Name="MainImage" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="SKU" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="HeelHeight" Nullable="false" />
-          <NavigationProperty Name="lnkmodelimages" Relationship="tttModel.fk_modelimage_modelcolourdesc" FromRole="lnkmodelcolourdesc" ToRole="lnkmodelimage" />
-          <NavigationProperty Name="refcolourdesc" Relationship="tttModel.modelcolourdesc_colourdesc" FromRole="lnkmodelcolourdesc" ToRole="refcolourdesc" />
-          <NavigationProperty Name="refmodel" Relationship="tttModel.modelcolourdesc_model" FromRole="lnkmodelcolourdesc" ToRole="refmodel" />
-        </EntityType>
-        <Association Name="fk_modelimage_modelcolourdesc">
-          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="1" />
-          <End Type="tttModel.lnkmodelimage" Role="lnkmodelimage" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="lnkmodelcolourdesc">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="lnkmodelimage">
-              <PropertyRef Name="ModelColourDescID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="modelcolourdesc_colourdesc">
-          <End Type="tttModel.refcolourdesc" Role="refcolourdesc" Multiplicity="1" />
-          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="refcolourdesc">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="lnkmodelcolourdesc">
-              <PropertyRef Name="ColourDescID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="logpayment">
           <Key>
             <PropertyRef Name="ID" />
@@ -1681,11 +1639,11 @@
           <Property Type="Boolean" Name="Active" Nullable="false" />
           <Property Type="Decimal" Name="DiscountPrice" />
           <NavigationProperty Name="lnkcollectionmodels" Relationship="tttModel.fk_collectionmode_model" FromRole="refmodel" ToRole="lnkcollectionmodel" />
-          <NavigationProperty Name="lnkmodelcolourdescs" Relationship="tttModel.modelcolourdesc_model" FromRole="refmodel" ToRole="lnkmodelcolourdesc" />
           <NavigationProperty Name="lnkmodelsizes" Relationship="tttModel.kf_modelsize_model" FromRole="refmodel" ToRole="lnkmodelsize" />
           <NavigationProperty Name="refbrand" Relationship="tttModel.fk_model_brand" FromRole="refmodel" ToRole="refbrand" />
           <NavigationProperty Name="lnkmodellifestyles" Relationship="tttModel.fk_modellifestyle_model" FromRole="refmodel" ToRole="lnkmodellifestyle" />
           <NavigationProperty Name="lnkmodeltrends" Relationship="tttModel.fk_modeltrend_model" FromRole="refmodel" ToRole="lnkmodeltrend" />
+          <NavigationProperty Name="lnkmodelcolourdescs" Relationship="tttModel.modelcolourdesc_model" FromRole="refmodel" ToRole="lnkmodelcolourdesc" />
         </EntityType>
         <Association Name="fk_collectionmode_model">
           <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
@@ -1695,18 +1653,6 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="lnkcollectionmodel">
-              <PropertyRef Name="ModelID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="modelcolourdesc_model">
-          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
-          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="refmodel">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="lnkmodelcolourdesc">
               <PropertyRef Name="ModelID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1808,6 +1754,60 @@
             </Principal>
             <Dependent Role="lnkmodeltrend">
               <PropertyRef Name="TrendID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="lnkmodelcolourdesc">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Type="Int32" Name="ID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int32" Name="ModelID" Nullable="false" />
+          <Property Type="Int32" Name="ColourDescID" Nullable="false" />
+          <Property Type="DateTime" Name="CreateDT" Nullable="false" />
+          <Property Type="DateTime" Name="UpdateDT" />
+          <Property Type="Boolean" Name="Active" Nullable="false" />
+          <Property Type="String" Name="MainImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SKU" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="Decimal" Name="HeelHeight" Nullable="false" />
+          <NavigationProperty Name="lnkmodelimages" Relationship="tttModel.fk_modelimage_modelcolourdesc" FromRole="lnkmodelcolourdesc" ToRole="lnkmodelimage" />
+          <NavigationProperty Name="refcolourdesc" Relationship="tttModel.modelcolourdesc_colourdesc" FromRole="lnkmodelcolourdesc" ToRole="refcolourdesc" />
+          <NavigationProperty Name="refmodel" Relationship="tttModel.modelcolourdesc_model" FromRole="lnkmodelcolourdesc" ToRole="refmodel" />
+        </EntityType>
+        <Association Name="fk_modelimage_modelcolourdesc">
+          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelimage" Role="lnkmodelimage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelimage">
+              <PropertyRef Name="ModelColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="modelcolourdesc_colourdesc">
+          <End Type="tttModel.refcolourdesc" Role="refcolourdesc" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refcolourdesc">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ColourDescID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="modelcolourdesc_model">
+          <End Type="tttModel.refmodel" Role="refmodel" Multiplicity="1" />
+          <End Type="tttModel.lnkmodelcolourdesc" Role="lnkmodelcolourdesc" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="refmodel">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="lnkmodelcolourdesc">
+              <PropertyRef Name="ModelID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2176,22 +2176,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="lnkmodelcolourdescs">
-            <EntityTypeMapping TypeName="tttModel.lnkmodelcolourdesc">
-              <MappingFragment StoreEntitySet="lnkmodelcolourdesc">
-                <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
-                <ScalarProperty Name="SKU" ColumnName="SKU" />
-                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
-                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
-                <ScalarProperty Name="Active" ColumnName="Active" />
-                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
-                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
-                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
-                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="logpayments">
             <EntityTypeMapping TypeName="tttModel.logpayment">
               <MappingFragment StoreEntitySet="logpayment">
@@ -2252,6 +2236,22 @@
                 <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
                 <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
                 <ScalarProperty Name="TrendID" ColumnName="TrendID" />
+                <ScalarProperty Name="ModelID" ColumnName="ModelID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="lnkmodelcolourdescs">
+            <EntityTypeMapping TypeName="tttModel.lnkmodelcolourdesc">
+              <MappingFragment StoreEntitySet="lnkmodelcolourdesc">
+                <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
+                <ScalarProperty Name="SKU" ColumnName="SKU" />
+                <ScalarProperty Name="SubImage" ColumnName="SubImage" />
+                <ScalarProperty Name="MainImage" ColumnName="MainImage" />
+                <ScalarProperty Name="Active" ColumnName="Active" />
+                <ScalarProperty Name="UpdateDT" ColumnName="UpdateDT" />
+                <ScalarProperty Name="CreateDT" ColumnName="CreateDT" />
+                <ScalarProperty Name="ColourDescID" ColumnName="ColourDescID" />
                 <ScalarProperty Name="ModelID" ColumnName="ModelID" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>

@@ -229,19 +229,47 @@ namespace BR.ToteToToe.Web.Helpers
                     break;
 
                 case RefType.HeelHeight:
-                    var heightDetails = Properties.Settings.Default.HeelsHeight.Split('|');
-                    var minHeight = Convert.ToInt32(heightDetails[0].Split(',')[0]);
-                    var maxHeight = Convert.ToInt32(heightDetails[0].Split(',')[1]);
-                    var heightIncrement = Convert.ToInt32(heightDetails[1]);
-
-                    for (var i = minHeight; i <= maxHeight; i += heightIncrement)
+                    resultList.Add(new SelectListItem()
                     {
-                        resultList.Add(new SelectListItem()
-                        {
-                            Text = i == maxHeight ? string.Format("{0}+ inch heel", i - 1) : string.Format("{0} - {1} inch heel", i - 1, i),
-                            Value = i.ToString()
-                        });
-                    }
+                        Text = "0 - 1.5 inch heel",
+                        Value = "0,1.5"
+                    });
+                    resultList.Add(new SelectListItem()
+                    {
+                        Text = "2 - 2.5 inch heel",
+                        Value = "2,2.5"
+                    });
+                    resultList.Add(new SelectListItem()
+                    {
+                        Text = "3 - 3.5 inch heel",
+                        Value = "3,3.5"
+                    });
+                    resultList.Add(new SelectListItem()
+                    {
+                        Text = "4+ inch heel",
+                        Value = "4,0"
+                    });
+                    //var heightDetails = Properties.Settings.Default.HeelsHeight.Split('|');
+                    //var minHeight = Convert.ToDecimal(heightDetails[0].Split(',')[0]);
+                    //var maxHeight = Convert.ToDecimal(heightDetails[0].Split(',')[1]);
+                    //var heightIncrement = Convert.ToDecimal(heightDetails[1]);
+
+                    //for (var i = minHeight; i <= maxHeight; i += heightIncrement)
+                    //{
+                    //    var text = "";
+                    //    if (i == minHeight)
+                    //        text = string.Format("0 - {0} inch heel", minHeight);
+                    //    else if (i == maxHeight)
+                    //        text = string.Format("{0}+ inch heel", i - 1);
+                    //    else
+                    //        text = string.Format("{0} - {1} inch heel", i - 1, i);
+
+                    //    resultList.Add(new SelectListItem()
+                    //    {
+                    //        Text = text,
+                    //        Value = i.ToString()
+                    //    });
+                    //}
 
                     break;
 

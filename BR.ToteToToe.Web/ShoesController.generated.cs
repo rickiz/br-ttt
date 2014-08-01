@@ -268,9 +268,9 @@ namespace BR.ToteToToe.Web.Controllers
             return callInfo;
         }
 
-        partial void FilterOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int categoryID, int trendID, int lifestyleID, string brandName, string size, int colourID, string price, int heelHeight);
+        partial void FilterOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, int categoryID, int trendID, int lifestyleID, string brandName, string size, int colourID, string price, string heelHeight);
 
-        public override System.Web.Mvc.JsonResult Filter(int categoryID, int trendID, int lifestyleID, string brandName, string size, int colourID, string price, int heelHeight)
+        public override System.Web.Mvc.JsonResult Filter(int categoryID, int trendID, int lifestyleID, string brandName, string size, int colourID, string price, string heelHeight)
         {
             var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.Filter);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "categoryID", categoryID);
