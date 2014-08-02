@@ -688,6 +688,73 @@ namespace BR.ToteToToe.Web.Controllers
             return Json(new { voucherValue = voucherValue, grandTotal = grandTotal, message = message });
         }
 
+        [HttpPost]
+        public virtual JsonResult RemoveVoucherCode(string voucherCode, int soID)
+        {
+            var voucherValue = 0;
+            decimal grandTotal = 0;
+
+            using (var context = new TTTEntities())
+            {
+                // retrieve voucher details
+                var voucherDetails = context.tblvouchers.Where(a => a.Code == voucherCode).ToList();
+
+                // retrieve sales order
+                var salesOrder = context.trnsalesorders.Where(a => a.ID == soID).Single();
+
+                //// current voucher code
+                //if (salesOrder.VoucheID == voucherDetails[0].ID)
+                //    return Json(new { voucherValue = voucherDetails[0].Value, grandTotal = salesOrder.GrandTotal, message = message });
+
+                //if (!string.IsNullOrEmpty(voucherCode))
+                //{
+                //    if (voucherDetails.Count > 1) // voucher code more than one
+                //        message = string.Format("Voucher appeared more than once");
+                //    else if (voucherDetails.Count == 0) // voucher code not found
+                //        message = string.Format("Voucher not found");
+                //    else //voucher code found
+                //    {
+                //        if (!voucherDetails[0].Active) // voucher code 
+                //            message = string.Format("Voucher already used");
+                //    }
+                //}
+
+                if (salesOrder.VoucheID.HasValue)
+                {
+                    var currentVoucher = context.tblvouchers.Where(a => a.ID == salesOrder.VoucheID).SingleOrDefault();
+
+                    // update voucher as un-used
+                    currentVoucher.Active = true;
+                    currentVoucher.UpdateDT = DateTime.Now;
+
+                    //update sales order amount
+                    salesOrder.VoucheID = null;
+                    salesOrder.UpdateDT = DateTime.Now;
+                    salesOrder.GrandTotal += currentVoucher.Value;
+                }
+
+                //if (string.IsNullOrEmpty(message)) // valid voucher code
+                //{
+                //    //update sales order amount
+                //    salesOrder.VoucheID = voucherDetails[0].ID;
+                //    salesOrder.UpdateDT = DateTime.Now;
+                //    salesOrder.GrandTotal -= voucherDetails[0].Value;
+
+                //    // update voucher as used
+                //    voucherDetails[0].Active = false;
+                //    voucherDetails[0].UpdateDT = DateTime.Now;
+
+                //    voucherValue = voucherDetails[0].Value;
+                //}
+
+                grandTotal = salesOrder.GrandTotal;
+
+                context.SaveChanges();
+            }
+
+            return Json(new { voucherValue = voucherValue, grandTotal = grandTotal });
+        }
+
         public virtual ActionResult Success(int id)
         {
             var access = Util.SessionAccess;

@@ -52,6 +52,12 @@ namespace BR.ToteToToe.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.JsonResult RemoveVoucherCode()
+        {
+            return new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.RemoveVoucherCode);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult Success()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Success);
@@ -77,6 +83,7 @@ namespace BR.ToteToToe.Web.Controllers
             public readonly string Shipping = "Shipping";
             public readonly string Summary = "Summary";
             public readonly string ValidateVoucherCode = "ValidateVoucherCode";
+            public readonly string RemoveVoucherCode = "RemoveVoucherCode";
             public readonly string Success = "Success";
         }
 
@@ -88,6 +95,7 @@ namespace BR.ToteToToe.Web.Controllers
             public const string Shipping = "Shipping";
             public const string Summary = "Summary";
             public const string ValidateVoucherCode = "ValidateVoucherCode";
+            public const string RemoveVoucherCode = "RemoveVoucherCode";
             public const string Success = "Success";
         }
 
@@ -115,6 +123,15 @@ namespace BR.ToteToToe.Web.Controllers
         public ActionParamsClass_ValidateVoucherCode ValidateVoucherCodeParams { get { return s_params_ValidateVoucherCode; } }
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionParamsClass_ValidateVoucherCode
+        {
+            public readonly string voucherCode = "voucherCode";
+            public readonly string soID = "soID";
+        }
+        static readonly ActionParamsClass_RemoveVoucherCode s_params_RemoveVoucherCode = new ActionParamsClass_RemoveVoucherCode();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_RemoveVoucherCode RemoveVoucherCodeParams { get { return s_params_RemoveVoucherCode; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_RemoveVoucherCode
         {
             public readonly string voucherCode = "voucherCode";
             public readonly string soID = "soID";
@@ -220,6 +237,17 @@ namespace BR.ToteToToe.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "voucherCode", voucherCode);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "soID", soID);
             ValidateVoucherCodeOverride(callInfo, voucherCode, soID);
+            return callInfo;
+        }
+
+        partial void RemoveVoucherCodeOverride(T4MVC_System_Web_Mvc_JsonResult callInfo, string voucherCode, int soID);
+
+        public override System.Web.Mvc.JsonResult RemoveVoucherCode(string voucherCode, int soID)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_JsonResult(Area, Name, ActionNames.RemoveVoucherCode);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "voucherCode", voucherCode);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "soID", soID);
+            RemoveVoucherCodeOverride(callInfo, voucherCode, soID);
             return callInfo;
         }
 

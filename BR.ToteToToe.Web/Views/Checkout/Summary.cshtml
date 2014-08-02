@@ -125,6 +125,7 @@
                                             <td colspan="4">
                                                 Discount Voucher Code: @Html.TextBox("txtVoucherCode",Model.VoucherCode) 
                                                 <input name="btnVoucherCode" type="button" id="btnVoucherCode" value="Get Discount" onclick="ValidateVoucherCode();" />
+                                                <input name="btnRemove" type="button" id="btnRemove" value="Remove" onclick="RemoveVoucherCode();" />
                                                 @*@Html.TextBoxFor(a => a.VoucherCode, new { onchange="ValidateVoucherCode();" })*@
                                                 @Html.HiddenFor(a => a.VoucherCode)
                                                 @Html.HiddenFor(a => a.SalesOrderID)
@@ -212,6 +213,23 @@
             }
             else {
                 $('#lblVoucherMessage').text("Invalid voucher code");
+            }
+        }
+
+        function RemoveVoucherCode() {
+
+            var voucherCode = $("#txtVoucherCode").val();
+            var soID = $("#SalesOrderID").val();
+
+            if (voucherCode != '') {
+                var url = '@(Url.Content("~/Checkout/RemoveVoucherCode"))';
+                $.post(url, { voucherCode: voucherCode, soID: soID }, function (result) {
+
+                    $('#lblVoucherValue').text(result.voucherValue);
+                    $('#lblGrandTotal').text(result.grandTotal);
+                    $("#VoucherCode").val('');
+                    $("#txtVoucherCode").val('')
+                });
             }
         }
 
