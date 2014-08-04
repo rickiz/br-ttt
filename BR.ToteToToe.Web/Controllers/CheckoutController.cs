@@ -543,7 +543,7 @@ namespace BR.ToteToToe.Web.Controllers
                          ImageUrl = a.ModelSizeID.HasValue ? "~/images/" + ff.Name + "/"
                             : "~/Images/Customize/ShoeColour/" + gg.MainImage,
                          Name = a.ModelSizeID.HasValue ? dd.Name : jj.Name,
-                         Price = a.ModelSizeID.HasValue ? dd.Price : jj.Price,
+                         Price = a.ModelSizeID.HasValue ? ((dd.DiscountPrice.HasValue && dd.DiscountPrice.Value > 0) ? dd.DiscountPrice.Value : dd.Price) : jj.Price,
                          Quantity = a.Quantity,
                          Size = a.ModelSizeID.HasValue ? bb.Size : a.Size,
                          ModelSizeID = a.ModelSizeID,
@@ -636,8 +636,11 @@ namespace BR.ToteToToe.Web.Controllers
                 var salesOrder = context.trnsalesorders.Where(a => a.ID == soID).Single();
 
                 // current voucher code
-                if(salesOrder.VoucheID == voucherDetails[0].ID)
-                    return Json(new { voucherValue = voucherDetails[0].Value, grandTotal = salesOrder.GrandTotal, message = message });
+                if (voucherDetails.Count != 0)
+                {
+                    if (salesOrder.VoucheID == voucherDetails[0].ID)
+                        return Json(new { voucherValue = voucherDetails[0].Value, grandTotal = salesOrder.GrandTotal, message = message });
+                }
 
                 if (!string.IsNullOrEmpty(voucherCode))
                 {

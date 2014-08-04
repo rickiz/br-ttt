@@ -268,7 +268,8 @@ namespace BR.ToteToToe.Web.Controllers
                                 select new { ModelSizeID = modelSize.ID, Model = model };
 
                     var modelDetails = query.Where(a => a.ModelSizeID == modelSizeID).Single();
-                    var modelPrice = modelDetails.Model.DiscountPrice.HasValue ? modelDetails.Model.DiscountPrice.Value : modelDetails.Model.Price;
+                    var modelPrice = (modelDetails.Model.DiscountPrice.HasValue && modelDetails.Model.DiscountPrice.Value > 0) ?
+                                    modelDetails.Model.DiscountPrice.Value : modelDetails.Model.Price;
 
                     var customerEmail = Util.SessionAccess == null ? "" : Util.SessionAccess.Email; ;
 

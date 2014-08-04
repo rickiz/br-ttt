@@ -841,7 +841,7 @@ namespace BR.ToteToToe.Web.Controllers
                                     {
                                         StatusID = openStatusID,
                                         Email = customerEmail,
-                                        SubTotal = modelPrice,
+                                        SubTotal = 0,
                                         GrandTotal = modelPrice,
                                         CreateDT = DateTime.Now
                                     });
