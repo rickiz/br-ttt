@@ -112,7 +112,7 @@ namespace BR.ToteToToe.Web.Controllers
                         select new
                         {
                             SalesOrderItemID = salesOrderItem.ID,
-                            Image = modelImage.Thumbnail,
+                            Image = modelImage.Image,
                             Description = model.Description,
                             ModelName = model.Name,
                             BrandName = brand.Name,

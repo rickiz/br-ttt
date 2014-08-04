@@ -131,7 +131,7 @@ namespace BR.ToteToToe.Web.Controllers
                                     CategoryName = category.Name,
                                     Price = model.Price,
                                     DiscountPrice = model.DiscountPrice,
-                                    MainImage = modelImage.Thumbnail
+                                    MainImage = modelImage.Image
                                 };
 
                     var results = query.Where(a => modelColourDescIDs.Contains(a.ModelColourDescID)).ToList();
@@ -193,7 +193,7 @@ namespace BR.ToteToToe.Web.Controllers
             var randomNo = 0;
             var randomList = new List<int>();
 
-            //3 pumps, 2 peep toes, same height as current
+            //2 pumps, 3 peep toes, same height as current
             using (var context = new TTTEntities())
             {
                 // pumps*********************************************************************************************************
@@ -202,7 +202,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                join category in context.refcategories on brand.CategoryID equals category.ID
                                                join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                where category.Name.Contains("pump")
-                                               && model.Active == true && modelColourDesc.HeelHeight == heelHeight
+                                               && model.Active == true && modelColourDesc.HeelHeight == heelHeight 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (pumpsModelColourDescIDs.Count > 0)
@@ -219,8 +220,8 @@ namespace BR.ToteToToe.Web.Controllers
                     randomNo = GetRandomNo(pumpsModelColourDescIDs.Count(), randomList);
                     recommendModelColourDescIDs.Add(pumpsModelColourDescIDs[randomNo]);
 
-                    randomNo = GetRandomNo(pumpsModelColourDescIDs.Count(), randomList);
-                    recommendModelColourDescIDs.Add(pumpsModelColourDescIDs[randomNo]);
+                    //randomNo = GetRandomNo(pumpsModelColourDescIDs.Count(), randomList);
+                    //recommendModelColourDescIDs.Add(pumpsModelColourDescIDs[randomNo]);
                 }
                 //*********************************************************************************************************
 
@@ -232,7 +233,8 @@ namespace BR.ToteToToe.Web.Controllers
                                               join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                               where category.Name.Contains("peep")
                                                     && (modelColourDesc.ModelID != modelID || modelColourDesc.ColourDescID != colourDescID)
-                                              && model.Active == true && modelColourDesc.HeelHeight == heelHeight
+                                              && model.Active == true && modelColourDesc.HeelHeight == heelHeight 
+                                              && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                               select modelColourDesc.ID).ToList();
 
                 if (peepModelColourDescIDs.Count > 0)
@@ -244,6 +246,9 @@ namespace BR.ToteToToe.Web.Controllers
                     }
 
                     rnd = new Random();
+                    randomNo = GetRandomNo(peepModelColourDescIDs.Count(), randomList);
+                    recommendModelColourDescIDs.Add(peepModelColourDescIDs[randomNo]);
+
                     randomNo = GetRandomNo(peepModelColourDescIDs.Count(), randomList);
                     recommendModelColourDescIDs.Add(peepModelColourDescIDs[randomNo]);
 
@@ -262,7 +267,7 @@ namespace BR.ToteToToe.Web.Controllers
             var randomNo = 0;
             var randomList = new List<int>();
 
-            //2 pumps, 3 peep toes, same height as current
+            //3 pumps, 2 peep toes, same height as current
             using (var context = new TTTEntities())
             {
                 // pumps*********************************************************************************************************
@@ -272,7 +277,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                where category.Name.Contains("pump")
                                                     && (modelColourDesc.ModelID != modelID || modelColourDesc.ColourDescID != colourDescID)
-                                               && model.Active == true && modelColourDesc.HeelHeight == heelHeight
+                                               && model.Active == true && modelColourDesc.HeelHeight == heelHeight 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (pumpsModelColourDescIDs.Count > 0)
@@ -282,6 +288,9 @@ namespace BR.ToteToToe.Web.Controllers
                         AssignRecommendedIDs(pumpsModelColourDescIDs, recommendModelColourDescIDs);
                         return recommendModelColourDescIDs;
                     }
+
+                    randomNo = GetRandomNo(pumpsModelColourDescIDs.Count(), randomList);
+                    recommendModelColourDescIDs.Add(pumpsModelColourDescIDs[randomNo]);
 
                     randomNo = GetRandomNo(pumpsModelColourDescIDs.Count(), randomList);
                     recommendModelColourDescIDs.Add(pumpsModelColourDescIDs[randomNo]);
@@ -298,7 +307,8 @@ namespace BR.ToteToToe.Web.Controllers
                                               join category in context.refcategories on brand.CategoryID equals category.ID
                                               join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                               where category.Name.Contains("peep")
-                                              && model.Active == true && modelColourDesc.HeelHeight == heelHeight
+                                              && model.Active == true && modelColourDesc.HeelHeight == heelHeight 
+                                              && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                               select modelColourDesc.ID).ToList();
 
                 if (peepModelColourDescIDs.Count > 0)
@@ -316,8 +326,8 @@ namespace BR.ToteToToe.Web.Controllers
                     randomNo = GetRandomNo(peepModelColourDescIDs.Count(), randomList);
                     recommendModelColourDescIDs.Add(peepModelColourDescIDs[randomNo]);
 
-                    randomNo = GetRandomNo(peepModelColourDescIDs.Count(), randomList);
-                    recommendModelColourDescIDs.Add(peepModelColourDescIDs[randomNo]);
+                    //randomNo = GetRandomNo(peepModelColourDescIDs.Count(), randomList);
+                    //recommendModelColourDescIDs.Add(peepModelColourDescIDs[randomNo]);
                 }
                 //*********************************************************************************************************
             }
@@ -341,6 +351,7 @@ namespace BR.ToteToToe.Web.Controllers
                                                join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                 where category.Name.Contains("wedge")
                                                && model.Active == true
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (wedgesModelColourDescIDs.Count > 0)
@@ -367,7 +378,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                  where category.Name.Contains("sandal")
                                                      && (modelColourDesc.ModelID != modelID || modelColourDesc.ColourDescID != colourDescID)
-                                               && model.Active == true
+                                               && model.Active == true 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (sandalsModelColourDescIDs.Count > 0)
@@ -393,7 +405,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                join category in context.refcategories on brand.CategoryID equals category.ID
                                                join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                    where category.Name.Contains("platform")
-                                               && model.Active == true
+                                               && model.Active == true 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (platformsModelColourDescIDs.Count > 0)
@@ -423,7 +436,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                 join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                 where category.Name.Contains("wedge")
                                                     && (modelColourDesc.ModelID != modelID || modelColourDesc.ColourDescID != colourDescID)
-                                                && model.Active == true
+                                                && model.Active == true 
+                                                && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                 select modelColourDesc.ID).ToList();
 
                 if (wedgesModelColourDescIDs.Count > 0)
@@ -449,7 +463,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                  join category in context.refcategories on brand.CategoryID equals category.ID
                                                  join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                  where category.Name.Contains("sandal")
-                                               && model.Active == true
+                                               && model.Active == true 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                  select modelColourDesc.ID).ToList();
 
                 if (sandalsModelColourDescIDs.Count > 0)
@@ -472,7 +487,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                    join category in context.refcategories on brand.CategoryID equals category.ID
                                                    join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                    where category.Name.Contains("platform")
-                                               && model.Active == true
+                                               && model.Active == true 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                    select modelColourDesc.ID).ToList();
 
                 if (platformsModelColourDescIDs.Count > 0)
@@ -510,7 +526,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                join category in context.refcategories on brand.CategoryID equals category.ID
                                                join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                where category.Name.Contains("platform")
-                                               && model.Active == true && modelColourDesc.HeelHeight == heelHeight
+                                               && model.Active == true && modelColourDesc.HeelHeight == heelHeight 
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (pumpsModelColourDescIDs.Count > 0)
@@ -539,7 +556,8 @@ namespace BR.ToteToToe.Web.Controllers
                                               join category in context.refcategories on brand.CategoryID equals category.ID
                                               join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                               where category.Name.Contains("wedge")
-                                              && model.Active == true && modelColourDesc.HeelHeight == heelHeight
+                                              && model.Active == true && modelColourDesc.HeelHeight == heelHeight 
+                                              && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                               select modelColourDesc.ID).ToList();
 
                 if (peepModelColourDescIDs.Count > 0)
@@ -580,6 +598,7 @@ namespace BR.ToteToToe.Web.Controllers
                                                     where category.Name.Contains("ballerina")
                                                          && (modelColourDesc.ModelID != modelID || modelColourDesc.ColourDescID != colourDescID)
                                                && model.Active == true
+                                               && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                select modelColourDesc.ID).ToList();
 
                 if (ballerinasModelColourDescIDs.Count > 0)
@@ -609,6 +628,7 @@ namespace BR.ToteToToe.Web.Controllers
                                               join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                               where category.Name.Contains("flat")
                                               && model.Active == true
+                                              && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                               select modelColourDesc.ID).ToList();
 
                 if (flatModelColourDescIDs.Count > 0)
@@ -647,7 +667,8 @@ namespace BR.ToteToToe.Web.Controllers
                                                     join category in context.refcategories on brand.CategoryID equals category.ID
                                                     join modelColourDesc in context.lnkmodelcolourdescs on model.ID equals modelColourDesc.ModelID
                                                     where category.Name.Contains("ballerina")
-                                                    && model.Active == true
+                                                    && model.Active == true 
+                                                    && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                                     select modelColourDesc.ID).ToList();
 
                 if (ballerinasModelColourDescIDs.Count > 0)
@@ -675,6 +696,7 @@ namespace BR.ToteToToe.Web.Controllers
                                               where category.Name.Contains("flat")
                                                      && (modelColourDesc.ModelID != modelID || modelColourDesc.ColourDescID != colourDescID)
                                               && model.Active == true
+                                              && (model.DiscountPrice == 0 || !model.DiscountPrice.HasValue)
                                               select modelColourDesc.ID).ToList();
 
                 if (flatModelColourDescIDs.Count > 0)
@@ -765,7 +787,7 @@ namespace BR.ToteToToe.Web.Controllers
                         ColourDescID = colourDescID,
                         SKU = results.Select(a => a.modelColourDesc.SKU).First(),
                         ModelSizeID = modelSizeID,
-                        ModelMainImage = results.Select(a => a.modelColourDesc.MainImage).First(),
+                        ModelMainImage = results.Select(a => a.modelImages.Thumbnail).First(),
                         ShareUrl = string.Format("http://www.tote-to-toe.com/Shoes/Details?modelID={0}&colourDescID={1}", modelID, colourDescID)
                     };
                 }

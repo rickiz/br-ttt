@@ -77,7 +77,7 @@
                                 {
                                     <td align="center" valign="top">
                                         <a href="@Url.Action("Details", new { modelID = model.ModelID, colourDescID = model.ColourDescID })">
-                                            <img src="@Url.Content(string.Format("~/Images/{0}/{1}", model.CategoryName.Replace(" ",""), model.MainImage))" width="153" height="130" /><br />
+                                            <img src="@Url.Content(string.Format("~/Images/{0}/{1}", model.CategoryName.Replace(" ",""), model.MainImage))" width="153" height="104" /><br />
                                         </a>
                                         <span style="font-weight: bold">@Html.Raw(model.BrandName)</span><br />
                                         <span style="font-style: italic">@Html.Raw(model.ModelName)<br />

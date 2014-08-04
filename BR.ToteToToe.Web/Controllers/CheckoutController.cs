@@ -570,7 +570,7 @@ namespace BR.ToteToToe.Web.Controllers
                             context.lnkmodelimages.FirstOrDefault(a => a.ModelColourDescID == item.ModelColourDescID);
 
                         if (modelImage != null)
-                            summaryItem.ImageUrl += modelImage.Thumbnail;
+                            summaryItem.ImageUrl += modelImage.Image;
                     }
 
                     viewModel.Items.Add(summaryItem);
