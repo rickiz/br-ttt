@@ -49,7 +49,7 @@ namespace BR.ToteToToe.Web.Controllers
                          }).Take(5).ToList();
                 }
 
-                var queryTemp =
+                var wishlistItems =
                      (from wishlistItem in context.lnkwishlists
                       join wishlist in context.trnwishlists on wishlistItem.WishlistID equals wishlist.ID
                       join b in context.lnkmodelsizes on wishlistItem.ModelSizeID equals b.ID into bTemp
@@ -66,19 +66,43 @@ namespace BR.ToteToToe.Web.Controllers
                       join g in context.lnkcustomizemodelimages on wishlistItem.SKU equals g.SKU into gTemp
                       from gg in gTemp.DefaultIfEmpty()
                       where wishlist.Email == user.Email && wishlist.Active && wishlistItem.Active
-                      select new MyAccountIndexImageDetail
+                      select new
                       {
-                          ModelSizeID = bb.ID,
-                          ModelID = bb.ModelID,
-                          ColourDescID = bb.ColourDescID,
+                          ModelColourDescID = wishlistItem.ModelSizeID.HasValue ? cc.ID : 0,
+                          ModelSizeID = wishlistItem.ModelSizeID,
+                          ModelID = bb == null ? 0 : bb.ModelID,
+                          ColourDescID = bb == null ? 0 : bb.ColourDescID,
                           SKU = gg.SKU,
                           ImageContentUrl =
                             wishlistItem.ModelSizeID.HasValue ?
-                                imagePath + ff.Name + "/" + cc.MainImage
+                                imagePath + ff.Name + "/"
                                 : imagePath + gg.MainImage
-                      });
+                      }).Distinct().Take(5).ToList();
                       
-                var wishlistImages = queryTemp.Take(5).ToList();
+                var wishlistImages = new List<MyAccountIndexImageDetail>();
+
+                foreach (var item in wishlistItems)
+                {
+                    var imageDetail = new MyAccountIndexImageDetail
+                    {
+                        ModelSizeID = item.ModelSizeID,
+                        ModelID = item.ModelID,
+                        ColourDescID = item.ColourDescID,
+                        ImageContentUrl = item.ImageContentUrl,
+                        SKU = item.SKU
+                    };
+
+                    if (item.ModelSizeID.HasValue)
+                    {
+                        var modelImage =
+                            context.lnkmodelimages.FirstOrDefault(a => a.ModelColourDescID == item.ModelColourDescID);
+
+                        if (modelImage != null)
+                            imageDetail.ImageContentUrl += modelImage.Thumbnail;
+                    }
+
+                    wishlistImages.Add(imageDetail);
+                }
 
                 var viewModel = new MyAccountViewModel
                 {
