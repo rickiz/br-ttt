@@ -1,0 +1,24 @@
+﻿@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+@model VoucherMaintainViewModel
+@{
+    ViewBag.Title = "Maintain Voucher";
+}
+
+@using (Html.BeginForm())
+{    
+    @Html.ValidationSummary(false)
+    <div class="form-group row">
+        @Html.Label("Code From: ", new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-2">
+            @Html.TextBoxFor(model => model.CodeFrom, new { @class = "form-control", maxlength="7" })
+        </div>        
+        @Html.Label("To", new { @class = "col-sm-1 control-label text-info" })
+        
+        <div class="col-sm-2">
+            @Html.TextBoxFor(model => model.CodeTo, new { @class = "form-control", maxlength="7" })
+        </div>      
+        <input type="submit" name="submit" class="btn btn-primary" value ="Create/Activate" />
+        <input type="submit" name="submit" class="btn btn-primary" value="Deactivate" />
+        <input type="button" name="submit" class="btn btn-primary cancel" value="Back" onclick="javascript: history.go(-1);"/>
+    </div>    
+}

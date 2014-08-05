@@ -51,6 +51,8 @@ namespace T4MVC
     {
         public readonly string Name = "Admin";
         public BR.ToteToToe.Web.Areas.Admin.Controllers.OrderStatusController OrderStatus = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_OrderStatusController();
+        public BR.ToteToToe.Web.Areas.Admin.Controllers.TrendPriorityController TrendPriority = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_TrendPriorityController();
+        public BR.ToteToToe.Web.Areas.Admin.Controllers.VoucherController Voucher = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_VoucherController();
         public T4MVC.Admin.SharedController Shared = new T4MVC.Admin.SharedController();
     }
 }

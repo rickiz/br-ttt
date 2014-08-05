@@ -5,9 +5,6 @@
     <Setting Name="CategoryImagePath" Type="System.String" Scope="Application">
       <Value Profile="(Default)">~/Images/Category/</Value>
     </Setting>
-    <Setting Name="HeelsHeight" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">1,6|1</Value>
-    </Setting>
     <Setting Name="iPay88_MerchantKey" Type="System.String" Scope="Application">
       <Value Profile="(Default)">JXqVd2QZu7</Value>
     </Setting>
@@ -40,6 +37,12 @@
     </Setting>
     <Setting Name="ShippingFee" Type="System.Int32" Scope="Application">
       <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="HeelsHeight" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">1.5,5|0.5</Value>
+    </Setting>
+    <Setting Name="VoucherLength" Type="System.Int32" Scope="Application">
+      <Value Profile="(Default)">7</Value>
     </Setting>
   </Settings>
 </SettingsFile>

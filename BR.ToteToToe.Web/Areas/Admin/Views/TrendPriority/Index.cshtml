@@ -1,0 +1,32 @@
+﻿@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+@model TrendPriorityViewModel
+@{
+    ViewBag.Title = "Trend Priority";
+}
+
+
+@using(Html.BeginForm())
+{
+    var count = 1;
+    foreach (var item in Model.Priorities)
+    {
+        <div class="form-group row">
+            @Html.Label(string.Format("{0}. {1}", count, item.TrendName), new { @class = "col-sm-2 control-label text-info" })
+            <div class="col-sm-4">
+                @Html.TextBox(string.Format("txt_{0}", item.TrendID), item.Priority, new { @class = "form-control" })
+            </div>        
+        </div>@*
+        <tr>
+            <td>
+                @Html.Raw(string.Format("{0}. {1}", count, item.TrendName))
+            </td>
+            <td>
+                @Html.TextBox(string.Format("txt_{0}", item.TrendID), item.Priority)
+            </td>
+        </tr>*@
+        count++;
+    }
+    <button type="submit" class="btn btn-primary">Save</button>
+}
+
+

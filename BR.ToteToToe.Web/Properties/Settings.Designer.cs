@@ -34,15 +34,6 @@ namespace BR.ToteToToe.Web.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1,6|1")]
-        public string HeelsHeight {
-            get {
-                return ((string)(this["HeelsHeight"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("JXqVd2QZu7")]
         public string iPay88_MerchantKey {
             get {
@@ -137,6 +128,24 @@ namespace BR.ToteToToe.Web.Properties {
         public int ShippingFee {
             get {
                 return ((int)(this["ShippingFee"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1.5,5|0.5")]
+        public string HeelsHeight {
+            get {
+                return ((string)(this["HeelsHeight"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("7")]
+        public int VoucherLength {
+            get {
+                return ((int)(this["VoucherLength"]));
             }
         }
     }

@@ -1,0 +1,48 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+
+@model VoucherSearchViewModel
+
+@{
+    ViewBag.Title = "Voucher";
+}
+
+@using (Html.BeginForm())
+{    
+    <div class="form-group row">
+        @Html.Label("Code From: ", new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-2">
+            @Html.TextBoxFor(model => model.CodeFrom, new { @class = "form-control" })
+        </div>        
+        @Html.Label("To", new { @class = "col-sm-1 control-label text-info" })
+        
+        <div class="col-sm-2">
+            @Html.TextBoxFor(model => model.CodeTo, new { @class = "form-control" })
+        </div>   
+        @*<input type="submit" name="submit" value="Search" class="btn btn-primary" />*@
+        <input type="submit" name="submit" class="btn btn-primary" value="Search" />
+        <input type="submit" name="submit" class="btn btn-primary" value="Maintain Voucher" />
+        @*<button type="submit" name="submit" class="btn btn-primary">Search</button>
+        <button type="submit" name="submit" class="btn btn-primary" value="Maintain">Maintain Voucher</button>  <br /><br />  *@
+    </div>
+    
+    
+}
+
+@if(Model.Results.Count>0)
+{
+    Html.Telerik().Grid(Model.Results)
+        .Name("grdResult")
+        .Columns(cols =>
+        {
+            cols.Bound(m => m.Code).Title("Code");
+            cols.Bound(m => m.Value).Title("Value");
+            cols.Bound(m => m.OrderID).Title("Order ID");
+            cols.Bound(m => m.Active).Title("Active");
+        })
+        .DataBinding(dataBinding => dataBinding.Ajax().OperationMode(GridOperationMode.Client))
+        .Pageable(paging => paging.PageSize(100))
+        .Sortable()
+        //.Selectable()
+        .Render();        
+}
