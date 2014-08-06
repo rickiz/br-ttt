@@ -99,6 +99,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                 var oldVouchers = context.tblvouchers.Where(a => oldCodes.Contains(a.Code)).ToList();
                 foreach (var voucher in oldVouchers)
                 {
+                    voucher.Value = viewModel.Value;
                     voucher.Active = true;
                     voucher.UpdateDT = DateTime.Now;
                 }
