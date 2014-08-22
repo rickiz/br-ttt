@@ -8,7 +8,7 @@
 	/* overflow:auto; */
 	background-color: white;
 	margin: auto 0;
-	height: 1200px;
+	height: 780px;
 	font-family: Arial, Helvetica, sans-serif;
 	position: relative;
 	padding-bottom: 213px;
@@ -61,12 +61,10 @@
 	font-size: 12px;
 	color: white;
 	background: #47443b;
-	background-image:url(../images/main_nav_dottedline.gif);
-	width: 220px;
+	width: 100px;
 	height: 28px;
 	border: 0px;
 	cursor: pointer;
-	text-align: center;
 }
 
 .forgotpwd {
@@ -131,10 +129,10 @@
 .register
 {
 	width: 950px;
-	height: 1125px;
+	height: 691px;
 	top: 20px;
 	left: 0px;
-	background-color: #E8E8E8;
+	background-color: #e8e5d2;
 	font-family: Arial, Helvetica, sans-serif;
 	position: absolute;
 	border: 1px dashed #939499;
@@ -143,7 +141,7 @@
 .formbox2
 {
 	width: 872px;
-	height: 1041px;
+	height: 627px;
 	top: 37px;
 	left: 46px;
 	font-family: Arial, Helvetica, sans-serif;
@@ -191,7 +189,7 @@
 
 .dropdown {
     border: 1px solid #dcdddf;
-    width: 406px;
+    width: 407px;
     overflow: hidden;
 
 }
@@ -208,7 +206,7 @@
     outline : medium none !important;
     display: inline-flex !important;
     height: 35px !important;
-	width: 406px;
+	width: 407px;
     vertical-align: top;
     -webkit-appearance: none;
 	text-indent: 0.01px;
@@ -244,9 +242,6 @@
 
 }
 
-.divline
-{ 
-color: #666; 
-border: 1px dashed #b2b2b2; 
-border-style: none none dashed; 
+select::-ms-expand {
+    display: none;
 }

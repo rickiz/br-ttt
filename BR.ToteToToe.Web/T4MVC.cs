@@ -564,6 +564,10 @@ namespace Links
              
         public static readonly string signin_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/signin.min.css") ? Url("signin.min.css") : Url("signin.css");
              
+        public static readonly string signupcomplete_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/signupcomplete.min.css") ? Url("signupcomplete.min.css") : Url("signupcomplete.css");
+             
+        public static readonly string signupcompleteBK_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/signupcompleteBK.min.css") ? Url("signupcompleteBK.min.css") : Url("signupcompleteBK.css");
+             
         public static readonly string Site_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/Site.min.css") ? Url("Site.min.css") : Url("Site.css");
              
         public static readonly string SiteAdmin_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/SiteAdmin.min.css") ? Url("SiteAdmin.min.css") : Url("SiteAdmin.css");

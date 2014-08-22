@@ -829,6 +829,8 @@
     <Content Include="Content\productlist.css" />
     <Content Include="Content\shoppingbag.css" />
     <Content Include="Content\signin.css" />
+    <Content Include="Content\signupcomplete.css" />
+    <Content Include="Content\signupcompleteBK.css" />
     <Content Include="Content\SiteAdmin.css" />
     <Content Include="Content\sticky-footer-navbar.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
