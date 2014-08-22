@@ -123,9 +123,9 @@
                                         </tr>
                                         <tr>
                                             <td colspan="4">
-                                                Discount Voucher Code: @Html.TextBox("txtVoucherCode",Model.VoucherCode) 
-                                                <input name="btnVoucherCode" type="button" id="btnVoucherCode" value="Get Discount" onclick="ValidateVoucherCode();" />
-                                                <input name="btnRemove" type="button" id="btnRemove" value="Remove" onclick="RemoveVoucherCode();" />
+                                                Discount Voucher Code: @Html.TextBox("txtVoucherCode", Model.VoucherCode, new { @class="txtfield"  }) 
+                                                <input name="btnVoucherCode" type="button" class="whitebutton" id="btnVoucherCode" value="Get Discount" onclick="ValidateVoucherCode();" />
+                                                <input name="btnRemove" type="button" class="whitebutton" id="btnRemove" value="Remove" onclick="RemoveVoucherCode();" />
                                                 @*@Html.TextBoxFor(a => a.VoucherCode, new { onchange="ValidateVoucherCode();" })*@
                                                 @Html.HiddenFor(a => a.VoucherCode)
                                                 @Html.HiddenFor(a => a.SalesOrderID)
