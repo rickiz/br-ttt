@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="cd6b1d94655c4fd9a47a8b0f6f6bf4e7" Name="Diagram1" ZoomLevel="10">
+      <Diagram DiagramId="cd6b1d94655c4fd9a47a8b0f6f6bf4e7" Name="Diagram1" ZoomLevel="20">
         <EntityTypeShape EntityType="tttModel.lnkcollectionmodel" Width="1.5" PointX="7.5" PointY="16.625" />
         <EntityTypeShape EntityType="tttModel.lnkcolourpriority" Width="1.5" PointX="5.25" PointY="3.75" />
         <EntityTypeShape EntityType="tttModel.lnktrendpriority" Width="1.5" PointX="10.5" PointY="1" />
@@ -58,7 +58,7 @@
         <AssociationConnector Association="tttModel.fk_modellifestyle_model" />
         <AssociationConnector Association="tttModel.fk_modeltrend_model" />
         <AssociationConnector Association="tttModel.fk_modeltrend_trend" />
-        <EntityTypeShape EntityType="tttModel.lnkmodelcolourdesc" Width="1.5" PointX="7.75" PointY="7.625" />
+        <EntityTypeShape EntityType="tttModel.lnkmodelcolourdesc" Width="1.5" PointX="7.5" PointY="6" />
         <AssociationConnector Association="tttModel.fk_modelimage_modelcolourdesc" />
         <AssociationConnector Association="tttModel.modelcolourdesc_colourdesc" />
         <AssociationConnector Association="tttModel.modelcolourdesc_model" />

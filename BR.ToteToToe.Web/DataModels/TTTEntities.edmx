@@ -197,6 +197,13 @@
           <Property Name="SubImage" Type="varchar" MaxLength="45" />
           <Property Name="SKU" Type="varchar" Nullable="false" MaxLength="20" />
           <Property Name="HeelHeight" Type="decimal" Nullable="false" Scale="2" />
+          <Property Name="Style" Type="varchar" MaxLength="250" />
+          <Property Name="Description" Type="varchar" MaxLength="4000" />
+          <Property Name="LiningSock" Type="varchar" MaxLength="150" />
+          <Property Name="Sole" Type="varchar" MaxLength="150" />
+          <Property Name="Make" Type="varchar" MaxLength="150" />
+          <Property Name="UpperMaterial" Type="varchar" MaxLength="150" />
+          <Property Name="HeelDesc" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="lnkmodelimage">
           <Key>
@@ -1771,6 +1778,13 @@
           <Property Type="String" Name="SubImage" MaxLength="45" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="SKU" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="HeelHeight" Nullable="false" />
+          <Property Type="String" Name="Style" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Description" MaxLength="4000" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LiningSock" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Sole" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Make" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="UpperMaterial" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="HeelDesc" MaxLength="150" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="lnkmodelimages" Relationship="tttModel.fk_modelimage_modelcolourdesc" FromRole="lnkmodelcolourdesc" ToRole="lnkmodelimage" />
           <NavigationProperty Name="refcolourdesc" Relationship="tttModel.modelcolourdesc_colourdesc" FromRole="lnkmodelcolourdesc" ToRole="refcolourdesc" />
           <NavigationProperty Name="refmodel" Relationship="tttModel.modelcolourdesc_model" FromRole="lnkmodelcolourdesc" ToRole="refmodel" />
@@ -2244,6 +2258,13 @@
           <EntitySetMapping Name="lnkmodelcolourdescs">
             <EntityTypeMapping TypeName="tttModel.lnkmodelcolourdesc">
               <MappingFragment StoreEntitySet="lnkmodelcolourdesc">
+                <ScalarProperty Name="HeelDesc" ColumnName="HeelDesc" />
+                <ScalarProperty Name="UpperMaterial" ColumnName="UpperMaterial" />
+                <ScalarProperty Name="Make" ColumnName="Make" />
+                <ScalarProperty Name="Sole" ColumnName="Sole" />
+                <ScalarProperty Name="LiningSock" ColumnName="LiningSock" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Style" ColumnName="Style" />
                 <ScalarProperty Name="HeelHeight" ColumnName="HeelHeight" />
                 <ScalarProperty Name="SKU" ColumnName="SKU" />
                 <ScalarProperty Name="SubImage" ColumnName="SubImage" />

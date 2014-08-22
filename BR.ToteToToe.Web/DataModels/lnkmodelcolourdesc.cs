@@ -29,6 +29,13 @@ namespace BR.ToteToToe.Web.DataModels
         public string SubImage { get; set; }
         public string SKU { get; set; }
         public decimal HeelHeight { get; set; }
+        public string Style { get; set; }
+        public string Description { get; set; }
+        public string LiningSock { get; set; }
+        public string Sole { get; set; }
+        public string Make { get; set; }
+        public string UpperMaterial { get; set; }
+        public string HeelDesc { get; set; }
     
         public virtual ICollection<lnkmodelimage> lnkmodelimages { get; set; }
         public virtual refcolourdesc refcolourdesc { get; set; }
