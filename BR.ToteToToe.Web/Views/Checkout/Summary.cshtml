@@ -123,7 +123,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="4">
-                                                Discount Voucher Code: @Html.TextBox("txtVoucherCode", Model.VoucherCode, new { @class="txtfield"  }) 
+                                                Discount Voucher Code: @Html.TextBox("txtVoucherCode", Model.VoucherCode, new { @class="txtfield", style = "width:100px;"  }) 
                                                 <input name="btnVoucherCode" type="button" class="whitebutton" id="btnVoucherCode" value="Get Discount" onclick="ValidateVoucherCode();" />
                                                 <input name="btnRemove" type="button" class="whitebutton" id="btnRemove" value="Remove" onclick="RemoveVoucherCode();" />
                                                 @*@Html.TextBoxFor(a => a.VoucherCode, new { onchange="ValidateVoucherCode();" })*@

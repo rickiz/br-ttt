@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 #wrap
 {
@@ -190,58 +190,74 @@
 }
 
 .dropdown {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
     border: 1px solid #dcdddf;
     width: 406px;
+	height: 35px;
+	padding: 8px 5px;
     overflow: hidden;
+	float:left;
+    background: #fff url("../images/arrowdown2.gif") no-repeat 100% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
 
 }
 
 .dropdown select {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;
-	background: #fff url("../images/arrowdown2.gif") no-repeat 100% 50%;
-	    
-    background-repeat: no-repeat;
-    background-size: 34px 35px;
+	width: 100%;
+	height: 35px;
     border: none;
-    box-shadow: none;    
-    outline : medium none !important;
-    display: inline-flex !important;
-    height: 35px !important;
-	width: 406px;
-    vertical-align: top;
-    -webkit-appearance: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	-moz-appearance: none;
 	text-indent: 0.01px;
 	text-overflow: '';
-	padding: 0px 5px;
+
+}
+
+.dropdown select:focus {
+    outline: none;
 }
 
 .dropdownbday {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+    border: 1px solid #dcdddf;
     width: 135px;
-	border: 1px solid #dcdddf;
+	height: 35px;
+	padding: 8px 5px;
     overflow: hidden;
+	float:left;
+    background: #fff url("../images/arrowdown2.gif") no-repeat 100% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
 
 }
 
 .dropdownbday select {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;
-	width: 135px;
-    background: #fff url("../images/arrowdown2.gif") no-repeat 100% 50%;
-	    
-    background-repeat: no-repeat;
-    background-size: 34px 35px;
+	width: 100%;
     border: none;
-    box-shadow: none;    
-    outline : medium none !important;
-    display: inline-flex !important;
-    height: 35px !important;
-    vertical-align: top;
-    -webkit-appearance: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	-moz-appearance: none;
 	text-indent: 0.01px;
 	text-overflow: '';
-	padding: 0px 5px;
 
+}
+
+.dropdownbday select:focus {
+    outline: none;
 }
 
 .divline

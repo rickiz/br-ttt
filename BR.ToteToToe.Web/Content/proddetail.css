@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 #wrap
 {
@@ -8,7 +8,7 @@
 	/* overflow:auto; */
 	background-color: white;
 	margin: auto 0;
-	height: 1200px;
+	height: 1000px;
 	font-family: Arial, Helvetica, sans-serif;
 	position: relative;
 	padding-bottom: 213px;
@@ -28,19 +28,18 @@
 .maylike
 {
 	width: 950px;
-	top: 763px;
+	top: 713px;
 	height: 244px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 13px;
 	position: absolute;
-	left: 0px;
 }
 
 .formbox
 {
-	width: 370px;
+	width: 424px;
 	height: 221px;
-	top: 509px;
+	top: 409px;
 	left: 580px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 4px;
@@ -58,30 +57,39 @@
 }
 
 .dropdown {
+	font-family: Arial, Helvetica, sans-serif;
+    /*font-family: 'Courier New', Courier, monospace;*/
+	font-size:12px;
+	padding: 8px 8px;
     border: 2px solid #fff;
-    width: 150px;
+    width: 155px;
     overflow: hidden;
+	float:left;
+    background: #e7e7e9 url("../images/arrowdown2.gif") no-repeat 100% 50%;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	text-indent: 0.01px;
+	text-overflow: '';
 
 }
 
 .dropdown select {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size:12px;
-	background: #e7e7e9 url("../images/arrowdown2.gif") no-repeat 100% 50%;
-	    
-    background-repeat: no-repeat;
-    background-size: 34px 35px;
+    
+    width: 100%;
     border: none;
-    box-shadow: none;    
-    outline : medium none !important;
-    display: inline-flex !important;
-    height: 35px !important;
-	width: 150px;
-    vertical-align: top;
-    -webkit-appearance: none;
+    box-shadow: none;
+    background: transparent;
+    background-image: none;
+	-moz-appearance: none;
 	text-indent: 0.01px;
 	text-overflow: '';
-	padding: 0px 5px;
+
+}
+
+.dropdown select:focus {
+    outline: none;
 }
 
 .commentsbox {
@@ -106,13 +114,14 @@
 
 .addtobagbutton:hover {
 	background: #3f3f3f;
-	background-image:url(../images/main_nav_dottedline.gif);
+
 }
 
 .addtowistlistbutton {
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 12px;
 	color: #6d6d6f;
+
 	background: #e7e7e9;
 	background-image:url(../images/main_nav_dottedline.gif);
 	width: 181px;
@@ -147,9 +156,11 @@
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 11px;
 	color: black;
+
 	background: #fff;
 	width: 60px;
 	height: 33px;
+
 	border: 2px;
 	cursor: pointer;
 	margin-top: 2px;
@@ -158,21 +169,9 @@
 	color: #999;
 }
 
-#price
-{
-	top: 22px;
-	left: 582px;
-	display: block;
-	width: 365px;
-	height: 75px;
-	position: absolute;
-	float: left;
-	font-size: 14px;
-}
-
 #pic1
 {
-	top: 111px;
+	top: 26px;
 	left: 0px;
 	display: block;
 	width: 558px;
@@ -182,7 +181,7 @@
 }
 #pic2
 {
-	top: 111px;
+	top: 26px;
 	left: 0px;
 	display: block;
 	width: 558px;
@@ -193,7 +192,7 @@
 }
 #pic3
 {
-	top: 111px;
+	top: 26px;
 	left: 0px;
 	display: block;
 	width: 558px;
@@ -204,7 +203,7 @@
 }
 #pic4
 {
-	top: 111px;
+	top: 26px;
 	left: 0px;
 	display: block;
 	width: 558px;
@@ -216,53 +215,55 @@
 
 .thumbnail1
 {
-	top: 111px;
+	top: 26px;
 	left: 582px;
 	display: block;
 	width: 175px;
 	height: 175px;
 	position: absolute;
 	float: left;
-	border: solid #d1d1d1 1px;
+	border:solid #d1d1d1 1px;
 }
 
 .thumbnail2
 {
-	top: 111px;
+	top: 26px;
 	left: 774px;
 	display: block;
 	width: 175px;
 	height: 175px;
 	position: absolute;
 	float: left;
-	border: solid #d1d1d1 1px;
+	border:solid #d1d1d1 1px;
+
 }
 .thumbnail3
 {
-	top: 303px;
+	top: 218px;
 	left: 582px;
 	display: block;
 	width: 175px;
 	height: 175px;
 	position: absolute;
 	float: left;
-	border: solid #d1d1d1 1px;
+	border:solid #d1d1d1 1px;
+
 }
 .thumbnail4
 {
-	top: 303px;
+	top: 218px;
 	left: 774px;
 	display: block;
 	width: 175px;
 	height: 175px;
 	position: absolute;
 	float: left;
-	border: solid #d1d1d1 1px;
+
 }
 
 .bodycopy
 {
-	top: 509px;
+	top: 409px;
 	left: 0px;
 	display: block;
 	font-family: Arial, Helvetica, sans-serif;

@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 #wrap
 {
@@ -40,12 +40,12 @@
 
 .txtfield {
 	border:0px;
-	height: 28px;
-	width: 142px;
+	height: 35px;
+	width: 52px;
 	font-family:Arial, Helvetica, sans-serif;
-	font-size: 12px;
-	background-color:#EBEBEB;
-	padding-left: 5px;
+	font-size: 20px;
+	background-color:#e7e7e9;
+	padding: 1px;
 }
 
 .codefield {
@@ -69,15 +69,15 @@ border-style: none none dashed;
 	font-size: 12px;
 	color: #6d6d6f;
 	background: #fff;
-	background-image:url(../images/whitebutton_dottedline.gif);
-	width: 95px;
+    background-image:url(../images/whitebutton_dottedline.gif);
+	width: 203px;
 	height: 28px;
 	border: 1px solid #939395;
 	cursor: pointer;
 }
 .whitebutton:hover {
 	background: #3f3f3f;
-	background-image:url(../images/whitebutton_dottedline.gif);
+    background-image:url(../images/whitebutton_dottedline.gif);
 	color: white;
 }
 
@@ -86,17 +86,16 @@ border-style: none none dashed;
 	font-size: 12px;
 	color: white;
 	background: #47443b;
-	background-image:url(../images/main_nav_dottedline.gif);
+    background-image:url(../images/main_nav_dottedline.gif);
 	width: 203px;
 	height: 28px;
 	border: 0px;
-	
 	cursor: pointer;
 }
 
 .darkbutton:hover {
 	background: #666;
-	background-image:url(../images/main_nav_dottedline.gif);
+    background-image:url(../images/main_nav_dottedline.gif);
 	color: white;
 }
 
@@ -111,4 +110,24 @@ a:hover {
 }
 a:active {
 	color: #000;
+}
+
+.checkoutprog
+{
+	top: 22px;
+	left: 138px;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	width: 787px;
+	height: 25px;	
+	text-align: left;
+}
+
+@media print {
+    .header, .footer { visibility: hidden }
+    .no-print, .no-print *
+    {
+        display: none !important;
+    }
 }
