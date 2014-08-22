@@ -28,8 +28,12 @@
                         </td>
                         <td align="left" style="border-bottom: solid;">Choose Address:</td>
                         <td align="left" style="border-bottom: solid;">
-                            @Html.DropDownListFor(m => m.AddressTypeID, Util.GetAddressTypeList(), 
-                                new { @class = "dropdown", tabindex = "4" })
+                            <div class="dropdown">
+                                <div class="dropdown">
+                                    @Html.DropDownListFor(m => m.AddressTypeID, Util.GetAddressTypeList(), 
+                                        new { @class = "dropdown", tabindex = "4" })
+                                </div>
+                            </div>
                         </td>
                         
                     </tr>
@@ -101,15 +105,19 @@
                         <td style="line-height: 40px;">
                             @if (Model.IsAddressReadOnly)
                             {
-                                @Html.DropDownListFor(model => model.Address.CountryID,
-                                    Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", disabled = "disabled", tabindex = "10" })
-                                @Html.HiddenFor(m => m.Address.CountryID)
+                                <div class="dropdown">
+                                    @Html.DropDownListFor(model => model.Address.CountryID,
+                                        Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", disabled = "disabled", tabindex = "10" })
+                                    @Html.HiddenFor(m => m.Address.CountryID)
+                                </div>
                             }
                             else
                             { 
-                                @Html.DropDownListFor(model => model.Address.CountryID, 
-                                    Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", tabindex = "10" })
-                                <span class="required-flag">&nbsp;*</span>
+                                <div class="dropdown">
+                                    @Html.DropDownListFor(model => model.Address.CountryID, 
+                                        Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown", tabindex = "10" })
+                                    <span class="required-flag">&nbsp;*</span>
+                                </div>
                             }                            
                         </td>
                     </tr>

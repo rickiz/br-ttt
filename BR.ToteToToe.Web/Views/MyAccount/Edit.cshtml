@@ -79,27 +79,35 @@
                                 </tr>
                                 <tr>
                                     <td width="32%">
-                                        @(Html.DropDownListFor(model => model.BirthDateMonth, 
-                                            Util.GetList(RefType.Month, defaultText: "Month", defaultValue: ""), 
-                                            new { @class = "dropdownbday" }))
+                                        <div class="dropdown">
+                                            @(Html.DropDownListFor(model => model.BirthDateMonth, 
+                                                Util.GetList(RefType.Month, defaultText: "Month", defaultValue: ""), 
+                                                new { @class = "dropdownbday" }))
+                                        </div>
                                     </td>
                                     <td width="32%" align="center">
-                                        @(Html.DropDownListFor(model => model.BirthDateDay, 
-                                            Util.GetList(RefType.Day, defaultText: "Day", defaultValue: ""), 
-                                            new { @class = "dropdownbday" }))
+                                        <div class="dropdown">
+                                            @(Html.DropDownListFor(model => model.BirthDateDay, 
+                                                Util.GetList(RefType.Day, defaultText: "Day", defaultValue: ""), 
+                                                new { @class = "dropdownbday" }))
+                                        </div>
                                     </td>
                                     <td width="36%" align="right">
-                                        @(Html.DropDownListFor(model => model.BirthDateYear, 
-                                            Util.GetList(RefType.Year, defaultText: "Year", defaultValue: ""), 
-                                            new { @class = "dropdownbday" }))
+                                        <div class="dropdown">
+                                            @(Html.DropDownListFor(model => model.BirthDateYear, 
+                                                Util.GetList(RefType.Year, defaultText: "Year", defaultValue: ""), 
+                                                new { @class = "dropdownbday" }))
+                                        </div>
                                     </td>
                                 </tr>
                             </table>
                             <br />
                             Gender<span style="color: #C00"></span><br />
-                            @(Html.DropDownListFor(model => model.Gender, 
-                                Util.GetEnumList<Gender>(defaultText: "Choose One", includeDefault: true), 
-                                new { @class = "dropdown" }))
+                                <div class="dropdown">
+                                    @(Html.DropDownListFor(model => model.Gender, 
+                                        Util.GetEnumList<Gender>(defaultText: "Choose One", includeDefault: true), 
+                                        new { @class = "dropdown" }))
+                                </div>
                             <br />
                             <br />
                             <br />
@@ -141,7 +149,9 @@
                                 <br />
                                 <br />
                                 Country<br />
-                                @Html.DropDownListFor(model => model.PrimaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
+                                <div class="dropdown">
+                                    @Html.DropDownListFor(model => model.PrimaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
+                                </div>
                                 <br />
                                 <br />
                                 <br />
@@ -179,7 +189,9 @@
                                 <br />
                                 <br />
                                 Country<br />
-                                @Html.DropDownListFor(model => model.SecondaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
+                                <div class="dropdown">
+                                    @Html.DropDownListFor(model => model.SecondaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
+                                </div>
                                 <br />
                                 <br />
                                 <br />

@@ -26,14 +26,18 @@
                 </div>
 
                 <div>
-                    @Html.DropDownListFor(model => model.ColourDescID, 
-                    Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
-                                new { @class="dropdown", onchange = "changeModelColour();" })
+                    <div class="dropdown">
+                        @Html.DropDownListFor(model => model.ColourDescID, 
+                        Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
+                                    new { @class="dropdown", onchange = "changeModelColour();" })
+                    </div>
                 </div>
                 <div id="divModelSize" >
-                    @Html.DropDownListFor(model => model.ModelSizeID, 
-                    Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, defaultValue:"", defaultText:"SIZE"),
-                                                 new { @class = "dropdown" })
+                    @*<div class="dropdown">
+                        @Html.DropDownListFor(model => model.ModelSizeID, 
+                        Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, defaultValue:"", defaultText:"SIZE"),
+                                                     new { @class = "dropdown" })
+                    </div>*@
                     @*<input name="sizechart" type="button" class="sizechartbutton cancel" id="sizechart" value="SIZE REF." onclick="SizeDialog();">*@
                     <br />
                     @*@Ajax.ActionLink("Open popup", "_SizeChart", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divsizechart", InsertionMode = InsertionMode.Replace, OnSuccess="SizeDialog" })*@
