@@ -780,7 +780,7 @@ namespace BR.ToteToToe.Web.Controllers
                         CategoryName = results.Select(a => a.category.Name).First(),
                         Price = results.Select(a => a.model.Price).First(),
                         DiscountPrice = results.Select(a => a.model.DiscountPrice).FirstOrDefault(),
-                        Description = results.Select(a => a.model.Description).First(),
+                        Description = results.Select(a => a.modelColourDesc.Description).First(),
                         ModelImages = results.Select(a => a.modelImages).ToList(),
                         HeelHeight = results.Select(a => a.modelColourDesc.HeelHeight).First(),
                         //ModelColourDescID = results.Select(a => a.modelColourDesc.ColourDescID).First()
@@ -788,7 +788,13 @@ namespace BR.ToteToToe.Web.Controllers
                         SKU = results.Select(a => a.modelColourDesc.SKU).First(),
                         ModelSizeID = modelSizeID,
                         ModelMainImage = results.Select(a => a.modelImages.Thumbnail).First(),
-                        ShareUrl = string.Format("http://www.tote-to-toe.com/Shoes/Details?modelID={0}&colourDescID={1}", modelID, colourDescID)
+                        ShareUrl = string.Format("http://www.tote-to-toe.com/Shoes/Details?modelID={0}&colourDescID={1}", modelID, colourDescID),
+                        Sole = results.Select(a=>a.modelColourDesc.Sole).First(),
+                        Make = results.Select(a => a.modelColourDesc.Make).First(),
+                        UpperMaterial = results.Select(a => a.modelColourDesc.UpperMaterial).First(),
+                        LiningSock = results.Select(a => a.modelColourDesc.LiningSock).First(),
+                        Style = results.Select(a => a.modelColourDesc.Style).First(),
+                        HeelDesc = results.Select(a => a.modelColourDesc.HeelDesc).First()
                     };
                 }
 

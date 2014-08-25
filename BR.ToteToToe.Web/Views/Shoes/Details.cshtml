@@ -6,13 +6,10 @@
 }
 
 <div id="wrap">
-    <br />
     <div class="copy">
-        
         <div id="DetailsImages">
             @Html.Partial("_DetailsImages", Model)
         </div>
-
         <div class="formbox">
             @using(Html.BeginForm())
             {
@@ -25,27 +22,58 @@
                     @Html.ValidationSummary(false)
                 </div>
 
-                <div>
+                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td>
+                            <div class="dropdown">
+                                @Html.DropDownListFor(model => model.ColourDescID, 
+                                    Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
+                                    new { @class="dropdown", onchange = "changeModelColour();" })
+                            </div>
+                        </td>
+                        <td>
+                            <div class="dropdown">
+                                <div id="divModelSize" >
+                            </div>
+                        </td>
+                        <td>
+                            <input name="sizechart" type="button" class="sizechartbutton cancel" id="sizechart" value="SIZE REF." onclick="SizeDialog();">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3">
+                            <br />
+                            <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" />
+                            <input name="addtobag2" type="submit" class="addtobagbutton" id="addtobag2" value="+ ADD TO BAG" />
+                            <p align="left" style="font-size: 12px">
+                                <div id="divDesc" style="display:none;font-size: 12px;padding-bottom:5px;">
+                                    Availability: <label id="ModelQty"></label> • Ships in 3-5 business days
+                                </div>
+                                <div class="fb-share-button" data-href="@Model.ShareUrl" data-type="button"></div>
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                @*<div>
                     <div class="dropdown">
                         @Html.DropDownListFor(model => model.ColourDescID, 
                         Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
                                     new { @class="dropdown", onchange = "changeModelColour();" })
                     </div>
-                </div>
-                <div id="divModelSize" >
+                </div>*@
+                @*<div id="divModelSize" >*@
                     @*<div class="dropdown">
                         @Html.DropDownListFor(model => model.ModelSizeID, 
                         Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, defaultValue:"", defaultText:"SIZE"),
                                                      new { @class = "dropdown" })
                     </div>*@
                     @*<input name="sizechart" type="button" class="sizechartbutton cancel" id="sizechart" value="SIZE REF." onclick="SizeDialog();">*@
-                    <br />
+                    @*<br />*@
                     @*@Ajax.ActionLink("Open popup", "_SizeChart", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divsizechart", InsertionMode = InsertionMode.Replace, OnSuccess="SizeDialog" })*@
-                </div>
-                <br />
-                <div style="float:left;">
-                    @*<input type="submit" name="submit" class="sharebutton" value="SHARE" />*@
-                    <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" /> @*onclick="@string.Format("alert('{0},,{1}')",Model.ModelID,Model.ModelColourDescID )"*@
+                @*</div>*@
+                @*<br />*@
+                @*<div style="float:left;">
+                    <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" />
                     <input type="submit" name="submit" class="addtobagbutton" value="+ ADD TO BAG" />
                     <p align="left" style="font-size: 12px">
                         <div id="divDesc" style="display:none;font-size: 12px;padding-bottom:5px;">
@@ -59,7 +87,7 @@
                             
                         </div>
                     </p>
-                </div>            
+                </div>            *@
             }
         </div>
 

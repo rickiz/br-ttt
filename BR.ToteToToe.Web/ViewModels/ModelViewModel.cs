@@ -61,12 +61,20 @@ namespace BR.ToteToToe.Web.ViewModels
         public string CategoryName { get; set; }
         public string BrandName { get; set; }
         public string Description { get; set; }
+        public string Style { get; set; }
+
         public decimal Price { get; set; }
         public decimal? DiscountPrice { get; set; }
         public string SKU { get; set; }
         public string ModelMainImage { get; set; }
         public string ShareUrl { get; set; }
         public decimal HeelHeight { get; set; }
+
+        public string LiningSock { get; set; }
+        public string Sole { get; set; }
+        public string Make { get; set; }
+        public string UpperMaterial { get; set; }
+        public string HeelDesc { get; set; }
 
         [Required(ErrorMessage="Please select Colour")]
         public int ColourDescID { get; set; }

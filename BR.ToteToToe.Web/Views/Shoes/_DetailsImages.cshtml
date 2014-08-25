@@ -2,6 +2,18 @@
 @using BR.ToteToToe.Web.ViewModels
 @model ModelDetailsViewModel
 
+@*<span style="font-size: 18px">@Model.BrandName</span><br />
+    @if (Model.DiscountPrice.HasValue && Model.DiscountPrice > 0)
+    {
+        <span style="text-decoration: line-through; color: #666; font-weight: bold; font-size: 14px;">RM @Model.Price.ToString("0.00")</span>
+        <span style="color: #C00">RM @Model.DiscountPrice.Value.ToString("0.00")</span>
+    }
+    else
+    {
+        <span style="color: #666; font-weight: bold; font-size: 14px;">RM @Model.Price.ToString("0.00")</span>
+    }
+<br /><br /><br />*@
+
 @if(Model.ModelImages !=null)
 {
     for (int i = 0; i < Model.ModelImages.Count; i++)
@@ -10,6 +22,22 @@
             <img src="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName.Replace(" ",""), Model.ModelImages[i].Image))" width="558" height="337" />
         </div>
     }
+    
+    <div id="price">
+        <span style="font-size: 17px">@Model.BrandName<br /></span>
+        <span style="font-size: 14px; font-style: italic;">
+            @Model.ModelName
+        </span><br />
+        @if (Model.DiscountPrice.HasValue && Model.DiscountPrice > 0)
+        {
+            <span style="text-decoration: line-through; color: #666; font-weight: bold; font-size: 16px;">RM @Model.Price.ToString("0.00")</span>
+            <span style="color: #C00">RM @Model.DiscountPrice.Value.ToString("0.00")</span>
+        }
+        else
+        {
+            <span style="color: #666; font-weight: bold; font-size: 16px;">RM @Model.Price.ToString("0.00")</span>
+        }
+    </div>
 
     for(int i = 0; i<Model.ModelImages.Count;i++)
     {
@@ -38,7 +66,7 @@
     }
 }
 <div class="bodycopy">
-    <span style="font-size: 18px">@Model.BrandName</span><br />
+    @*<span style="font-size: 18px">@Model.BrandName</span><br />
     @if (Model.DiscountPrice.HasValue && Model.DiscountPrice > 0)
     {
         <span style="text-decoration: line-through; color: #666; font-weight: bold; font-size: 14px;">RM @Model.Price.ToString("0.00")</span>
@@ -49,7 +77,14 @@
         <span style="color: #666; font-weight: bold; font-size: 14px;">RM @Model.Price.ToString("0.00")</span>
     }
     <br />
-    <br />
-    <span style="font-weight: bold">Designer’s comment</span><br />
-    @Html.Nl2Br(Model.Description)
+    <br />*@
+    <span style="font-weight: bold">Designer's Note:</span><br />
+    @Html.Nl2Br(Model.Description)<br /><br />
+    - @Html.Raw(Model.Style)<br />
+    - @Html.Raw(Model.LiningSock)<br />
+    - @Html.Raw(Model.Sole)<br />
+    - @Html.Raw(Model.Make)<br />
+    - @Html.Raw(Model.UpperMaterial)<br />
+    - @Html.Raw(Model.HeelDesc)<br />
+    
 </div>
