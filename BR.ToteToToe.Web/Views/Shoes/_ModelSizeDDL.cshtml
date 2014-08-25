@@ -2,10 +2,8 @@
 @using BR.ToteToToe.Web.ViewModels
 @model ModelDetailsViewModel
 
-
-@*<div class="dropdown">*@
-    @Html.DropDownListFor(model => model.ModelSizeID, 
-    Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, modelSizeID: Model.ModelSizeID, defaultValue:"", defaultText:"SIZE"), 
-                                    new { @class="dropdown", onchange = "GetQtyByModelSize();" })
-    @*<input name="sizechart" type="submit" class="sizechartbutton" id="sizechart" value="SIZE REF." />*@
-@*</div>*@
+@Html.DropDownListFor(model => model.ModelSizeID, 
+Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, modelSizeID: Model.ModelSizeID, defaultValue:"", defaultText:"SIZE"), 
+                                new { @class="dropdown", onchange = "GetQtyByModelSize();" })
+@*<input name="sizechart" type="submit" class="sizechartbutton" id="sizechart" value="SIZE REF." />*@
+<input name="sizechart" type="button" class="sizechartbutton cancel" id="sizechart" value="SIZE REF." onclick="SizeDialog();">
