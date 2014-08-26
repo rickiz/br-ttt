@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BR.ToteToToe.Web.DataModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -62,5 +63,10 @@ namespace BR.ToteToToe.Web.ViewModels
         public string ReturnUrl { get; set; }
 
         public SignInRegisterViewModel RegisterViewModel { get; set; }
+    }
+
+    public class SignInConfirmEmailViewModel
+    {
+        public tblaccess User { get; set; }
     }
 }
