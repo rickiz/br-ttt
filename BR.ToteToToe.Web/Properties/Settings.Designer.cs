@@ -148,5 +148,14 @@ namespace BR.ToteToToe.Web.Properties {
                 return ((int)(this["VoucherLength"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\\\")]
+        public string OrderPDFPath {
+            get {
+                return ((string)(this["OrderPDFPath"]));
+            }
+        }
     }
 }

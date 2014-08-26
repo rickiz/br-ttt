@@ -6,10 +6,13 @@
 }
 
 <div id="wrap">
+    <br />
     <div class="copy">
+        
         <div id="DetailsImages">
             @Html.Partial("_DetailsImages", Model)
         </div>
+
         <div class="formbox">
             @using(Html.BeginForm())
             {
@@ -20,16 +23,27 @@
 
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
+                        <td colspan="3">
+                            <div style="font-size:small;">
+                                @Html.ValidationSummary(false)
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
                         <td>
                             <div class="dropdown">
                                 @Html.DropDownListFor(model => model.ColourDescID, 
-                                    Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
-                                    new { @class="dropdown", onchange = "changeModelColour();" })
+                                Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
+                                            new { @class="dropdown", onchange = "changeModelColour();" })
                             </div>
                         </td>
                         <td>
                             <div class="dropdown">
-                                <div id="divModelSize" >
+                                <div id="divModelSize">
+                                    @Html.DropDownListFor(model => model.ModelSizeID, 
+                                    Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, defaultValue:"", defaultText:"SIZE"),
+                                                 new { @class = "dropdown" })
+                                </div>
                             </div>
                         </td>
                         <td>
@@ -38,11 +52,7 @@
                     </tr>
                     <tr>
                         <td colspan="3">
-                            <br />
-                            <div style="font-size:small;">
-                                @Html.ValidationSummary(false)
-                            </div>
-                            <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" />
+                            <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" /> 
                             <input type="submit" name="submit" class="addtobagbutton" value="+ ADD TO BAG" />
                             <p align="left" style="font-size: 12px">
                                 <div id="divDesc" style="display:none;font-size: 12px;padding-bottom:5px;">
@@ -52,41 +62,7 @@
                             </p>
                         </td>
                     </tr>
-                </table>
-                @*<div>
-                    <div class="dropdown">
-                        @Html.DropDownListFor(model => model.ColourDescID, 
-                        Util.GetList(RefType.ModelColour, modelID: Model.ModelID, defaultText: "Colour", defaultValue:""), 
-                                    new { @class="dropdown", onchange = "changeModelColour();" })
-                    </div>
-                </div>*@
-                @*<div id="divModelSize" >*@
-                    @*<div class="dropdown">
-                        @Html.DropDownListFor(model => model.ModelSizeID, 
-                        Util.GetList(RefType.ModelSize, modelID : Model.ModelID, modelColourDescID:Model.ColourDescID, defaultValue:"", defaultText:"SIZE"),
-                                                     new { @class = "dropdown" })
-                    </div>*@
-                    @*<input name="sizechart" type="button" class="sizechartbutton cancel" id="sizechart" value="SIZE REF." onclick="SizeDialog();">*@
-                    @*<br />*@
-                    @*@Ajax.ActionLink("Open popup", "_SizeChart", new AjaxOptions { HttpMethod = "GET", UpdateTargetId = "divsizechart", InsertionMode = InsertionMode.Replace, OnSuccess="SizeDialog" })*@
-                @*</div>*@
-                @*<br />*@
-                @*<div style="float:left;">
-                    <input type="submit" name="submit" class="addtowistlistbutton" value="+ ADD TO WISH LIST" />
-                    <input type="submit" name="submit" class="addtobagbutton" value="+ ADD TO BAG" />
-                    <p align="left" style="font-size: 12px">
-                        <div id="divDesc" style="display:none;font-size: 12px;padding-bottom:5px;">
-                            Availability: <label id="ModelQty"></label> • Ships in 3-5 business days
-                        </div>
-                        <div class="fb-share-button" data-href="@Model.ShareUrl" data-type="button"></div>
-                    </p>
-
-                    <p align="left" style="font-size: 12px">
-                        <div>
-                            
-                        </div>
-                    </p>
-                </div>            *@
+                </table>     
             }
         </div>
 
@@ -108,7 +84,7 @@
                                 {
                                     <td align="center" valign="top">
                                         <a href="@Url.Action("Details", new { modelID = model.ModelID, colourDescID = model.ColourDescID })">
-                                            <img src="@Url.Content(string.Format("~/Images/{0}/{1}", model.CategoryName.Replace(" ",""), model.MainImage))" width="153" height="104" /><br />
+                                            <img src="@Url.Content(string.Format("~/Images/{0}/{1}", model.CategoryName.Replace(" ",""), model.MainImage))" width="153" height="130" /><br />
                                         </a>
                                         <span style="font-weight: bold">@Html.Raw(model.BrandName)</span><br />
                                         <span style="font-style: italic">@Html.Raw(model.ModelName)<br />
@@ -165,7 +141,7 @@
 @section scripts
 {
     <script type="text/javascript">
-        $(document).ready(function() {
+        $(document).ready(function () {
             pupulateModelSize();
 
             GetQtyByModelSize();
@@ -194,7 +170,7 @@
                 }
         }
 
-        function pupulateModelSize(){
+        function pupulateModelSize() {
 
             var modelID = $('#ModelID').val();
             var colourDescID = $('#ColourDescID').val();
@@ -256,7 +232,7 @@
             //************************************
         }
 
-        function GetQtyByModelSize(){
+        function GetQtyByModelSize() {
 
             var modelSizeID = $("#ModelSizeID").val();
 
@@ -321,5 +297,4 @@
     <meta property="og:title" content="Designer comment" />
     <meta property="og:url" content="http://www.tote-to-toe.com/Shoes/Details?modelID=@Model.ModelID&colourDescID=@Model.ColourDescID" />
     <meta property="og:description" content="@Html.Raw(Model.Description)" />
-    <meta property="og:image" content="http://www.tote-to-toe.com/Images/@Model.CategoryName/@Model.ModelImages[0].Thumbnail" />
 }
