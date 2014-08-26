@@ -8,6 +8,11 @@ using BR.ToteToToe.Web.DataModels;
 using BR.ToteToToe.Web.Helpers;
 using BR.ToteToToe.Web.ViewModels;
 using System.Transactions;
+using System.IO;
+using iTextSharp.text;
+using System.Net;
+using iTextSharp.text.html.simpleparser;
+using iTextSharp.text.pdf;
 
 namespace BR.ToteToToe.Web.Controllers
 {
@@ -490,6 +495,53 @@ namespace BR.ToteToToe.Web.Controllers
             }            
 
             return View(viewModel);
+        }
+
+
+        private void SendPurchaseEmail(MyAccountOrderSummaryViewModel viewModel)
+        {
+            ConvertSummaryToPDF(viewModel);
+        }
+        public string ConvertSummaryToPDF(MyAccountOrderSummaryViewModel viewModel)
+        {
+            var pdfFullName = string.Format("{0}TTTOrder({1}).pdf", Properties.Settings.Default.OrderPDFPath, viewModel.SalesOrderID);
+            Document document = new Document(new RectangleReadOnly(842, 595), 88f, 88f, 10f, 10f);
+
+            PdfWriter.GetInstance(document, new FileStream(pdfFullName, FileMode.Create));
+            document.Open();
+
+            var summaryContent = RenderRazorViewToString("OrderSummary", viewModel);
+
+            summaryContent = summaryContent.Replace("<hr class=\"divline\" />",
+                ".......................................................................................................................................................................................................");
+
+            summaryContent = summaryContent.Replace("<hr noshade=\"noshade\" class=\"divline\" />",
+                ".........................................................");
+
+            summaryContent = summaryContent.Replace("<hr class=\"divline short\" />",
+                "...............................................................................................................................");
+
+            List<IElement> htmlarraylist = HTMLWorker.ParseToList(new StringReader(summaryContent),null);
+            for (int k = 0; k < htmlarraylist.Count; k++)
+            {
+                document.Add((IElement)htmlarraylist[k]);
+            }
+
+            document.Close();
+
+            return pdfFullName;
+        }
+        public string RenderRazorViewToString(string viewName, object model)
+        {
+            ViewData.Model = model;
+            using (var sw = new StringWriter())
+            {
+                var viewResult = ViewEngines.Engines.FindPartialView(ControllerContext, viewName);
+                var viewContext = new ViewContext(ControllerContext, viewResult.View, ViewData, TempData, sw);
+                viewResult.View.Render(viewContext, sw);
+                viewResult.ViewEngine.ReleaseView(ControllerContext, viewResult.View);
+                return sw.GetStringBuilder().ToString();
+            }
         }
     }
 }
