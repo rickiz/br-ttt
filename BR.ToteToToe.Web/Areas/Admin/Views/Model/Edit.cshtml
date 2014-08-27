@@ -1,0 +1,151 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+@model MaintainModelViewModel
+@{
+    ViewBag.Title = "Edit Model";
+}
+
+<table width="100%">
+    <tr>
+        <td>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.CategoryID, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model=>model.CategoryID, Util.GetList(RefType.Category), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.BrandName, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model=>model.BrandName, Util.GetList(RefType.Brand), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ColourID, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model=>model.ColourID, Util.GetList(RefType.Colour), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.ColourDescID, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.DropDownListFor(model=>model.ColourDescID, Util.GetList(RefType.ColourDesc), new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Price, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.DiscountPrice, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.DiscountPrice, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.HeelHeight, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.HeelHeight, new { @class = "form-control" })
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.SKU, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.SKU, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Style, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.Style, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.LiningSock, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.LiningSock, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Sole, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.Sole, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Make, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.Make, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.UpperMaterial, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.UpperMaterial, new { @class = "form-control" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.HeelDesc, new { @class = "col-sm-4 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextBoxFor(model => model.HeelDesc, new { @class = "form-control" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="form-group row">
+                @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label text-info" })
+                <div class="col-sm-6">
+                    @Html.TextAreaFor(model => model.Description, new { cols = "120", rows = "10" })
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="form-group row">
+                @Html.Label("Trends", new { @class = "col-sm-1 control-label text-info" })
+                <div class="col-sm-9">
+                    @for(int i=0; i < Model.AvailableTrends.Count;i++)
+                    {
+                        <div class="col-sm-5">
+                            <label>
+                                <input type="checkbox" class="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)" /> 
+                                @Html.Raw(Model.AvailableTrends[i].Name)
+                            </label>
+                        </div>
+                        if (i % 3 == 2)
+                        {
+                            <br />
+                        }
+                    }
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-2">
+                    <button type="submit" class="btn btn-primary" id="btnUpdate">Save</button>
+                    <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
+                </div>
+            </div>  
+        </td>
+    </tr>
+</table>

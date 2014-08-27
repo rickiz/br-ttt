@@ -619,6 +619,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\Admin\Views\Model\Edit.cshtml" />
     <Content Include="Content\2013.2.611\Black\editor.png" />
     <Content Include="Content\2013.2.611\Black\imagebrowser.png" />
     <Content Include="Content\2013.2.611\Black\loading.gif" />
@@ -1182,7 +1183,6 @@
     <Content Include="Areas\Admin\Views\Voucher\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Voucher\Maintain.cshtml" />
     <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Model\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\Rick Local.pubxml" />
     <None Include="Properties\PublishProfiles\TTT Deploy.pubxml" />
     <Content Include="Images\about\lines.png" />
