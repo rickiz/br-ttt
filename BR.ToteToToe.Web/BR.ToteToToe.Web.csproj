@@ -207,6 +207,9 @@
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.ModelController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.OrderStatusController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -410,9 +413,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderStatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrendPriorityController.cs" />
     <Compile Include="Areas\Admin\Controllers\VoucherController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Model.cs" />
     <Compile Include="Areas\Admin\ViewModels\OrderStatus.cs" />
     <Compile Include="Areas\Admin\ViewModels\TrendPriority.cs" />
     <Compile Include="Areas\Admin\ViewModels\Voucher.cs" />
@@ -1171,6 +1176,8 @@
     <Content Include="Areas\Admin\Views\TrendPriority\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Voucher\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Voucher\Maintain.cshtml" />
+    <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Model\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\Rick Local.pubxml" />
     <None Include="Properties\PublishProfiles\TTT Deploy.pubxml" />
     <Content Include="Images\about\lines.png" />

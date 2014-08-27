@@ -1,0 +1,39 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+@model ModelViewModel
+
+@{
+    ViewBag.Title = "Model";
+}
+
+@if(Model.ModelDetails.Count>0)
+{
+    Html.Telerik().Grid(Model.ModelDetails)
+        .Name("grdResult")
+        .Columns(cols =>
+        {
+            cols.Bound(m => m.ModelColourDescID).Hidden();
+            cols.Bound(m => m.ModelName).Title("Name");
+            cols.Bound(m => m.CategoryName).Title("Category");
+            cols.Bound(m => m.BrandName).Title("Brand");
+            cols.Bound(m => m.ColourName).Title("Actual Colour");
+            cols.Bound(m => m.Active).Title("Active");
+        })
+        .DataBinding(dataBinding => dataBinding.Ajax().OperationMode(GridOperationMode.Client))
+        .Pageable(paging => paging.PageSize(100))
+        .Sortable()
+        .Selectable()
+        .ClientEvents(events => events.OnRowSelect("onRowSelected_grdResult"))
+        .Render();        
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function onRowSelected_grdResult(e) {
+            var modelColourDescID = e.row.cells[0].innerHTML;
+
+            window.location.href = "/Admin/Model/Edit?id=" + modelColourDescID;
+        }
+    </script>
+}
