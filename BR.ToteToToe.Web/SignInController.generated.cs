@@ -68,6 +68,12 @@ namespace BR.ToteToToe.Web.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult ConfirmEmail()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmEmail);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public SignInController Actions { get { return MVC.SignIn; } }
@@ -88,6 +94,7 @@ namespace BR.ToteToToe.Web.Controllers
             public readonly string FacebookLogin = "FacebookLogin";
             public readonly string FacebookLoginCallback = "FacebookLoginCallback";
             public readonly string Register = "Register";
+            public readonly string ConfirmEmail = "ConfirmEmail";
             public readonly string Logout = "Logout";
             public readonly string FacebookLoginFailure = "FacebookLoginFailure";
         }
@@ -99,6 +106,7 @@ namespace BR.ToteToToe.Web.Controllers
             public const string FacebookLogin = "FacebookLogin";
             public const string FacebookLoginCallback = "FacebookLoginCallback";
             public const string Register = "Register";
+            public const string ConfirmEmail = "ConfirmEmail";
             public const string Logout = "Logout";
             public const string FacebookLoginFailure = "FacebookLoginFailure";
         }
@@ -138,6 +146,15 @@ namespace BR.ToteToToe.Web.Controllers
         {
             public readonly string viewModel = "viewModel";
         }
+        static readonly ActionParamsClass_ConfirmEmail s_params_ConfirmEmail = new ActionParamsClass_ConfirmEmail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ConfirmEmail ConfirmEmailParams { get { return s_params_ConfirmEmail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ConfirmEmail
+        {
+            public readonly string token = "token";
+            public readonly string email = "email";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -148,13 +165,17 @@ namespace BR.ToteToToe.Web.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string ConfirmEmail = "ConfirmEmail";
                 public readonly string FacebookLoginFailure = "FacebookLoginFailure";
                 public readonly string Index = "Index";
                 public readonly string Register = "Register";
+                public readonly string WelcomeEmail = "WelcomeEmail";
             }
+            public readonly string ConfirmEmail = "~/Views/SignIn/ConfirmEmail.cshtml";
             public readonly string FacebookLoginFailure = "~/Views/SignIn/FacebookLoginFailure.cshtml";
             public readonly string Index = "~/Views/SignIn/Index.cshtml";
             public readonly string Register = "~/Views/SignIn/Register.cshtml";
+            public readonly string WelcomeEmail = "~/Views/SignIn/WelcomeEmail.cshtml";
         }
     }
 
@@ -212,6 +233,17 @@ namespace BR.ToteToToe.Web.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Register);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
             RegisterOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
+        partial void ConfirmEmailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token, string email);
+
+        public override System.Web.Mvc.ActionResult ConfirmEmail(string token, string email)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmEmail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
+            ConfirmEmailOverride(callInfo, token, email);
             return callInfo;
         }
 

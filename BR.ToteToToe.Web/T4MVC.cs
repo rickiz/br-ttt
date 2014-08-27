@@ -753,6 +753,7 @@ namespace Links
             public static readonly string wedges_s2_gif = Url("wedges_s2.gif");
         }
     
+        public static readonly string confirm_email_gif = Url("confirm_email.gif");
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public static class contact {
             private const string URLPATH = "~/Images/contact";
@@ -820,6 +821,7 @@ namespace Links
         
         }
     
+        public static readonly string dotted_line_gif = Url("dotted_line.gif");
         public static readonly string dotted_ver_gif = Url("dotted_ver.gif");
         public static readonly string favicon_ico = Url("favicon.ico");
         public static readonly string flat_gif = Url("flat.gif");
@@ -1091,6 +1093,7 @@ namespace Links
         }
     
         public static readonly string spacer_gif = Url("spacer.gif");
+        public static readonly string start_shopping_gif = Url("start_shopping.gif");
         public static readonly string startcustom_button_gif = Url("startcustom_button.gif");
         public static readonly string tagline_gif = Url("tagline.gif");
         public static readonly string totetotoe_logo_gif = Url("totetotoe_logo.gif");

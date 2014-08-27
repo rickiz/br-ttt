@@ -35,6 +35,8 @@ namespace BR.ToteToToe.Web.DataModels
         public string BirthDateDay { get; set; }
         public string BirthDateMonth { get; set; }
         public string BirthDateYear { get; set; }
+        public string EmailToken { get; set; }
+        public bool ConfirmedEmail { get; set; }
     
         public virtual ICollection<tbladdress> tbladdresses { get; set; }
     }

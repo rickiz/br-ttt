@@ -14,6 +14,7 @@ using System.Web.Mvc;
 using System.Web.Security;
 using WebMatrix.WebData;
 using System.Transactions;
+using System.Net.Mail;
 
 namespace BR.ToteToToe.Web.Controllers
 {
@@ -75,7 +76,12 @@ namespace BR.ToteToToe.Web.Controllers
 
             using (var context = new TTTEntities())
             {
-                var user = context.tblaccesses.SingleOrDefault(a => a.Email == viewModel.Email && a.Password == pwd && a.Active);
+                var user = 
+                    context.tblaccesses
+                        .SingleOrDefault(a => a.Email == viewModel.Email && 
+                                              a.Password == pwd && 
+                                              a.Active && 
+                                              a.ConfirmedEmail);
 
                 if (user == null)
                 {
@@ -161,62 +167,21 @@ namespace BR.ToteToToe.Web.Controllers
 
                 if (user == null)
                 {
-                    //if (!string.IsNullOrEmpty(model.FacebookID))
-                    //{
-                    //    user = context.tblaccesses.Where(a => a.FacebookID == model.FacebookID && a.Active).SingleOrDefault();
-                    //    if (user != null)
-                    //    {
-                    //        ModelState.Clear();
-                    //        ModelState.AddModelError("RegisterForm", "Facebook account already registered.");
-                    //        return View(Views.Index, viewModel);
-                    //    }
-                    //}
-
                     user = new tblaccess
                     {
                         Active = true,
                         CreateDT = DateTime.Now,
                         Email = model.Email,
-                        //FacebookAccessToken = model.FacebookAccessToken,
-                        //FacebookID = model.FacebookID,
                         Password = Util.GetMD5Hash(model.Password),
                         FirstName = model.FirstName,
                         LastName = model.LastName,
-                        //BirthDateDay = model.BirthDateDay,
-                        //BirthDateMonth = model.BirthDateMonth,
-                        //BirthDateYear = model.BirthDateYear,
-                        //Gender = model.Gender,
-                        //Phone = model.Phone
+                        EmailToken = Guid.NewGuid().ToString()
                     };
 
                     context.tblaccesses.Add(user);
                     context.SaveChanges();
 
-                    // create address if one of the field below has value
-                    //if (false ==
-                    //    (string.IsNullOrEmpty(model.AddressLine1)
-                    //    && string.IsNullOrEmpty(model.AddressLine2)
-                    //    && string.IsNullOrEmpty(model.CityTown)
-                    //    && string.IsNullOrEmpty(model.Postcode)
-                    //    && string.IsNullOrEmpty(model.State)
-                    //    && !model.CountryID.HasValue))
-                    //{
-                    //    var address = new tbladdress
-                    //    {
-                    //        AccessID = user.ID,
-                    //        Active = true,
-                    //        AddressLine1 = model.AddressLine1,
-                    //        AddressLine2 = model.AddressLine2,
-                    //        CityTown = model.CityTown,
-                    //        CountryID = model.CountryID,
-                    //        CreateDT = DateTime.Now,
-                    //        Postcode = model.Postcode,
-                    //        State = model.State
-                    //    };
-
-                    //    context.tbladdresses.Add(address);
-                    //    context.SaveChanges();
-                    //}
+                    SendEmailVerification(user);
                 }
                 else
                 {
@@ -226,12 +191,78 @@ namespace BR.ToteToToe.Web.Controllers
                 }
             }
 
-            Util.SessionAccess = user;
-            FormsAuthentication.SetAuthCookie(model.Email, false);
-
-            LinkToAccount();
+            //Util.SessionAccess = user;
+            //FormsAuthentication.SetAuthCookie(model.Email, false);
+            //LinkToAccount();
 
             return RedirectToLocal(model.ReturnUrl);
+        }
+
+        private void SendEmailVerification(tblaccess user)
+        {
+            var viewModel = new SignInConfirmEmailViewModel
+            {
+                User = user,
+            };
+
+            var body = this.RenderViewToString(Views.ViewNames.ConfirmEmail, viewModel);
+            var message = new MailMessage
+            {
+                Subject = "Tote To Toe Email Verification",
+                IsBodyHtml = true,
+                Body = body
+            };
+            message.To.Add(user.Email);
+
+            using (var smtpClient = new SmtpClient())
+            {
+                smtpClient.Send(message);
+            }  
+        }
+        private void SendWelcomeEmail(tblaccess user)
+        {
+            var viewModel = new SignInConfirmEmailViewModel
+            {
+                User = user,
+            };
+
+            var body = this.RenderViewToString(Views.ViewNames.WelcomeEmail, viewModel);
+            var message = new MailMessage
+            {
+                Subject = "Tote To Toe Welcome Email",
+                IsBodyHtml = true,
+                Body = body
+            };
+            message.To.Add(user.Email);
+
+            using (var smtpClient = new SmtpClient())
+            {
+                smtpClient.Send(message);
+            }
+        }
+
+
+        [AllowAnonymous]
+        public virtual ActionResult ConfirmEmail(string token, string email)
+        {
+            tblaccess user;
+
+            using (var context = new TTTEntities())
+            {
+                user = 
+                    context.tblaccesses
+                        .Where(a => a.Email == email && a.Active && a.EmailToken == token)
+                        .SingleOrDefault();
+
+                user.ConfirmedEmail = true;
+                user.UpdateDT = DateTime.Now;
+
+                context.SaveChanges();
+            }
+
+            SendWelcomeEmail(user);
+
+            return RedirectToAction(MVC.Home.Index());
         }
 
         [Authorize]

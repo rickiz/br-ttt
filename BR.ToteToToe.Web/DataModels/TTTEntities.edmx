@@ -485,6 +485,8 @@
           <Property Name="BirthDateDay" Type="varchar" MaxLength="2" />
           <Property Name="BirthDateMonth" Type="varchar" MaxLength="2" />
           <Property Name="BirthDateYear" Type="varchar" MaxLength="4" />
+          <Property Name="EmailToken" Type="varchar" MaxLength="100" />
+          <Property Name="ConfirmedEmail" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tbladdress">
           <Key>
@@ -511,8 +513,8 @@
           </Key>
           <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="CookieID" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="ImageUrl" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="LinkUrl" Type="varchar" MaxLength="200" />
+          <Property Name="ImageUrl" Type="varchar" Nullable="false" MaxLength="500" />
+          <Property Name="LinkUrl" Type="varchar" MaxLength="500" />
           <Property Name="CreateDT" Type="datetime" Nullable="false" />
           <Property Name="UpdateDT" Type="datetime" />
           <Property Name="Active" Type="bit" Nullable="false" />
@@ -1325,6 +1327,8 @@
           <Property Type="String" Name="BirthDateMonth" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="BirthDateYear" MaxLength="4" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="tbladdresses" Relationship="tttModel.fk_address_access" FromRole="tblaccess" ToRole="tbladdress" />
+          <Property Type="String" Name="EmailToken" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="ConfirmedEmail" Nullable="false" />
         </EntityType>
         <EntityType Name="tbladdress">
           <Key>
@@ -2025,6 +2029,8 @@
           <EntitySetMapping Name="tblaccesses">
             <EntityTypeMapping TypeName="tttModel.tblaccess">
               <MappingFragment StoreEntitySet="tblaccess">
+                <ScalarProperty Name="ConfirmedEmail" ColumnName="ConfirmedEmail" />
+                <ScalarProperty Name="EmailToken" ColumnName="EmailToken" />
                 <ScalarProperty Name="BirthDateYear" ColumnName="BirthDateYear" />
                 <ScalarProperty Name="BirthDateMonth" ColumnName="BirthDateMonth" />
                 <ScalarProperty Name="BirthDateDay" ColumnName="BirthDateDay" />

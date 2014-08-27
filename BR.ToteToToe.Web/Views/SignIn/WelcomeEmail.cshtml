@@ -1,0 +1,64 @@
+@using BR.ToteToToe.Web.Helpers
+
+@model BR.ToteToToe.Web.ViewModels.SignInConfirmEmailViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<title>Welcome!</title>
+</head>
+
+<body>
+<table width="640" border="0" align="center" cellpadding="0" cellspacing="0">
+  <tr>
+    <td width="101" align="left" valign="top"><img src="@Url.ContentAbsUrl(Links.Images.totetotoe_logo_gif)" alt="Tote To Toe logo" width="87" height="93"></td>
+    <td width="539" align="right" valign="top"><table width="539px" border="0" align="center" cellpadding="0" cellspacing="0" style="border: 1pt solid #d1d1d0; width: 539px; border-collapse: separate; line-height: 0; text-align: center;">
+      <tr>
+        <td height="219" valign="top" bgcolor="#FFFFFF" style="line-height: 12px"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <tr>
+            <td width="96%" align="left" valign="top" bgcolor="#ee997f" style="padding-left: 30px; padding-top: 35px; font-weight: bold; font-family: Arial, Helvetica, sans-serif; font-size: 25px; color: #fff;">Welcome!</td>
+            <td width="4%" align="right" valign="top" bgcolor="#ee997f"><img src="@Url.ContentAbsUrl(Links.Images.spacer_gif)" width="20" height="93"></td>
+            </tr>
+          <tr>
+            <td colspan="2" align="center" valign="top"><img src="@Url.ContentAbsUrl(Links.Images.dotted_line_gif)" width="539" height="3"></td>
+            </tr>
+          <tr>
+            <td colspan="2" align="left" valign="top" style="padding-left: 30px; padding-top:25px; padding-right:20px"><span style="color: #000000; font-family: Arial, Helvetica, sans-serif; font-size: 14px; line-height: 20px; ">Dear Customer, 
+
+                <br>
+                <br>
+                Congratulations! You have successfully created your account and subscribed to our newsletter. Now, all the latest updates on new arrivals, latest trends, exclusive deals and special offers will be at your fingertips!<br>
+                <br>
+                Happy shopping!
+
+                <br>
+                <br>
+                Sincerely,
+                <br>
+                <span style="font-weight: bold">Tote-To-Toe</span><br>
+              <br>
+            </span><a href="@Url.ActionAbsolute(MVC.Home.Index())"><img src="@Url.ContentAbsUrl(Links.Images.start_shopping_gif)" alt="Click here to start shopping!" width="324" height="46"></a><br>
+                <br>
+                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">If the button doesn&rsquo;t work, you can click <a href="@Url.ActionAbsolute(MVC.Home.Index())">here</a></span>
+              <p><br>
+              </p></td>
+            </tr>
+          </table></td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td align="left" valign="top">&nbsp;</td>
+    <td align="left" valign="top" style="padding-left: 30px; padding-top: 18px; padding-right: 20px; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color: #666; line-height:18px;">This email was intended for @Model.User.FirstName @Model.User.LastName.<br>
+    &copy; Copyright Tote To Toe. All Rights Reserved.</td>
+  </tr>
+</table>
+</body>
+</html>
+
