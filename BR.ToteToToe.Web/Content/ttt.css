@@ -480,7 +480,7 @@ body {
 	margin: 0 auto;
     border-top: #000 1px dotted;
 	position: absolute;
-	margin-top: -213px; /* negative value of footer height */
+	/*margin-top: -213px; /* negative value of footer height */*/
 	height: 213px;
 	border-top: #000 1px dotted; 
 	background-color: white;       
