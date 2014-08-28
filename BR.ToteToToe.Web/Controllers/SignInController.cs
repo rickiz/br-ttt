@@ -83,6 +83,8 @@ namespace BR.ToteToToe.Web.Controllers
                                               a.Active && 
                                               a.ConfirmedEmail);
 
+                // TODO: Redirect to Email not yet verify page 
+
                 if (user == null)
                 {
                     ModelState.AddModelError("LoginForm", "Invalid Email/Password.");
@@ -137,18 +139,30 @@ namespace BR.ToteToToe.Web.Controllers
                         FacebookAccessToken = accessToken,
                         FacebookID = fbID,
                         Password = "",
-                        FirstName = name
+                        FirstName = name,
+                        EmailToken = Guid.NewGuid().ToString()
                     };
 
                     context.tblaccesses.Add(user);
                     context.SaveChanges();
+
+                    SendEmailVerification(user);
+                }
+                else
+                {
+                    if (user.ConfirmedEmail)
+                    {
+                        Util.SessionAccess = user;
+                        FormsAuthentication.SetAuthCookie(user.Email, false);
+                        LinkToAccount();
+                    }
+                    else
+                    {
+                        // TODO: Redirect to Email not yet verify page
+                        throw new ApplicationException("Email not yet verify.");
+                    }                    
                 }
             }
-
-            Util.SessionAccess = user;
-            FormsAuthentication.SetAuthCookie(user.Email, false);
-
-            LinkToAccount();
 
             return RedirectToLocal(returnUrl);
         }
