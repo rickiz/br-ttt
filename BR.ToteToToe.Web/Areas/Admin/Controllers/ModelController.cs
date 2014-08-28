@@ -66,9 +66,9 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                     .Join(context.refcategories, a => a.Brand.CategoryID, b => b.ID, (a, b) => new { ModelBrand = a, Category = b })
                     .Join(context.lnkmodelcolourdescs, a => a.ModelBrand.Model.ID, b => b.ModelID, (a, b) => new { ModelBrandCategory = a, ModelColourDesc = b })
                     .Join(context.refcolourdescs, a => a.ModelColourDesc.ColourDescID, b => b.ID, (a, b) => new { ModelBrandCategoryColourDesc = a, ColourDesc = b })
-                    .Join(context.lnkmodeltrends, a=>a.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model.ID, b=>b.ModelID,
+                    .GroupJoin(context.lnkmodeltrends, a=>a.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model.ID, b=>b.ModelID,
                             (a, b) => new { ModelBrandCategoryColourDescTrends = a, ModelTrend = b })
-                    .Join(context.lnkmodellifestyles, a => a.ModelBrandCategoryColourDescTrends.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model.ID, b => b.ModelID,
+                    .GroupJoin(context.lnkmodellifestyles, a => a.ModelBrandCategoryColourDescTrends.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model.ID, b => b.ModelID,
                             (a, b) => new { ModelBrandCategoryColourDescTrendLifestyle = a, ModelLifestyle = b })
                     .Select(a => new
                     {
@@ -84,6 +84,11 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                     .ToList();
 
                 var modelDetails = results.First();
+
+                var trendIDs = results.Select(a => a.ModelTrend).Count() > 0 ? results.Select(a => a.ModelTrend.Select(b=>b.TrendID)).First().ToList() : new List<int>();
+                var lifestyleIDs = results.Select(a => a.ModelLifestyle).Count() > 0 ?
+                                    results.Select(a => a.ModelLifestyle.Select(b => b.LifeStyleID)).First().ToList() : 
+                                    new List<int>();
 
                 maintainViewModel = new MaintainModelViewModel()
                 {
@@ -105,8 +110,8 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                     UpperMaterial = modelDetails.ModelColourDesc.UpperMaterial,
                     HeelHeight = modelDetails.ModelColourDesc.HeelHeight,
                     SKU = modelDetails.ModelColourDesc.SKU,
-                    SelectedTrend = results.Select(a=>a.ModelTrend.TrendID).ToList(),
-                    SelectedLifestyle = results.Select(a=>a.ModelLifestyle.LifeStyleID).ToList(),
+                    SelectedTrend = trendIDs,
+                    SelectedLifestyle = lifestyleIDs,
                     AvailableLifestyles = context.reflifestyles.Where(a=>a.Active).ToList(),
                     AvailableTrends = context.reftrends.Where(a => a.Active).ToList()
                 };
