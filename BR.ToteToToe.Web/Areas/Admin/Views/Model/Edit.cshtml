@@ -3,6 +3,7 @@
 @model MaintainModelViewModel
 @{
     ViewBag.Title = "Edit Model";
+    var checkBoxPerRow = 5;
 }
 
 <table width="100%">
@@ -114,23 +115,44 @@
     <tr>
         <td colspan="2">
             <div class="form-group row">
-                @Html.Label("Trends", new { @class = "col-sm-1 control-label text-info" })
-                <div class="col-sm-9">
-                    @for(int i=0; i < Model.AvailableTrends.Count;i++)
+                @Html.Label("Trends", new { @class = "col-sm-2 control-label text-info" })
+
+                    @for (int i = 0; i < Model.AvailableTrends.Count && i < checkBoxPerRow; i++)
                     {
-                        <div class="col-sm-5">
+                        <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                             <label>
-                                <input type="checkbox" class="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)" /> 
+                                <input type="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)" /> 
                                 @Html.Raw(Model.AvailableTrends[i].Name)
                             </label>
                         </div>
-                        if (i % 3 == 2)
-                        {
-                            <br />
-                        }
                     }
-                </div>
             </div>
+
+            @if (Model.AvailableTrends.Count > checkBoxPerRow)
+            {
+                var trends = Model.AvailableTrends.Skip(checkBoxPerRow).ToList();
+                var rowCount = trends.Count <= checkBoxPerRow ? 1 : 
+                    (trends.Count % checkBoxPerRow == 0 ? (trends.Count / checkBoxPerRow) : 
+                    (trends.Count / checkBoxPerRow + 1));
+                var trendIndex = 0;
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    <div class="form-group row">
+                        <div class="col-sm-2">&nbsp;</div>
+                        @for (int j = 0; trendIndex < trends.Count && j < checkBoxPerRow; j++, trendIndex++)
+                        {
+                            <div class="col-sm-2 checkbox" style="margin-top: -5px;">
+                                <label>
+                                    <input type="checkbox" id="@string.Format("chkTrend_{0}",trends[trendIndex].ID)" /> 
+                                    @Html.Raw(trends[trendIndex].Name)
+                                </label>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
         </td>
     </tr>
     <tr>
@@ -140,8 +162,8 @@
     </tr>
     <tr>
         <td colspan="2">
-            <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-2">
+            <div class="form-group row">
+                <div class="col-sm-offset-2 col-sm-6">
                     <button type="submit" class="btn btn-primary" id="btnUpdate">Save</button>
                     <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
                 </div>
