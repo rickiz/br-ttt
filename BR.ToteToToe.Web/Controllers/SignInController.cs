@@ -15,6 +15,9 @@ using System.Web.Security;
 using WebMatrix.WebData;
 using System.Transactions;
 using System.Net.Mail;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Net.Security;
 
 namespace BR.ToteToToe.Web.Controllers
 {
@@ -212,6 +215,8 @@ namespace BR.ToteToToe.Web.Controllers
             return RedirectToLocal(model.ReturnUrl);
         }
 
+
+
         private void SendEmailVerification(tblaccess user)
         {
             var viewModel = new SignInConfirmEmailViewModel
@@ -220,6 +225,7 @@ namespace BR.ToteToToe.Web.Controllers
             };
 
             var body = this.RenderViewToString(Views.ViewNames.ConfirmEmail, viewModel);
+
             var message = new MailMessage
             {
                 Subject = "Tote To Toe Email Verification",
@@ -228,10 +234,15 @@ namespace BR.ToteToToe.Web.Controllers
             };
             message.To.Add(user.Email);
 
+            //ServicePointManager.ServerCertificateValidationCallback =
+            //    delegate(object s, X509Certificate certificate,
+            //             X509Chain chain, SslPolicyErrors sslPolicyErrors)
+            //    { return true; };
+
             using (var smtpClient = new SmtpClient())
             {
                 smtpClient.Send(message);
-            }  
+            }              
         }
         private void SendWelcomeEmail(tblaccess user)
         {
