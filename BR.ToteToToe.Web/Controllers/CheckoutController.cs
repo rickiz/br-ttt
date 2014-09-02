@@ -671,16 +671,21 @@ namespace BR.ToteToToe.Web.Controllers
 
                 if (string.IsNullOrEmpty(message)) // valid voucher code
                 {
-                    //update sales order amount
-                    salesOrder.VoucheID = voucherDetails[0].ID;
-                    salesOrder.UpdateDT = DateTime.Now;
-                    salesOrder.GrandTotal -= voucherDetails[0].Value;
+                    if (voucherDetails[0].Value >= salesOrder.GrandTotal)
+                        message = string.Format("This voucher may not be used as it exceeds or equal the total amount of your order.");
+                    else
+                    {
+                        //update sales order amount
+                        salesOrder.VoucheID = voucherDetails[0].ID;
+                        salesOrder.UpdateDT = DateTime.Now;
+                        salesOrder.GrandTotal -= voucherDetails[0].Value;
 
-                    // update voucher as used
-                    voucherDetails[0].Active = false;
-                    voucherDetails[0].UpdateDT = DateTime.Now;
+                        // update voucher as used
+                        voucherDetails[0].Active = false;
+                        voucherDetails[0].UpdateDT = DateTime.Now;
 
-                    voucherValue = voucherDetails[0].Value;
+                        voucherValue = voucherDetails[0].Value;
+                    }
                 }
 
                 grandTotal = salesOrder.GrandTotal;
