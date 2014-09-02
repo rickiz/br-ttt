@@ -287,6 +287,10 @@ namespace BR.ToteToToe.Web.Controllers
 
             SendWelcomeEmail(user);
 
+            Util.SessionAccess = user;
+            FormsAuthentication.SetAuthCookie(user.Email, false);
+            LinkToAccount();
+
             return RedirectToAction(MVC.Home.Index());
         }
 
