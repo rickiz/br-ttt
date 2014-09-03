@@ -6,6 +6,12 @@
     var checkBoxPerRow = 5;
 }
 
+@section submenu
+{
+    @Html.ActionLink("Update Size", "Size", new { modelID = Model.ModelID, colourDescID = Model.ColourDescID })
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    @Html.ActionLink("Update Image", "UploadImage", new { modelID = Model.ModelID, colourDescID = Model.ColourDescID, categoryID = Model.CategoryID })
+}
 <table width="100%">
     <tr>
         <td>
@@ -114,14 +120,17 @@
     </tr>
     <tr>
         <td colspan="2">
+            @Html.HiddenFor(model => model.SelectedTrendIDText)
             <div class="form-group row">
                 @Html.Label("Trends", new { @class = "col-sm-2 control-label text-info" })
-
+                    
                     @for (int i = 0; i < Model.AvailableTrends.Count && i < checkBoxPerRow; i++)
                     {
                         <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                             <label>
-                                <input type="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)" /> 
+                                <input type="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)"
+                                    @(Model.SelectedTrend.Contains(Model.AvailableTrends[i].ID)?"checked":"")
+                                    onclick="@string.Format("TrendChanged(this,{0})",Model.AvailableTrends[i].ID)" /> 
                                 @Html.Raw(Model.AvailableTrends[i].Name)
                             </label>
                         </div>
@@ -144,8 +153,63 @@
                         {
                             <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                 <label>
-                                    <input type="checkbox" id="@string.Format("chkTrend_{0}",trends[trendIndex].ID)" /> 
+                                    <input type="checkbox" id="@string.Format("chkTrend_{0}",trends[trendIndex].ID)" 
+                                        @(Model.SelectedTrend.Contains(trends[trendIndex].ID)?"checked":"")
+                                        onclick="@string.Format("TrendChanged(this,{0})",trends[trendIndex].ID)" />  
                                     @Html.Raw(trends[trendIndex].Name)
+                                </label>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <hr />
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            @Html.HiddenFor(model => model.SelectedLifestyleIDText);
+            <div class="form-group row">
+                @Html.Label("Lifestyle", new { @class = "col-sm-2 control-label text-info" })
+                    
+                    @for (int i = 0; i < Model.AvailableLifestyles.Count && i < checkBoxPerRow; i++)
+                    {
+                        <div class="col-sm-2 checkbox" style="margin-top: -5px;">
+                            <label>
+                                <input type="checkbox" id="@string.Format("chkLifestyle_{0}",Model.AvailableLifestyles[i].ID)"
+                                    @(Model.SelectedTrend.Contains(Model.AvailableTrends[i].ID)?"checked":"")
+                                    onclick="@string.Format("LifestyleChanged(this,{0})",Model.AvailableLifestyles[i].ID)" /> 
+                                @Html.Raw(Model.AvailableLifestyles[i].Name)
+                            </label>
+                        </div>
+                    }
+            </div>
+
+            @if (Model.AvailableLifestyles.Count > checkBoxPerRow)
+            {
+                var lifestyles = Model.AvailableLifestyles.Skip(checkBoxPerRow).ToList();
+                var rowCount = lifestyles.Count <= checkBoxPerRow ? 1 :
+                    (lifestyles.Count % checkBoxPerRow == 0 ? (lifestyles.Count / checkBoxPerRow) :
+                    (lifestyles.Count / checkBoxPerRow + 1));
+                var lifestyleIndex = 0;
+
+                for (int i = 0; i < rowCount; i++)
+                {
+                    <div class="form-group row">
+                        <div class="col-sm-2">&nbsp;</div>
+                        @for (int j = 0; lifestyleIndex < lifestyles.Count && j < checkBoxPerRow; j++, lifestyleIndex++)
+                        {
+                            <div class="col-sm-2 checkbox" style="margin-top: -5px;">
+                                <label>
+                                    <input type="checkbox" id="@string.Format("chkLifestyle_{0}",lifestyles[lifestyleIndex].ID)" 
+                                        @(Model.SelectedTrend.Contains(lifestyles[lifestyleIndex].ID)?"checked":"")
+                                        onclick="@string.Format("LifestyleChanged(this,{0})",lifestyles[lifestyleIndex].ID)" />  
+                                    @Html.Raw(lifestyles[lifestyleIndex].Name)
                                 </label>
                             </div>
                         }
@@ -171,3 +235,34 @@
         </td>
     </tr>
 </table>
+
+@section scripts
+{
+    <script type="text/javascript">
+
+        function TrendChanged(chk,id) {
+
+            var selectedTrend = $('#SelectedTrendIDText').val();
+            var $check = $(chk);
+            if ($check.is(':checked')) {
+                $('#SelectedTrendIDText').val(selectedTrend + ',' + id);
+            }
+            else{
+                $('#SelectedTrendIDText').val(selectedTrend.replace(',' + id, ''));
+            }
+        }
+
+        function LifestyleChanged(chk, id) {
+
+            var selectedLifestyle = $('#SelectedLifestyleIDText').val();
+            var $check = $(chk);
+            if ($check.is(':checked')) {
+                $('#SelectedLifestyleIDText').val(selectedLifestyle + ',' + id);
+            }
+            else {
+                $('#SelectedLifestyleIDText').val(selectedLifestyle.replace(',' + id, ''));
+            }
+        }
+
+    </script>
+}

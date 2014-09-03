@@ -50,6 +50,18 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult Size()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Size);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult UploadImage()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadImage);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ModelController Actions { get { return MVC.Admin.Model; } }
@@ -68,6 +80,8 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             public readonly string Index = "Index";
             public readonly string Edit = "Edit";
+            public readonly string Size = "Size";
+            public readonly string UploadImage = "UploadImage";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -75,6 +89,8 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             public const string Index = "Index";
             public const string Edit = "Edit";
+            public const string Size = "Size";
+            public const string UploadImage = "UploadImage";
         }
 
 
@@ -85,6 +101,25 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
+        }
+        static readonly ActionParamsClass_Size s_params_Size = new ActionParamsClass_Size();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Size SizeParams { get { return s_params_Size; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Size
+        {
+            public readonly string modelID = "modelID";
+            public readonly string colourDescID = "colourDescID";
+        }
+        static readonly ActionParamsClass_UploadImage s_params_UploadImage = new ActionParamsClass_UploadImage();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_UploadImage UploadImageParams { get { return s_params_UploadImage; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_UploadImage
+        {
+            public readonly string modelID = "modelID";
+            public readonly string colourDescID = "colourDescID";
+            public readonly string categoryID = "categoryID";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -98,9 +133,13 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             {
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
+                public readonly string Size = "Size";
+                public readonly string UploadImage = "UploadImage";
             }
             public readonly string Edit = "~/Areas/Admin/Views/Model/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Model/Index.cshtml";
+            public readonly string Size = "~/Areas/Admin/Views/Model/Size.cshtml";
+            public readonly string UploadImage = "~/Areas/Admin/Views/Model/UploadImage.cshtml";
         }
     }
 
@@ -125,6 +164,29 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "id", id);
             EditOverride(callInfo, id);
+            return callInfo;
+        }
+
+        partial void SizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int modelID, int colourDescID);
+
+        public override System.Web.Mvc.ActionResult Size(int modelID, int colourDescID)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Size);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "modelID", modelID);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourDescID", colourDescID);
+            SizeOverride(callInfo, modelID, colourDescID);
+            return callInfo;
+        }
+
+        partial void UploadImageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int modelID, int colourDescID, int categoryID);
+
+        public override System.Web.Mvc.ActionResult UploadImage(int modelID, int colourDescID, int categoryID)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadImage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "modelID", modelID);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourDescID", colourDescID);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "categoryID", categoryID);
+            UploadImageOverride(callInfo, modelID, colourDescID, categoryID);
             return callInfo;
         }
 

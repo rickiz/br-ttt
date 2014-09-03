@@ -85,9 +85,11 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
                 var modelDetails = results.First();
 
-                var trendIDs = results.Select(a => a.ModelTrend).Count() > 0 ? results.Select(a => a.ModelTrend.Select(b=>b.TrendID)).First().ToList() : new List<int>();
+                var trendIDs = results.Select(a => a.ModelTrend).Count() > 0 ? 
+                                        results.Select(a => a.ModelTrend.Select(b=>b.TrendID)).First().Distinct().ToList() : 
+                                        new List<int>();
                 var lifestyleIDs = results.Select(a => a.ModelLifestyle).Count() > 0 ?
-                                    results.Select(a => a.ModelLifestyle.Select(b => b.LifeStyleID)).First().ToList() : 
+                                        results.Select(a => a.ModelLifestyle.Select(b => b.LifeStyleID)).First().Distinct().ToList() : 
                                     new List<int>();
 
                 maintainViewModel = new MaintainModelViewModel()
@@ -111,14 +113,71 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                     HeelHeight = modelDetails.ModelColourDesc.HeelHeight,
                     SKU = modelDetails.ModelColourDesc.SKU,
                     SelectedTrend = trendIDs,
+                    SelectedTrendIDText = string.Format("0,{0}",string.Join(",", trendIDs)),
                     SelectedLifestyle = lifestyleIDs,
+                    SelectedLifestyleIDText = string.Format("0,{0}", string.Join(",", lifestyleIDs)),
                     AvailableLifestyles = context.reflifestyles.Where(a=>a.Active).ToList(),
-                    AvailableTrends = context.reftrends.Where(a => a.Active).ToList()
+                    AvailableTrends = context.reftrends.Where(a => a.Active).ToList(),
                 };
             }
 
             return View(maintainViewModel);
 
+        }
+
+        public virtual ActionResult Size(int modelID, int colourDescID)
+        {
+            var modelSizeViewModel = new ModelSizeViewModel()
+            {
+                ModelID = modelID,
+                ColourDescID = colourDescID
+            };
+
+            using (var context = new TTTEntities())
+            {
+                modelSizeViewModel.ModelSizes = context.lnkmodelsizes.Where(a => a.ModelID == modelID && a.ColourDescID == colourDescID).ToList();
+            }
+
+            //35|5|2|4,8
+            var beginSize = Convert.ToInt16((Properties.Settings.Default.InitialSize.Split(',')[0]).Split('|')[0]);
+            var sizeRange = Convert.ToInt16((Properties.Settings.Default.InitialSize.Split(',')[1]));
+
+            for (var i = beginSize; i <= beginSize + sizeRange; i++)
+                modelSizeViewModel.AvailableSize.Add(i.ToString());
+
+            return View(modelSizeViewModel);
+        }
+
+        public virtual ActionResult UploadImage(int modelID, int colourDescID, int categoryID)
+        {
+            var modelImageViewModel = new ModelImageViewModel()
+            {
+                ModelID = modelID,
+                ColourDescID = colourDescID
+            };
+
+            using (var context = new TTTEntities())
+            {
+                modelImageViewModel.ModelImages = context.lnkmodelimages
+                                                         .Join(context.lnkmodelcolourdescs, a => a.ModelColourDescID, b => b.ID, 
+                                                                    (a, b) => new { modelColourDesc = b, modelImage = a })
+                                                         .Where(a => a.modelColourDesc.ModelID == modelID && a.modelColourDesc.ColourDescID == colourDescID)
+                                                         .Select(a => a.modelImage)
+                                                         .ToList();
+
+                var modelColourDesc = context.lnkmodelcolourdescs
+                                             .Where(a => a.ModelID == modelID && a.ColourDescID == colourDescID)
+                                             .Single();
+
+                modelImageViewModel.CategoryName = context.refcategories.Where(a => a.ID == categoryID).Single().Name;
+
+                modelImageViewModel.ModelImages = context.lnkmodelimages.Where(a => a.ModelColourDescID == modelColourDesc.ID).ToList();
+
+                modelImageViewModel.MainImage = string.Format("~/Images/{0}/{1}", modelImageViewModel.CategoryName, modelColourDesc.MainImage);
+                modelImageViewModel.SubImage = string.Format("~/Images/{0}/{1}", modelImageViewModel.CategoryName, modelColourDesc.SubImage);
+            }
+
+            return View(modelImageViewModel);
         }
     }
 }

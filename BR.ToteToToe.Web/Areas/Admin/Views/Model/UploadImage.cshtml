@@ -1,0 +1,121 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+@model ModelImageViewModel
+@{
+    ViewBag.Title = "Upload Model Image";
+}
+
+<table width="100%">
+    <tr>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Main Image", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(Model.MainImage)" />
+                    <input type="file" id="fileMain" />
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Sub Image", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(Model.SubImage)" />
+                    <input type="file" id="fileSub" />
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><hr /></td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Thumbnail 1", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Thumbnail))" />
+                    <input type="file" id="fileThumbnail1" />
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Image 1", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Image))" />
+                    <input type="file" id="fileImage1" />
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><hr /></td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Thumbnail 2", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Thumbnail))" />
+                    <input type="file" id="fileThumbnail2" />
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Image 2", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Image))" />
+                    <input type="file" id="fileImage2" />
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><hr /></td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Thumbnail 3", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Thumbnail))" />
+                    <input type="file" id="fileThumbnail3" />
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Image 3", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Image))" />
+                    <input type="file" id="fileImage3" />
+                </div>
+            </div>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2"><hr /></td>
+    </tr>
+    <tr>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Thumbnail 4", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Thumbnail))" />
+                    <input type="file" id="fileThumbnail4" />
+                </div>
+            </div>
+        </td>
+        <td>
+            <div class="form-group row">
+                @Html.Label("Image 4", new { @class = "col-sm-3 control-label text-info" })
+                <div class="col-sm-5">
+                    <img src ="@Url.Content(string.Format("~/Images/{0}/{1}", Model.CategoryName, Model.ModelImages[0].Image))" />
+                    <input type="file" id="fileImage4" />
+                </div>
+            </div>
+        </td>
+    </tr>
+</table>

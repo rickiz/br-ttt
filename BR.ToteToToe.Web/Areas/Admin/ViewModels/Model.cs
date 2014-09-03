@@ -82,7 +82,38 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
         public List<reflifestyle> AvailableLifestyles { get; set; }
         public List<int> SelectedTrend { get; set; }
         public List<int> SelectedLifestyle { get; set; }
+        public string SelectedTrendIDText { get; set; }
+        public string SelectedLifestyleIDText { get; set; }
     }
 
-    
+    public class ModelSizeViewModel
+    {
+        public ModelSizeViewModel()
+        {
+            ModelSizes = new List<lnkmodelsize>();
+            AvailableSize = new List<string>();
+        }
+
+        public List<string> AvailableSize { get; set; }
+        public List<lnkmodelsize> ModelSizes { get; set; }
+        public int ModelColourDescID { get; set; }
+        public int ModelID { get; set; }
+        public int ColourDescID { get; set; }
+    }
+
+    public class ModelImageViewModel
+    {
+        public ModelImageViewModel()
+        {
+            ModelImages = new List<lnkmodelimage>();
+        }
+
+        public int ModelColourDescID { get; set; }
+        public int ModelID { get; set; }
+        public int ColourDescID { get; set; }
+        public string CategoryName { get; set; }
+        public string MainImage { get; set; }
+        public string SubImage { get; set; }
+        public List<lnkmodelimage> ModelImages { get; set; }
+    }
 }
