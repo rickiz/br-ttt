@@ -831,6 +831,7 @@
     <Content Include="Content\customise_detail.css" />
     <Content Include="Content\customise_list.css" />
     <Content Include="Content\edit_myacc_details.css" />
+    <Content Include="Content\email_verify.css" />
     <Content Include="Content\form.css" />
     <Content Include="Content\myaccount.css" />
     <Content Include="Content\order.css" />

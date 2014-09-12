@@ -547,6 +547,8 @@ namespace Links
              
         public static readonly string edit_myacc_details_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/edit_myacc_details.min.css") ? Url("edit_myacc_details.min.css") : Url("edit_myacc_details.css");
              
+        public static readonly string email_verify_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/email_verify.min.css") ? Url("email_verify.min.css") : Url("email_verify.css");
+             
         public static readonly string form_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/form.min.css") ? Url("form.min.css") : Url("form.css");
              
         public static readonly string myaccount_css = T4MVCHelpers.IsProduction() && T4Extensions.FileExists(URLPATH + "/myaccount.min.css") ? Url("myaccount.min.css") : Url("myaccount.css");
