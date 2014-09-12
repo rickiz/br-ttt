@@ -69,4 +69,11 @@ namespace BR.ToteToToe.Web.ViewModels
     {
         public tblaccess User { get; set; }
     }
+
+    public class ForgotPasswordViewModel
+    {
+        public string Email { get; set; }
+        public string NewPassword { get; set; }
+        public string ErrorMessage { get; set; }
+    }
 }

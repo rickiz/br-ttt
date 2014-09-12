@@ -265,6 +265,22 @@ namespace BR.ToteToToe.Web.Controllers
                 smtpClient.Send(message);
             }
         }
+        private void SendForgotPasswordEmail(ForgotPasswordViewModel viewModel)
+        {
+            var body = this.RenderViewToString(Views.ViewNames.ResetPassword, viewModel);
+            var message = new MailMessage
+            {
+                Subject = "Tote To Toe Reset Password",
+                IsBodyHtml = true,
+                Body = body
+            };
+            message.To.Add(viewModel.Email);
+
+            using (var smtpClient = new SmtpClient())
+            {
+                smtpClient.Send(message);
+            }
+        }
 
 
         [AllowAnonymous]
@@ -322,6 +338,50 @@ namespace BR.ToteToToe.Web.Controllers
 
         [AllowAnonymous]
         public virtual ActionResult FacebookLoginFailure()
+        {
+            return View();
+        }
+
+        public virtual ActionResult ForgotPassword()
+        {
+            return View(new ForgotPasswordViewModel());
+        }
+
+        [HttpPost]
+        public virtual ActionResult ForgotPassword(ForgotPasswordViewModel viewModel)
+        {
+            if(string.IsNullOrEmpty(viewModel.Email))
+                return View(new ForgotPasswordViewModel());
+
+            using (var context = new TTTEntities())
+            {
+                var user = context.tblaccesses.Where(a => a.Email == viewModel.Email).SingleOrDefault();
+
+                if (user == null)
+                {
+                    viewModel.ErrorMessage = "Email account does not exist.";
+                    return View(viewModel);
+                }
+
+                var chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                var random = new Random();
+                viewModel.NewPassword = new string(
+                    Enumerable.Repeat(chars, 8)
+                              .Select(s => s[random.Next(s.Length)])
+                              .ToArray());
+
+                user.Password = Util.GetMD5Hash(viewModel.NewPassword);
+                user.UpdateDT = DateTime.Now;
+
+                context.SaveChanges();
+            }
+
+            SendForgotPasswordEmail(viewModel);
+
+            return View("ForgotPasswordSuccess", viewModel);
+        }
+
+        public virtual ActionResult ForgotPasswordSuccess()
         {
             return View();
         }

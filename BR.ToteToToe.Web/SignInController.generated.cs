@@ -97,6 +97,8 @@ namespace BR.ToteToToe.Web.Controllers
             public readonly string ConfirmEmail = "ConfirmEmail";
             public readonly string Logout = "Logout";
             public readonly string FacebookLoginFailure = "FacebookLoginFailure";
+            public readonly string ForgotPassword = "ForgotPassword";
+            public readonly string ForgotPasswordSuccess = "ForgotPasswordSuccess";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -109,6 +111,8 @@ namespace BR.ToteToToe.Web.Controllers
             public const string ConfirmEmail = "ConfirmEmail";
             public const string Logout = "Logout";
             public const string FacebookLoginFailure = "FacebookLoginFailure";
+            public const string ForgotPassword = "ForgotPassword";
+            public const string ForgotPasswordSuccess = "ForgotPasswordSuccess";
         }
 
 
@@ -155,6 +159,14 @@ namespace BR.ToteToToe.Web.Controllers
             public readonly string token = "token";
             public readonly string email = "email";
         }
+        static readonly ActionParamsClass_ForgotPassword s_params_ForgotPassword = new ActionParamsClass_ForgotPassword();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_ForgotPassword ForgotPasswordParams { get { return s_params_ForgotPassword; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_ForgotPassword
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ViewsClass Views { get { return s_views; } }
@@ -167,14 +179,20 @@ namespace BR.ToteToToe.Web.Controllers
             {
                 public readonly string ConfirmEmail = "ConfirmEmail";
                 public readonly string FacebookLoginFailure = "FacebookLoginFailure";
+                public readonly string ForgotPassword = "ForgotPassword";
+                public readonly string ForgotPasswordSuccess = "ForgotPasswordSuccess";
                 public readonly string Index = "Index";
                 public readonly string Register = "Register";
+                public readonly string ResetPassword = "ResetPassword";
                 public readonly string WelcomeEmail = "WelcomeEmail";
             }
             public readonly string ConfirmEmail = "~/Views/SignIn/ConfirmEmail.cshtml";
             public readonly string FacebookLoginFailure = "~/Views/SignIn/FacebookLoginFailure.cshtml";
+            public readonly string ForgotPassword = "~/Views/SignIn/ForgotPassword.cshtml";
+            public readonly string ForgotPasswordSuccess = "~/Views/SignIn/ForgotPasswordSuccess.cshtml";
             public readonly string Index = "~/Views/SignIn/Index.cshtml";
             public readonly string Register = "~/Views/SignIn/Register.cshtml";
+            public readonly string ResetPassword = "~/Views/SignIn/ResetPassword.cshtml";
             public readonly string WelcomeEmail = "~/Views/SignIn/WelcomeEmail.cshtml";
         }
     }
@@ -262,6 +280,34 @@ namespace BR.ToteToToe.Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.FacebookLoginFailure);
             FacebookLoginFailureOverride(callInfo);
+            return callInfo;
+        }
+
+        partial void ForgotPasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        public override System.Web.Mvc.ActionResult ForgotPassword()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForgotPassword);
+            ForgotPasswordOverride(callInfo);
+            return callInfo;
+        }
+
+        partial void ForgotPasswordOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.ViewModels.ForgotPasswordViewModel viewModel);
+
+        public override System.Web.Mvc.ActionResult ForgotPassword(BR.ToteToToe.Web.ViewModels.ForgotPasswordViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForgotPassword);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            ForgotPasswordOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
+        partial void ForgotPasswordSuccessOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        public override System.Web.Mvc.ActionResult ForgotPasswordSuccess()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ForgotPasswordSuccess);
+            ForgotPasswordSuccessOverride(callInfo);
             return callInfo;
         }
 

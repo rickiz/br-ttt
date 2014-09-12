@@ -1393,6 +1393,9 @@
     <Content Include="Views\Error\Index.cshtml" />
     <Content Include="Views\SignIn\ConfirmEmail.cshtml" />
     <Content Include="Views\SignIn\WelcomeEmail.cshtml" />
+    <Content Include="Views\SignIn\ForgotPassword.cshtml" />
+    <Content Include="Views\SignIn\ResetPassword.cshtml" />
+    <Content Include="Views\SignIn\ForgotPasswordSuccess.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
