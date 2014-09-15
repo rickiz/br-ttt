@@ -83,15 +83,18 @@ namespace BR.ToteToToe.Web.Controllers
                     context.tblaccesses
                         .SingleOrDefault(a => a.Email == viewModel.Email && 
                                               a.Password == pwd && 
-                                              a.Active && 
-                                              a.ConfirmedEmail);
-
-                // TODO: Redirect to Email not yet verify page 
+                                              a.Active);
 
                 if (user == null)
                 {
                     ModelState.AddModelError("LoginForm", "Invalid Email/Password.");
                     return View(viewModel);
+                }
+
+                if (!user.ConfirmedEmail)
+                {
+                    var verifyEmailModel = new VerifyEmailViewModel { User = user, AfterLogin = true };
+                    return View(MVC.SignIn.Views.VerifyEmail, verifyEmailModel);
                 }
 
                 Util.SessionAccess = user;
@@ -149,7 +152,8 @@ namespace BR.ToteToToe.Web.Controllers
                     context.tblaccesses.Add(user);
                     context.SaveChanges();
 
-                    SendEmailVerification(user);
+                    var verifyEmailModel = new VerifyEmailViewModel { User = user, AfterRegistration = true };
+                    return View(MVC.SignIn.Views.VerifyEmail, verifyEmailModel);
                 }
                 else
                 {
@@ -161,8 +165,8 @@ namespace BR.ToteToToe.Web.Controllers
                     }
                     else
                     {
-                        // TODO: Redirect to Email not yet verify page
-                        throw new ApplicationException("Email not yet verify.");
+                        var verifyEmailModel = new VerifyEmailViewModel { User = user, AfterLogin = true };
+                        return View(MVC.SignIn.Views.VerifyEmail, verifyEmailModel);
                     }                    
                 }
             }
@@ -198,7 +202,8 @@ namespace BR.ToteToToe.Web.Controllers
                     context.tblaccesses.Add(user);
                     context.SaveChanges();
 
-                    SendEmailVerification(user);
+                    var verifyEmailModel = new VerifyEmailViewModel { User = user, AfterRegistration = true };
+                    return View(MVC.SignIn.Views.VerifyEmail, verifyEmailModel);
                 }
                 else
                 {
@@ -207,15 +212,24 @@ namespace BR.ToteToToe.Web.Controllers
                     return View(Views.Index, viewModel);
                 }
             }
-
-            //Util.SessionAccess = user;
-            //FormsAuthentication.SetAuthCookie(model.Email, false);
-            //LinkToAccount();
-
-            return RedirectToLocal(model.ReturnUrl);
         }
 
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public virtual ActionResult VerifyEmail(VerifyEmailViewModel viewModel)
+        {
+            using (var context = new TTTEntities())
+            {
+                var user = context.tblaccesses.Where(a => a.ID == viewModel.User.ID).Single();
 
+                SendEmailVerification(user);
+
+                ViewBag.Email = user.Email;
+            }
+
+            return View(MVC.SignIn.Views.VerifyEmailSent);
+        }
 
         private void SendEmailVerification(tblaccess user)
         {
@@ -282,7 +296,6 @@ namespace BR.ToteToToe.Web.Controllers
             }
         }
 
-
         [AllowAnonymous]
         public virtual ActionResult ConfirmEmail(string token, string email)
         {
@@ -302,6 +315,34 @@ namespace BR.ToteToToe.Web.Controllers
             }
 
             SendWelcomeEmail(user);
+
+            Util.SessionAccess = user;
+            FormsAuthentication.SetAuthCookie(user.Email, false);
+            LinkToAccount();
+
+            return RedirectToAction(MVC.Home.Index());
+        }
+
+        [AllowAnonymous]
+        public virtual ActionResult WelcomeLogin(string t, string email)
+        {
+            tblaccess user;
+
+            using (var context = new TTTEntities())
+            {
+                user =
+                    context.tblaccesses
+                        .Where(a => a.Email == email && a.Active && a.EmailToken == t && a.ConfirmedEmail)
+                        .SingleOrDefault();
+
+                if (user == null)
+                    throw new InvalidOperationException();
+
+                user.EmailToken = null;
+                user.UpdateDT = DateTime.Now;
+
+                context.SaveChanges();
+            }
 
             Util.SessionAccess = user;
             FormsAuthentication.SetAuthCookie(user.Email, false);

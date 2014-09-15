@@ -70,9 +70,21 @@ namespace BR.ToteToToe.Web.Controllers
         }
         [NonAction]
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult VerifyEmail()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VerifyEmail);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public virtual System.Web.Mvc.ActionResult ConfirmEmail()
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.ConfirmEmail);
+        }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult WelcomeLogin()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WelcomeLogin);
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -94,7 +106,9 @@ namespace BR.ToteToToe.Web.Controllers
             public readonly string FacebookLogin = "FacebookLogin";
             public readonly string FacebookLoginCallback = "FacebookLoginCallback";
             public readonly string Register = "Register";
+            public readonly string VerifyEmail = "VerifyEmail";
             public readonly string ConfirmEmail = "ConfirmEmail";
+            public readonly string WelcomeLogin = "WelcomeLogin";
             public readonly string Logout = "Logout";
             public readonly string FacebookLoginFailure = "FacebookLoginFailure";
             public readonly string ForgotPassword = "ForgotPassword";
@@ -108,7 +122,9 @@ namespace BR.ToteToToe.Web.Controllers
             public const string FacebookLogin = "FacebookLogin";
             public const string FacebookLoginCallback = "FacebookLoginCallback";
             public const string Register = "Register";
+            public const string VerifyEmail = "VerifyEmail";
             public const string ConfirmEmail = "ConfirmEmail";
+            public const string WelcomeLogin = "WelcomeLogin";
             public const string Logout = "Logout";
             public const string FacebookLoginFailure = "FacebookLoginFailure";
             public const string ForgotPassword = "ForgotPassword";
@@ -150,6 +166,14 @@ namespace BR.ToteToToe.Web.Controllers
         {
             public readonly string viewModel = "viewModel";
         }
+        static readonly ActionParamsClass_VerifyEmail s_params_VerifyEmail = new ActionParamsClass_VerifyEmail();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_VerifyEmail VerifyEmailParams { get { return s_params_VerifyEmail; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_VerifyEmail
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ActionParamsClass_ConfirmEmail s_params_ConfirmEmail = new ActionParamsClass_ConfirmEmail();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_ConfirmEmail ConfirmEmailParams { get { return s_params_ConfirmEmail; } }
@@ -157,6 +181,15 @@ namespace BR.ToteToToe.Web.Controllers
         public class ActionParamsClass_ConfirmEmail
         {
             public readonly string token = "token";
+            public readonly string email = "email";
+        }
+        static readonly ActionParamsClass_WelcomeLogin s_params_WelcomeLogin = new ActionParamsClass_WelcomeLogin();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_WelcomeLogin WelcomeLoginParams { get { return s_params_WelcomeLogin; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_WelcomeLogin
+        {
+            public readonly string t = "t";
             public readonly string email = "email";
         }
         static readonly ActionParamsClass_ForgotPassword s_params_ForgotPassword = new ActionParamsClass_ForgotPassword();
@@ -184,6 +217,8 @@ namespace BR.ToteToToe.Web.Controllers
                 public readonly string Index = "Index";
                 public readonly string Register = "Register";
                 public readonly string ResetPassword = "ResetPassword";
+                public readonly string VerifyEmail = "VerifyEmail";
+                public readonly string VerifyEmailSent = "VerifyEmailSent";
                 public readonly string WelcomeEmail = "WelcomeEmail";
             }
             public readonly string ConfirmEmail = "~/Views/SignIn/ConfirmEmail.cshtml";
@@ -193,6 +228,8 @@ namespace BR.ToteToToe.Web.Controllers
             public readonly string Index = "~/Views/SignIn/Index.cshtml";
             public readonly string Register = "~/Views/SignIn/Register.cshtml";
             public readonly string ResetPassword = "~/Views/SignIn/ResetPassword.cshtml";
+            public readonly string VerifyEmail = "~/Views/SignIn/VerifyEmail.cshtml";
+            public readonly string VerifyEmailSent = "~/Views/SignIn/VerifyEmailSent.cshtml";
             public readonly string WelcomeEmail = "~/Views/SignIn/WelcomeEmail.cshtml";
         }
     }
@@ -254,6 +291,16 @@ namespace BR.ToteToToe.Web.Controllers
             return callInfo;
         }
 
+        partial void VerifyEmailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.ViewModels.VerifyEmailViewModel viewModel);
+
+        public override System.Web.Mvc.ActionResult VerifyEmail(BR.ToteToToe.Web.ViewModels.VerifyEmailViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.VerifyEmail);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            VerifyEmailOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
         partial void ConfirmEmailOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string token, string email);
 
         public override System.Web.Mvc.ActionResult ConfirmEmail(string token, string email)
@@ -262,6 +309,17 @@ namespace BR.ToteToToe.Web.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "token", token);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
             ConfirmEmailOverride(callInfo, token, email);
+            return callInfo;
+        }
+
+        partial void WelcomeLoginOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, string t, string email);
+
+        public override System.Web.Mvc.ActionResult WelcomeLogin(string t, string email)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.WelcomeLogin);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "t", t);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "email", email);
+            WelcomeLoginOverride(callInfo, t, email);
             return callInfo;
         }
 

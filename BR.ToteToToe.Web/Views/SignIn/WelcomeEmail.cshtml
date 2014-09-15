@@ -43,9 +43,9 @@
                 <br>
                 <span style="font-weight: bold">Tote-To-Toe</span><br>
               <br>
-            </span><a href="@Url.ActionAbsolute(MVC.Home.Index())"><img src="@Url.ContentAbsUrl(Links.Images.start_shopping_gif)" alt="Click here to start shopping!" width="324" height="46"></a><br>
+            </span><a href="@Url.ActionAbsolute(MVC.SignIn.WelcomeLogin(Model.User.EmailToken, Model.User.Email))"><img src="@Url.ContentAbsUrl(Links.Images.start_shopping_gif)" alt="Click here to start shopping!" width="324" height="46"></a><br>
                 <br>
-                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">If the button doesn&rsquo;t work, you can click <a href="@Url.ActionAbsolute(MVC.Home.Index())">here</a></span>
+                <span style="font-family: Arial, Helvetica, sans-serif; font-size: 12px;">If the button doesn&rsquo;t work, you can click <a href="@Url.ActionAbsolute(MVC.SignIn.WelcomeLogin(Model.User.EmailToken, Model.User.Email))">here</a></span>
               <p><br>
               </p></td>
             </tr>

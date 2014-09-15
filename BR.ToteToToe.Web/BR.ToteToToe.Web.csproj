@@ -1397,6 +1397,8 @@
     <Content Include="Views\SignIn\ForgotPassword.cshtml" />
     <Content Include="Views\SignIn\ResetPassword.cshtml" />
     <Content Include="Views\SignIn\ForgotPasswordSuccess.cshtml" />
+    <Content Include="Views\SignIn\VerifyEmail.cshtml" />
+    <Content Include="Views\SignIn\VerifyEmailSent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

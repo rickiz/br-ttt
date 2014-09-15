@@ -76,4 +76,13 @@ namespace BR.ToteToToe.Web.ViewModels
         public string NewPassword { get; set; }
         public string ErrorMessage { get; set; }
     }
+
+    public class VerifyEmailViewModel
+    {
+        public tblaccess User { get; set; }
+
+        public bool AfterLogin { get; set; }
+
+        public bool AfterRegistration { get; set; }
+    }
 }

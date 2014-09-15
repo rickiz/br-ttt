@@ -1,0 +1,83 @@
+﻿@model BR.ToteToToe.Web.ViewModels.VerifyEmailViewModel
+
+@{
+    ViewBag.Title = "TOTE TO TOE : Verify Email";
+}
+
+<br />
+
+@using (Html.BeginForm(MVC.SignIn.VerifyEmail()))
+{ 
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.User.ID)
+
+    <div id="wrap2">
+        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" style="font-family: Arial, Helvetica, sans-serif;">
+            <tr>
+                <td valign="top">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size: 12px">
+                        <tr>
+                            <td width="15%" align="left" valign="top">&nbsp;</td>
+                            <td width="85%" align="left" valign="top"><span style="font-size: 18px; color: #666;">Thank you for your registration! Please confirm your email below</span><br />
+                                <hr class="divline" />
+                                <p>
+                                    <br />
+                                    Dear @Model.User.FirstName @Model.User.LastName, please help us confirm your email address as this will help you enjoy safe and   hassle free shopping!<br />
+                                    <br />
+                                </p>
+                                <p>
+                                    <strong>@Model.User.Email</strong><br />
+                                </p>
+                                <table width="79%" border="0" align="left" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td width="42%" style="font-weight: bold">
+                                            <input name="confirmemail" type="submit" 
+                                                class="darkbutton" id="confirmemail" value="CONFIRM YOUR EMAIL ADDRESS" />
+                                        </td>
+                                        <td width="58%" style="font-weight: bold">
+
+                                            @if (Model.AfterLogin)
+                                            {
+                                                <input name="cancel" type="button" class="whitebutton" id="cancel" value="CANCEL" />
+                                            }
+
+                                            @if (Model.AfterRegistration)
+                                            {
+                                                <input name="later" type="button" class="whitebutton" id="later" value="LATER" />
+                                            }
+
+                                        </td>
+                                    </tr>
+                                </table>
+                                <p>&nbsp;</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" valign="top">
+                    <p>
+                        <br />
+                    </p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp;</p>
+                    <p>&nbsp; </p>
+                </td>
+            </tr>
+        </table>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+        <p>&nbsp;</p>
+    </div>
+}
+
+@section styles
+{
+    <link href="@(Links.Content.email_verify_css)" rel="stylesheet" type="text/css" />
+}
