@@ -1,4 +1,4 @@
-@charset "utf-8";
+﻿@charset "utf-8";
 /* CSS Document */
 #wrap
 {
@@ -111,4 +111,9 @@ a:hover {
 }
 a:active {
 	color: #000;
+}
+
+.btn-link{
+    text-decoration: none;
+    padding: 6px 35px;
 }

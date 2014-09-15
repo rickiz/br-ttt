@@ -38,12 +38,14 @@
 
                                             @if (Model.AfterLogin)
                                             {
-                                                <input name="cancel" type="button" class="whitebutton" id="cancel" value="CANCEL" />
+                                                @*<input name="cancel" type="button" class="whitebutton" id="cancel" value="CANCEL" />*@
+                                                @Html.ActionLink("CANCEL", MVC.Home.Index(), new { @class = "whitebutton btn-link" })
                                             }
 
                                             @if (Model.AfterRegistration)
                                             {
-                                                <input name="later" type="button" class="whitebutton" id="later" value="LATER" />
+                                                @*<input name="later" type="button" class="whitebutton" id="later" value="LATER" />*@
+                                                @Html.ActionLink("LATER", MVC.Home.Index(), new { @class = "whitebutton btn-link" })
                                             }
 
                                         </td>
