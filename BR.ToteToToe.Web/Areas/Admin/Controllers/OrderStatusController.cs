@@ -8,41 +8,77 @@ using System.Data.Entity;
 using BR.ToteToToe.Web.Helpers;
 using BR.ToteToToe.Web.DataModels;
 using BR.ToteToToe.Web.Areas.Admin.ViewModels;
+using BR.ToteToToe.Web.Properties;
 
 namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 {
     [Authorize]
     public partial class OrderStatusController : TTTBaseController
     {
+        #region Private Methods
+
+        private List<OrderStatusSearchResult> SearchOrder(OrderStatusSearchCriteria criteria)
+        {
+            var results = new List<OrderStatusSearchResult>();
+            var excludeStatus = new string[] { Status.Open.ToString(), Status.Closed.ToString() };
+
+            using (var context = new TTTEntities())
+            {
+                var query =
+                    (from a in context.trnsalesorders
+                     join b in context.logpayments on a.PaymentGatewayTransID equals b.TransId
+                    where !excludeStatus.Contains(a.refstatu.Name)
+                        && b.Status == Settings.Default.iPay88_Status_Success
+                    select new { SalesOrder = a, LogPayment = b }).AsQueryable();
+
+                if (criteria.SalesOrderID.HasValue && criteria.SalesOrderID.Value > 0)
+                    query = query.Where(a => a.SalesOrder.ID == criteria.SalesOrderID.Value);
+
+                if (criteria.StatusID > 0)
+                    query = query.Where(a => a.SalesOrder.StatusID == criteria.StatusID);
+
+                if (criteria.PaymentSuccessDateFrom.HasValue)
+                {
+                    var fromDate = criteria.PaymentSuccessDateFrom.Value.Date.AddMilliseconds(-1);
+
+                    query = query.Where(a => a.LogPayment.CreateDT > fromDate);
+                }
+
+                if (criteria.PaymentSuccessDateTo.HasValue)
+                {
+                    var toDate = criteria.PaymentSuccessDateTo.Value.Date.AddDays(1);
+
+                    query = query.Where(a => a.LogPayment.CreateDT < toDate);
+                }
+
+                query = query.OrderByDescending(a => a.SalesOrder.ID)
+                             .Take(50);
+
+                results =
+                    query.Select(a => new OrderStatusSearchResult
+                    {
+                        Email = a.SalesOrder.Email,
+                        PaymentSuccessDate = a.LogPayment.CreateDT,
+                        SalesOrderID = a.SalesOrder.ID,
+                        Status = a.SalesOrder.refstatu.Name
+                    }).ToList();
+            }
+
+            return results;
+        }
+
+        #endregion
+
         public virtual ActionResult Index()
         {
             if (!Util.SessionAccess.IsAdmin)
                 throw new AccessViolationException("You have no rights to access this page.");
 
-            using (var context = new TTTEntities())
-            {
-                var excludeStatus = new string[] { Status.Open.ToString(), Status.Closed.ToString() };
+            var viewModel = new OrderStatusViewModel();
 
-                var results =
-                    context.trnsalesorders
-                        .Include(a => a.refstatu)
-                        .Where(a => !excludeStatus.Contains(a.refstatu.Name))
-                        .OrderByDescending(a => a.ID)
-                        .Take(50)
-                        .Select(a => new OrderStatusSearchResult
-                        {
-                            Email = a.Email,
-                            SalesOrderID = a.ID,
-                            Status = a.refstatu.Name
-                        }).ToList();
+            viewModel.Results = SearchOrder(viewModel.Criteria);
 
-                var viewModel = new OrderStatusViewModel
-                {
-                    Results = results
-                };
-
-                return View(viewModel);
-            }
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -51,35 +87,9 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             if (!Util.SessionAccess.IsAdmin)
                 throw new AccessViolationException("You have no rights to access this page.");
 
-            var criteria = viewModel.Criteria;
+            viewModel.Results = SearchOrder(viewModel.Criteria);
 
-            using (var context = new TTTEntities())
-            {
-                var excludeStatus = new string[] { Status.Open.ToString(), Status.Closed.ToString() };
-
-                var query =
-                    context.trnsalesorders
-                        .Include(a => a.refstatu)
-                        .Where(a => !excludeStatus.Contains(a.refstatu.Name));
-
-                if (criteria.SalesOrderID.HasValue && criteria.SalesOrderID.Value > 0)
-                    query = query.Where(a => a.ID == criteria.SalesOrderID.Value);
-
-                if (criteria.StatusID > 0)
-                    query = query.Where(a => a.StatusID == criteria.StatusID);
-
-                viewModel.Results = query
-                    .OrderByDescending(a => a.ID)
-                    .Take(50)
-                    .Select(a => new OrderStatusSearchResult
-                    {
-                        Email = a.Email,
-                        SalesOrderID = a.ID,
-                        Status = a.refstatu.Name
-                    }).ToList();
-
-                return View(viewModel);
-            }
+            return View(viewModel);
         }
 
         [HttpPost]

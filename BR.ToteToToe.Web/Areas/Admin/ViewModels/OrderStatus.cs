@@ -26,6 +26,12 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
 
         [Display(Name = "Status")]
         public int StatusID { get; set; }
+
+        [Display(Name = "Order Date From")]
+        public DateTime? PaymentSuccessDateFrom { get; set; }
+
+        [Display(Name = "Order Date To")]
+        public DateTime? PaymentSuccessDateTo { get; set; }
     }
 
     public class OrderStatusSearchResult
@@ -33,6 +39,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
         public int SalesOrderID { get; set; }
         public string Status { get; set; }
         public string Email { get; set; }
+        public DateTime PaymentSuccessDate { get; set; }
     }
 
     public class OrderStatusUpdateViewModel
