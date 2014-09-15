@@ -75,7 +75,7 @@ namespace BR.ToteToToe.Web.Controllers
             if (!ModelState.IsValid)
                 return View(viewModel);
 
-            var pwd = Util.GetMD5Hash(viewModel.Password);
+            var pwd = Util.GetMD5Hash(viewModel.Password.Trim());
 
             using (var context = new TTTEntities())
             {
