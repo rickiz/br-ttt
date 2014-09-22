@@ -263,8 +263,7 @@
 
         $(document).ready(function () {
             ColourChange();
-            //$('select[id^="ColourDescID"] option[value="@Model.ColourDescID"]').attr("selected", "selected");
-
+            $('#ColourDescID').val('@Model.ColourDescID');
         });
 
         function TrendChanged(chk,id) {
@@ -301,16 +300,9 @@
                 select.empty();
 
                 $.each(data, function (index, itemData) {
-
-                    var isSelected = false;
-                    if (colourID == itemData.Value) {
-                        isSelected = true;
-                    }
-
                     select.append($('<option/>', {
                         value: itemData.Value,
                         text: itemData.Text,
-                        selected: isSelected
                     }));
                 });
             });
