@@ -32,6 +32,12 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
 
     public class MaintainModelViewModel
     {
+        public int ModelColourDescID { get; set; }
+
+
+        [Display(Name = "Active")]
+        public bool Active { get; set; }
+
         [Display(Name = "Category")]
         public int CategoryID { get; set; }
         [Display(Name = "Brand")]

@@ -12,233 +12,260 @@
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     @Html.ActionLink("Update Image", "UploadImage", new { modelID = Model.ModelID, colourDescID = Model.ColourDescID, categoryID = Model.CategoryID })
 }
-<table width="100%">
-    <tr>
-        <td>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.CategoryID, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.DropDownListFor(model=>model.CategoryID, Util.GetList(RefType.Category), new { @class = "form-control" })
+
+@using(Html.BeginForm())
+{
+    <table width="100%">
+        <tr>
+            <td>
+                @Html.HiddenFor(model => model.ModelColourDescID)
+                @Html.HiddenFor(model => model.ModelID)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ModelName, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.Raw(Model.ModelName)
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.BrandName, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.DropDownListFor(model=>model.BrandName, Util.GetList(RefType.Brand), new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.CategoryID, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(model=>model.CategoryID, Util.GetList(RefType.Category), new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.ColourID, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.DropDownListFor(model=>model.ColourID, Util.GetList(RefType.Colour), new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.BrandName, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(model=>model.BrandName, Util.GetList(RefType.Brand), new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.ColourDescID, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.DropDownListFor(model=>model.ColourDescID, Util.GetList(RefType.ColourDesc), new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ColourID, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(model=>model.ColourID, Util.GetList(RefType.Colour), new { @class = "form-control", onchange="ColourChange();" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Price, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.ColourDescID, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(model=>model.ColourDescID, Util.GetList(RefType.ColourDesc), new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.DiscountPrice, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.DiscountPrice, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Price, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.HeelHeight, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.HeelHeight, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.DiscountPrice, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.DiscountPrice, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-        </td>
-        <td>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.SKU, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.SKU, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.HeelHeight, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.HeelHeight, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Style, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.Style, new { @class = "form-control" })
+            </td>
+            <td>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.SKU, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.SKU, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.LiningSock, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.LiningSock, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Style, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.Style, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Sole, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.Sole, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.LiningSock, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.LiningSock, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Make, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.Make, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Sole, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.Sole, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.UpperMaterial, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.UpperMaterial, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Make, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.Make, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-            <div class="form-group row">
-                @Html.LabelFor(model => model.HeelDesc, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextBoxFor(model => model.HeelDesc, new { @class = "form-control" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.UpperMaterial, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.UpperMaterial, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <div class="form-group row">
-                @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.TextAreaFor(model => model.Description, new { cols = "120", rows = "10" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.HeelDesc, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextBoxFor(model => model.HeelDesc, new { @class = "form-control" })
+                    </div>
                 </div>
-            </div>
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <hr />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            @Html.HiddenFor(model => model.SelectedTrendIDText)
-            <div class="form-group row">
-                @Html.Label("Trends", new { @class = "col-sm-2 control-label text-info" })
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Active, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.CheckBoxFor(model => model.Active, new { @class = "form-control" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Description, new { @class = "col-sm-2 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.TextAreaFor(model => model.Description, new { cols = "120", rows = "10" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.HiddenFor(model => model.SelectedTrendIDText)
+                <div class="form-group row">
+                    @Html.Label("Trends", new { @class = "col-sm-2 control-label text-info" })
                     
-                    @for (int i = 0; i < Model.AvailableTrends.Count && i < checkBoxPerRow; i++)
-                    {
-                        <div class="col-sm-2 checkbox" style="margin-top: -5px;">
-                            <label>
-                                <input type="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)"
-                                    @(Model.SelectedTrend.Contains(Model.AvailableTrends[i].ID)?"checked":"")
-                                    onclick="@string.Format("TrendChanged(this,{0})",Model.AvailableTrends[i].ID)" /> 
-                                @Html.Raw(Model.AvailableTrends[i].Name)
-                            </label>
-                        </div>
-                    }
-            </div>
-
-            @if (Model.AvailableTrends.Count > checkBoxPerRow)
-            {
-                var trends = Model.AvailableTrends.Skip(checkBoxPerRow).ToList();
-                var rowCount = trends.Count <= checkBoxPerRow ? 1 : 
-                    (trends.Count % checkBoxPerRow == 0 ? (trends.Count / checkBoxPerRow) : 
-                    (trends.Count / checkBoxPerRow + 1));
-                var trendIndex = 0;
-
-                for (int i = 0; i < rowCount; i++)
-                {
-                    <div class="form-group row">
-                        <div class="col-sm-2">&nbsp;</div>
-                        @for (int j = 0; trendIndex < trends.Count && j < checkBoxPerRow; j++, trendIndex++)
+                        @for (int i = 0; i < Model.AvailableTrends.Count && i < checkBoxPerRow; i++)
                         {
                             <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                 <label>
-                                    <input type="checkbox" id="@string.Format("chkTrend_{0}",trends[trendIndex].ID)" 
-                                        @(Model.SelectedTrend.Contains(trends[trendIndex].ID)?"checked":"")
-                                        onclick="@string.Format("TrendChanged(this,{0})",trends[trendIndex].ID)" />  
-                                    @Html.Raw(trends[trendIndex].Name)
+                                    <input type="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)"
+                                        @(Model.SelectedTrend.Contains(Model.AvailableTrends[i].ID)?"checked":"")
+                                        onclick="@string.Format("TrendChanged(this,{0})",Model.AvailableTrends[i].ID)" /> 
+                                    @Html.Raw(Model.AvailableTrends[i].Name)
                                 </label>
                             </div>
                         }
-                    </div>
-                }
-            }
+                </div>
 
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <hr />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            @Html.HiddenFor(model => model.SelectedLifestyleIDText);
-            <div class="form-group row">
-                @Html.Label("Lifestyle", new { @class = "col-sm-2 control-label text-info" })
-                    
-                    @for (int i = 0; i < Model.AvailableLifestyles.Count && i < checkBoxPerRow; i++)
+                @if (Model.AvailableTrends.Count > checkBoxPerRow)
+                {
+                    var trends = Model.AvailableTrends.Skip(checkBoxPerRow).ToList();
+                    var rowCount = trends.Count <= checkBoxPerRow ? 1 : 
+                        (trends.Count % checkBoxPerRow == 0 ? (trends.Count / checkBoxPerRow) : 
+                        (trends.Count / checkBoxPerRow + 1));
+                    var trendIndex = 0;
+
+                    for (int i = 0; i < rowCount; i++)
                     {
-                        <div class="col-sm-2 checkbox" style="margin-top: -5px;">
-                            <label>
-                                <input type="checkbox" id="@string.Format("chkLifestyle_{0}",Model.AvailableLifestyles[i].ID)"
-                                    @(Model.SelectedTrend.Contains(Model.AvailableTrends[i].ID)?"checked":"")
-                                    onclick="@string.Format("LifestyleChanged(this,{0})",Model.AvailableLifestyles[i].ID)" /> 
-                                @Html.Raw(Model.AvailableLifestyles[i].Name)
-                            </label>
+                        <div class="form-group row">
+                            <div class="col-sm-2">&nbsp;</div>
+                            @for (int j = 0; trendIndex < trends.Count && j < checkBoxPerRow; j++, trendIndex++)
+                            {
+                                <div class="col-sm-2 checkbox" style="margin-top: -5px;">
+                                    <label>
+                                        <input type="checkbox" id="@string.Format("chkTrend_{0}",trends[trendIndex].ID)" 
+                                            @(Model.SelectedTrend.Contains(trends[trendIndex].ID)?"checked":"")
+                                            onclick="@string.Format("TrendChanged(this,{0})",trends[trendIndex].ID)" />  
+                                        @Html.Raw(trends[trendIndex].Name)
+                                    </label>
+                                </div>
+                            }
                         </div>
                     }
-            </div>
+                }
 
-            @if (Model.AvailableLifestyles.Count > checkBoxPerRow)
-            {
-                var lifestyles = Model.AvailableLifestyles.Skip(checkBoxPerRow).ToList();
-                var rowCount = lifestyles.Count <= checkBoxPerRow ? 1 :
-                    (lifestyles.Count % checkBoxPerRow == 0 ? (lifestyles.Count / checkBoxPerRow) :
-                    (lifestyles.Count / checkBoxPerRow + 1));
-                var lifestyleIndex = 0;
-
-                for (int i = 0; i < rowCount; i++)
-                {
-                    <div class="form-group row">
-                        <div class="col-sm-2">&nbsp;</div>
-                        @for (int j = 0; lifestyleIndex < lifestyles.Count && j < checkBoxPerRow; j++, lifestyleIndex++)
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                @Html.HiddenFor(model => model.SelectedLifestyleIDText);
+                <div class="form-group row">
+                    @Html.Label("Lifestyle", new { @class = "col-sm-2 control-label text-info" })
+                    
+                        @for (int i = 0; i < Model.AvailableLifestyles.Count && i < checkBoxPerRow; i++)
                         {
                             <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                 <label>
-                                    <input type="checkbox" id="@string.Format("chkLifestyle_{0}",lifestyles[lifestyleIndex].ID)" 
-                                        @(Model.SelectedTrend.Contains(lifestyles[lifestyleIndex].ID)?"checked":"")
-                                        onclick="@string.Format("LifestyleChanged(this,{0})",lifestyles[lifestyleIndex].ID)" />  
-                                    @Html.Raw(lifestyles[lifestyleIndex].Name)
+                                    <input type="checkbox" id="@string.Format("chkLifestyle_{0}",Model.AvailableLifestyles[i].ID)"
+                                        @(Model.SelectedLifestyle.Contains(Model.AvailableLifestyles[i].ID)?"checked":"")
+                                        onclick="@string.Format("LifestyleChanged(this,{0})",Model.AvailableLifestyles[i].ID)" /> 
+                                    @Html.Raw(Model.AvailableLifestyles[i].Name)
                                 </label>
                             </div>
                         }
-                    </div>
-                }
-            }
-
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <hr />
-        </td>
-    </tr>
-    <tr>
-        <td colspan="2">
-            <div class="form-group row">
-                <div class="col-sm-offset-2 col-sm-6">
-                    <button type="submit" class="btn btn-primary" id="btnUpdate">Save</button>
-                    <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
                 </div>
-            </div>  
-        </td>
-    </tr>
-</table>
 
+                @if (Model.AvailableLifestyles.Count > checkBoxPerRow)
+                {
+                    var lifestyles = Model.AvailableLifestyles.Skip(checkBoxPerRow).ToList();
+                    var rowCount = lifestyles.Count <= checkBoxPerRow ? 1 :
+                        (lifestyles.Count % checkBoxPerRow == 0 ? (lifestyles.Count / checkBoxPerRow) :
+                        (lifestyles.Count / checkBoxPerRow + 1));
+                    var lifestyleIndex = 0;
+
+                    for (int i = 0; i < rowCount; i++)
+                    {
+                        <div class="form-group row">
+                            <div class="col-sm-2">&nbsp;</div>
+                            @for (int j = 0; lifestyleIndex < lifestyles.Count && j < checkBoxPerRow; j++, lifestyleIndex++)
+                            {
+                                <div class="col-sm-2 checkbox" style="margin-top: -5px;">
+                                    <label>
+                                        <input type="checkbox" id="@string.Format("chkLifestyle_{0}",lifestyles[lifestyleIndex].ID)" 
+                                            @(Model.SelectedLifestyle.Contains(lifestyles[lifestyleIndex].ID)?"checked":"")
+                                            onclick="@string.Format("LifestyleChanged(this,{0})",lifestyles[lifestyleIndex].ID)" />  
+                                        @Html.Raw(lifestyles[lifestyleIndex].Name)
+                                    </label>
+                                </div>
+                            }
+                        </div>
+                    }
+                }
+
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <hr />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <div class="form-group row">
+                    <div class="col-sm-offset-2 col-sm-6">
+                        <button type="submit" class="btn btn-primary" id="btnUpdate">Save</button>
+                        <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
+                    </div>
+                </div>  
+            </td>
+        </tr>
+    </table>
+}
 @section scripts
 {
     <script type="text/javascript">
+
+        $(document).ready(function () {
+            ColourChange();
+            //$('select[id^="ColourDescID"] option[value="@Model.ColourDescID"]').attr("selected", "selected");
+
+        });
 
         function TrendChanged(chk,id) {
 
@@ -262,6 +289,31 @@
             else {
                 $('#SelectedLifestyleIDText').val(selectedLifestyle.replace(',' + id, ''));
             }
+        }
+
+        function ColourChange(){
+
+            var colourID = $('#ColourID').val();
+            var url = '@(Url.Content("~/Model/GetColourDescByColour"))';
+            $.post(url, { colourID: parseInt(colourID) }, function (data) {
+                
+                var select = $("#ColourDescID");
+                select.empty();
+
+                $.each(data, function (index, itemData) {
+
+                    var isSelected = false;
+                    if (colourID == itemData.Value) {
+                        isSelected = true;
+                    }
+
+                    select.append($('<option/>', {
+                        value: itemData.Value,
+                        text: itemData.Text,
+                        selected: isSelected
+                    }));
+                });
+            });
         }
 
     </script>

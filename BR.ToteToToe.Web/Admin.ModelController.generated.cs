@@ -62,6 +62,12 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadImage);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult GetColourDescByColour()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetColourDescByColour);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ModelController Actions { get { return MVC.Admin.Model; } }
@@ -82,6 +88,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             public readonly string Edit = "Edit";
             public readonly string Size = "Size";
             public readonly string UploadImage = "UploadImage";
+            public readonly string GetColourDescByColour = "GetColourDescByColour";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -91,6 +98,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             public const string Edit = "Edit";
             public const string Size = "Size";
             public const string UploadImage = "UploadImage";
+            public const string GetColourDescByColour = "GetColourDescByColour";
         }
 
 
@@ -101,6 +109,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         public class ActionParamsClass_Edit
         {
             public readonly string id = "id";
+            public readonly string viewModel = "viewModel";
         }
         static readonly ActionParamsClass_Size s_params_Size = new ActionParamsClass_Size();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -110,6 +119,8 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             public readonly string modelID = "modelID";
             public readonly string colourDescID = "colourDescID";
+            public readonly string viewModel = "viewModel";
+            public readonly string collection = "collection";
         }
         static readonly ActionParamsClass_UploadImage s_params_UploadImage = new ActionParamsClass_UploadImage();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -120,6 +131,14 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             public readonly string modelID = "modelID";
             public readonly string colourDescID = "colourDescID";
             public readonly string categoryID = "categoryID";
+        }
+        static readonly ActionParamsClass_GetColourDescByColour s_params_GetColourDescByColour = new ActionParamsClass_GetColourDescByColour();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetColourDescByColour GetColourDescByColourParams { get { return s_params_GetColourDescByColour; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetColourDescByColour
+        {
+            public readonly string colourID = "colourID";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -167,6 +186,16 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
+        partial void EditOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.Areas.Admin.ViewModels.MaintainModelViewModel viewModel);
+
+        public override System.Web.Mvc.ActionResult Edit(BR.ToteToToe.Web.Areas.Admin.ViewModels.MaintainModelViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Edit);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            EditOverride(callInfo, viewModel);
+            return callInfo;
+        }
+
         partial void SizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int modelID, int colourDescID);
 
         public override System.Web.Mvc.ActionResult Size(int modelID, int colourDescID)
@@ -175,6 +204,17 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "modelID", modelID);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourDescID", colourDescID);
             SizeOverride(callInfo, modelID, colourDescID);
+            return callInfo;
+        }
+
+        partial void SizeOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.Areas.Admin.ViewModels.ModelSizeViewModel viewModel, System.Web.Mvc.FormCollection collection);
+
+        public override System.Web.Mvc.ActionResult Size(BR.ToteToToe.Web.Areas.Admin.ViewModels.ModelSizeViewModel viewModel, System.Web.Mvc.FormCollection collection)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Size);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "collection", collection);
+            SizeOverride(callInfo, viewModel, collection);
             return callInfo;
         }
 
@@ -187,6 +227,16 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourDescID", colourDescID);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "categoryID", categoryID);
             UploadImageOverride(callInfo, modelID, colourDescID, categoryID);
+            return callInfo;
+        }
+
+        partial void GetColourDescByColourOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int colourID);
+
+        public override System.Web.Mvc.ActionResult GetColourDescByColour(int colourID)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetColourDescByColour);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourID", colourID);
+            GetColourDescByColourOverride(callInfo, colourID);
             return callInfo;
         }
 

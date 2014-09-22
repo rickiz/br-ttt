@@ -5,38 +5,41 @@
     ViewBag.Title = "Model Size";
 }
 
-<table width="100%">
-    <tr>
-        <td>
-            @Html.HiddenFor(model => model.ModelID)
-            @Html.HiddenFor(model => model.ColourDescID)
+@using(Html.BeginForm())
+{
+    <table width="100%">
+        <tr>
+            <td>
+                @Html.HiddenFor(model => model.ModelColourDescID)
+                @Html.HiddenFor(model => model.ModelID)
+                @Html.HiddenFor(model => model.ColourDescID)
 
-            @foreach (var size in Model.AvailableSize)
-            {
-                var modelSize = Model.ModelSizes.Where(a => a.Size == size).FirstOrDefault();
-                var qty = modelSize == null ? 0 : modelSize.Quantity;
+                @foreach (var size in Model.AvailableSize)
+                {
+                    var modelSize = Model.ModelSizes.Where(a => a.Size == size).FirstOrDefault();
+                    var qty = modelSize == null ? 0 : modelSize.Quantity;
                 
-                <div class="form-group row">
-                    @Html.Label(size.ToString(), new { @class = "col-sm-1 control-label text-info" })
-                    <div class="col-sm-1">
-                        @Html.TextBox(string.Format("txt_{0}", size), qty.ToString(), new { @class = "form-control" })
+                    <div class="form-group row">
+                        @Html.Label(size.ToString(), new { @class = "col-sm-1 control-label text-info" })
+                        <div class="col-sm-1">
+                            @Html.TextBox(string.Format("txt_{0}", size), qty.ToString(), new { @class = "form-control" })
+                        </div>
                     </div>
-                </div>
-            }
-            @*<div class="form-group row">
-                @Html.Label(model => model.CategoryID, new { @class = "col-sm-4 control-label text-info" })
-                <div class="col-sm-6">
-                    @Html.DropDownListFor(model=>model.CategoryID, Util.GetList(RefType.Category), new { @class = "form-control" })
-                </div>
-            </div>*@
-        </td>
-    </tr>
-    <tr>
-        <td>
-            <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
-            <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
-            <br />
-        </td>
-    </tr>
-</table>
-
+                }
+                @*<div class="form-group row">
+                    @Html.Label(model => model.CategoryID, new { @class = "col-sm-4 control-label text-info" })
+                    <div class="col-sm-6">
+                        @Html.DropDownListFor(model=>model.CategoryID, Util.GetList(RefType.Category), new { @class = "form-control" })
+                    </div>
+                </div>*@
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" class="btn btn-primary" id="btnSave">Save</button>
+                <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
+                <br />
+            </td>
+        </tr>
+    </table>
+}
