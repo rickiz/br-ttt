@@ -216,6 +216,9 @@
     <Compile Include="Admin.SharedController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.TrendController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.TrendPriorityController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -415,8 +418,10 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderStatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TrendController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrendPriorityController.cs" />
     <Compile Include="Areas\Admin\Controllers\VoucherController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\BaseRef.cs" />
     <Compile Include="Areas\Admin\ViewModels\Model.cs" />
     <Compile Include="Areas\Admin\ViewModels\OrderStatus.cs" />
     <Compile Include="Areas\Admin\ViewModels\TrendPriority.cs" />
@@ -1186,6 +1191,9 @@
     <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Model\Size.cshtml" />
     <Content Include="Areas\Admin\Views\Model\UploadImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\BaseRefIndex.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\BaseRefCreate.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\BaseRefEdit.cshtml" />
     <None Include="Properties\PublishProfiles\Rick Local.pubxml" />
     <None Include="Properties\PublishProfiles\TTT Deploy.pubxml" />
     <Content Include="Images\about\lines.png" />

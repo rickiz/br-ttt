@@ -568,6 +568,38 @@ namespace BR.ToteToToe.Web.Helpers
             return resultList;
         }
 
+        public static List<SelectListItem> GetActiveList(string defaultValue = "", string defaultText = "default", 
+            bool includeDefault = true)
+        {
+            var resultList = new List<SelectListItem>();
+
+            if (includeDefault)
+            {
+                if (defaultText == "default")
+                    defaultText = "All";
+
+                resultList.Insert(0, new SelectListItem()
+                {
+                    Text = defaultText,
+                    Value = defaultValue,
+                    Selected = true
+                });
+            }            
+
+            resultList.Add(new SelectListItem()
+            {
+                Text = "Active",
+                Value = "True"
+            });
+            resultList.Add(new SelectListItem()
+            {
+                Text = "Inactive",
+                Value = "False"
+            });
+
+            return resultList;
+        }
+
         public static List<SelectListItem> GetAddressTypeList()
         {
             var resultList = new List<SelectListItem>();

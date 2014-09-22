@@ -42,5 +42,10 @@ namespace BR.ToteToToe.Web.Helpers
 
             return new MvcHtmlString(builder.ToString());
         }
+
+        public static string CheckBoxClientTemplate(this HtmlHelper htmlHelper, string fieldName)
+        {
+            return string.Format("<input type='checkbox' name='{0}' <#= {0}?\"checked\":\"\" #> disabled='disabled' />", fieldName);
+        }
     }
 }

@@ -28,5 +28,11 @@ namespace BR.ToteToToe.Web.Helpers
             Util.CheckSessionAccess(requestContext);
             base.Initialize(requestContext);
         }
+
+        protected void ValidateIsAdmin()
+        {
+            if (!Util.SessionAccess.IsAdmin)
+                throw new AccessViolationException();
+        }
     }
 }
