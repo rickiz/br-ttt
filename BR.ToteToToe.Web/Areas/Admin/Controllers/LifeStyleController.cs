@@ -11,7 +11,8 @@ using BR.ToteToToe.Web.Helpers;
 
 namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 {
-    public partial class TrendController : TTTBaseController
+    [Authorize]
+    public partial class LifeStyleController : TTTBaseController
     {
         #region Private Methods
 
@@ -21,12 +22,12 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
             using (var context = new TTTEntities())
             {
-                var query = context.reftrends.AsQueryable();
+                var query = context.reflifestyles.AsQueryable();
 
                 if (criteria.ID.HasValue && criteria.ID > 0)
                     query = query.Where(a => a.ID == criteria.ID.Value);
 
-                if(!string.IsNullOrEmpty(criteria.Name))
+                if (!string.IsNullOrEmpty(criteria.Name))
                     query = query.Where(a => a.Name.ToLower().Trim() == criteria.Name.ToLower().Trim());
 
                 if (criteria.Active.HasValue)
@@ -48,13 +49,13 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region Index 
+        #region Index
 
         public virtual ActionResult Index()
         {
             ValidateIsAdmin();
 
-            var viewModel = new BaseRefViewModel { ControllerName = "Trend" };
+            var viewModel = new BaseRefViewModel { ControllerName = "LifeStyle" };
 
             return View(MVC.Admin.Shared.Views.BaseRefIndex, viewModel);
         }
@@ -71,13 +72,13 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region Create 
+        #region Create
 
         public virtual ActionResult Create()
         {
             ValidateIsAdmin();
 
-            var viewModel = new BaseRefCreateUpdateViewModel { ControllerName = "Trend", Active = true };
+            var viewModel = new BaseRefCreateUpdateViewModel { ControllerName = "LifeStyle", Active = true };
 
             return View(MVC.Admin.Shared.Views.BaseRefCreate, viewModel);
         }
@@ -89,18 +90,18 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
             using (var context = new TTTEntities())
             {
-                var newRecord = new reftrend
+                var newRecord = new reflifestyle
                 {
                     Active = viewModel.Active,
                     Name = viewModel.Name,
                     CreateDT = DateTime.Now
                 };
 
-                context.reftrends.Add(newRecord);
+                context.reflifestyles.Add(newRecord);
                 context.SaveChanges();
             }
 
-            return RedirectToAction(MVC.Admin.Trend.Index());
+            return RedirectToAction(MVC.Admin.LifeStyle.Index());
         }
 
         #endregion
@@ -113,11 +114,11 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
             using (var context = new TTTEntities())
             {
-                var record = context.reftrends.Single(a => a.ID == id);
+                var record = context.reflifestyles.Single(a => a.ID == id);
 
                 var viewModel = new BaseRefCreateUpdateViewModel
                 {
-                    ControllerName = "Trend",
+                    ControllerName = "LifeStyle",
                     Active = record.Active,
                     ID = record.ID,
                     Name = record.Name
@@ -135,7 +136,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
             using (var context = new TTTEntities())
             {
-                var record = context.reftrends.Single(a => a.ID == viewModel.ID);
+                var record = context.reflifestyles.Single(a => a.ID == viewModel.ID);
 
                 record.Name = viewModel.Name;
                 record.Active = viewModel.Active;
@@ -143,7 +144,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                 context.SaveChanges();
             }
 
-            return RedirectToAction(MVC.Admin.Trend.Index());
+            return RedirectToAction(MVC.Admin.LifeStyle.Index());
         }
 
         #endregion

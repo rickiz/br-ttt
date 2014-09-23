@@ -11,22 +11,26 @@ using BR.ToteToToe.Web.Helpers;
 
 namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 {
-    public partial class TrendController : TTTBaseController
+    [Authorize]
+    public partial class ColourDescController : TTTBaseController
     {
         #region Private Methods
 
-        private List<BaseRefModel> Search(BaseRefSearchCriteria criteria)
+        private List<ColourDescModel> Search(ColourDescSearchCriteria criteria)
         {
-            var results = new List<BaseRefModel>();
+            var results = new List<ColourDescModel>();
 
             using (var context = new TTTEntities())
             {
-                var query = context.reftrends.AsQueryable();
+                var query = context.refcolourdescs.AsQueryable();
 
                 if (criteria.ID.HasValue && criteria.ID > 0)
                     query = query.Where(a => a.ID == criteria.ID.Value);
 
-                if(!string.IsNullOrEmpty(criteria.Name))
+                if (criteria.ColourID.HasValue && criteria.ColourID > 0)
+                    query = query.Where(a => a.ColourID == criteria.ColourID.Value);
+
+                if (!string.IsNullOrEmpty(criteria.Name))
                     query = query.Where(a => a.Name.ToLower().Trim() == criteria.Name.ToLower().Trim());
 
                 if (criteria.Active.HasValue)
@@ -35,11 +39,12 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                 query = query.OrderBy(a => a.Name);
 
                 results =
-                    query.Select(a => new BaseRefModel
+                    query.Select(a => new ColourDescModel
                     {
                         ID = a.ID,
                         Name = a.Name,
-                        Active = a.Active
+                        Active = a.Active,
+                        Colour = a.refcolour.Name
                     }).ToList();
             }
 
@@ -48,59 +53,60 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
         #endregion
 
-        #region Index 
+        #region Index
 
         public virtual ActionResult Index()
         {
             ValidateIsAdmin();
 
-            var viewModel = new BaseRefViewModel { ControllerName = "Trend" };
+            var viewModel = new ColourDescViewModel();
 
-            return View(MVC.Admin.Shared.Views.BaseRefIndex, viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public virtual ActionResult Index(BaseRefViewModel viewModel)
+        public virtual ActionResult Index(ColourDescViewModel viewModel)
         {
             ValidateIsAdmin();
 
             viewModel.SearchResults = Search(viewModel.Criteria);
 
-            return View(MVC.Admin.Shared.Views.BaseRefIndex, viewModel);
+            return View(viewModel);
         }
 
         #endregion
 
-        #region Create 
+        #region Create
 
         public virtual ActionResult Create()
         {
             ValidateIsAdmin();
 
-            var viewModel = new BaseRefCreateUpdateViewModel { ControllerName = "Trend", Active = true };
+            var viewModel = new ColourDescModel { Active = true };
 
-            return View(MVC.Admin.Shared.Views.BaseRefCreate, viewModel);
+            return View(viewModel);
         }
 
         [HttpPost]
-        public virtual ActionResult Create(BaseRefCreateUpdateViewModel viewModel)
+        public virtual ActionResult Create(ColourDescModel viewModel)
         {
             ValidateIsAdmin();
 
             using (var context = new TTTEntities())
             {
-                var newRecord = new reftrend
+                var newRecord = new refcolourdesc
                 {
                     Active = viewModel.Active,
                     Name = viewModel.Name,
-                    CreateDT = DateTime.Now
+                    CreateDT = DateTime.Now,
+                    ColourID = viewModel.ColourID
                 };
 
-                context.reftrends.Add(newRecord);
+                context.refcolourdescs.Add(newRecord);
                 context.SaveChanges();
             }
 
-            return RedirectToAction(MVC.Admin.Trend.Index());
+            return RedirectToAction(MVC.Admin.ColourDesc.Index());
         }
 
         #endregion
@@ -113,37 +119,38 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
             using (var context = new TTTEntities())
             {
-                var record = context.reftrends.Single(a => a.ID == id);
+                var record = context.refcolourdescs.Single(a => a.ID == id);
 
-                var viewModel = new BaseRefCreateUpdateViewModel
+                var viewModel = new ColourDescModel
                 {
-                    ControllerName = "Trend",
                     Active = record.Active,
                     ID = record.ID,
-                    Name = record.Name
+                    Name = record.Name,
+                    ColourID = record.ColourID
                 };
 
-                return View(MVC.Admin.Shared.Views.BaseRefEdit, viewModel);
+                return View(viewModel);
             }
 
         }
 
         [HttpPost]
-        public virtual ActionResult Edit(BaseRefCreateUpdateViewModel viewModel)
+        public virtual ActionResult Edit(ColourDescModel viewModel)
         {
             ValidateIsAdmin();
 
             using (var context = new TTTEntities())
             {
-                var record = context.reftrends.Single(a => a.ID == viewModel.ID);
+                var record = context.refcolourdescs.Single(a => a.ID == viewModel.ID);
 
                 record.Name = viewModel.Name;
                 record.Active = viewModel.Active;
+                record.ColourID = viewModel.ColourID;
 
                 context.SaveChanges();
             }
 
-            return RedirectToAction(MVC.Admin.Trend.Index());
+            return RedirectToAction(MVC.Admin.ColourDesc.Index());
         }
 
         #endregion

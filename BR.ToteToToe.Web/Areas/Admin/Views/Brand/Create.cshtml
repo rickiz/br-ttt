@@ -1,0 +1,42 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+
+@model BrandModel
+
+@{
+    ViewBag.Title = "New Brand";
+}
+
+@using (Html.BeginForm(MVC.Admin.Brand.Create(), FormMethod.Post, 
+    new { @class = "form-horizontal", role = "form", id = "frmMain" }))
+{
+    @Html.ValidationSummary(false)
+    @Html.HiddenFor(m => m.ID)
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.CategoryID, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.DropDownListFor(model => model.CategoryID, 
+                Util.GetList(RefType.Category, defaultText: "-- Please select --", defaultValue: ""), 
+                new { @class = "form-control" })
+        </div>
+    </div>
+        
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
+        </div>               
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Active, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.DropDownListFor(model => model.Active, Util.GetActiveList(includeDefault: false), new { @class = "form-control" })
+        </div>
+
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </div>  
+}

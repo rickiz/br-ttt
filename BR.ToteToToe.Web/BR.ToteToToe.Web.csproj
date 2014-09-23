@@ -207,6 +207,24 @@
     <Compile Include="AccountController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.BrandController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.CategoryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.ColourController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.ColourDescController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.CountryController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.LifeStyleController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.ModelController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -214,6 +232,9 @@
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.SharedController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Admin.StatusController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
     <Compile Include="Admin.TrendController.generated.cs">
@@ -416,12 +437,22 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\BrandController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColourController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColourDescController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CountryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\LifeStyleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModelController.cs" />
     <Compile Include="Areas\Admin\Controllers\OrderStatusController.cs" />
+    <Compile Include="Areas\Admin\Controllers\StatusController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrendController.cs" />
     <Compile Include="Areas\Admin\Controllers\TrendPriorityController.cs" />
     <Compile Include="Areas\Admin\Controllers\VoucherController.cs" />
     <Compile Include="Areas\Admin\ViewModels\BaseRef.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Brand.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Category.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ColourDesc.cs" />
     <Compile Include="Areas\Admin\ViewModels\Model.cs" />
     <Compile Include="Areas\Admin\ViewModels\OrderStatus.cs" />
     <Compile Include="Areas\Admin\ViewModels\TrendPriority.cs" />
@@ -1194,6 +1225,15 @@
     <Content Include="Areas\Admin\Views\Shared\BaseRefIndex.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\BaseRefCreate.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\BaseRefEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\ColourDesc\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ColourDesc\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ColourDesc\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Brand\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\Rick Local.pubxml" />
     <None Include="Properties\PublishProfiles\TTT Deploy.pubxml" />
     <Content Include="Images\about\lines.png" />

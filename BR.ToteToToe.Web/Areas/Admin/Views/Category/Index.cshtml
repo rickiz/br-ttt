@@ -1,0 +1,111 @@
+﻿@using BR.ToteToToe.Web.Helpers
+@using BR.ToteToToe.Web.Areas.Admin.ViewModels
+@using BR.ToteToToe.Web.Extensions
+
+@model CategoryViewModel
+
+@{
+    ViewBag.Title = "Category";
+}
+
+<a class="t-button" href="@Url.Action(MVC.Admin.Category.Create())">
+    <span class="t-icon t-add"></span>
+    Add New @ViewBag.Title
+</a>
+<br /><br />
+
+@using (Html.BeginForm(MVC.Admin.Category.Index(), FormMethod.Post, 
+    new { @class = "form-horizontal", role = "form", id = "frmMain" }))
+{
+    @Html.ValidationSummary(false)
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.ID, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.TextBoxFor(model => model.Criteria.ID, new { @class = "form-control" })
+        </div>               
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.Type, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.DropDownListFor(model => model.Criteria.Type, Util.GetList(RefType.CategoryType, defaultText: "", defaultValue: ""), 
+                new { @class = "form-control" })
+        </div>
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.Name, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.TextBoxFor(model => model.Criteria.Name, new { @class = "form-control" })
+        </div>               
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.Image, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.TextBoxFor(model => model.Criteria.Image, new { @class = "form-control" })
+        </div>               
+    </div>
+    
+    <div class="form-group row">
+        @Html.LabelFor(model => model.Criteria.Active, new { @class = "col-sm-2 control-label text-info" })
+        <div class="col-sm-3">
+            @Html.DropDownListFor(model => model.Criteria.Active, Util.GetActiveList(), new { @class = "form-control" })
+        </div>
+
+        <div class="col-sm-1">
+            <button type="submit" class="btn btn-primary">Search</button>
+        </div>
+    </div>  
+}
+
+<br />
+
+@if (Model.SearchResults.IsEmpty()) // Empty Grid
+{
+    Html.Telerik().Grid(Model.SearchResults)
+        .Name("grdResult")
+        .Columns(cols =>
+        {
+            cols.Bound(m => m.ID);
+            cols.Bound(m => m.Type);
+            cols.Bound(m => m.Name);
+            cols.Bound(m => m.Image);
+            cols.Bound(m => m.Active);
+        })
+        .Footer(false)
+        .Render();
+}
+else
+{
+    Html.Telerik().Grid(Model.SearchResults)
+        .Name("grdResult")
+        .Columns(cols =>
+        {
+            cols.Bound(m => m.ID);
+            cols.Bound(m => m.Type);
+            cols.Bound(m => m.Name);
+            cols.Bound(m => m.Image);
+            cols.Bound(m => m.Active).ClientTemplate(Html.CheckBoxClientTemplate("Active"));
+        })
+        .DataBinding(dataBinding => dataBinding.Ajax().OperationMode(GridOperationMode.Client))
+        .Pageable(paging => paging.PageSize(10))
+        .Sortable()
+        .Selectable()
+        .ClientEvents(events => events.OnRowSelect("onRowSelected_grdResult"))
+        .Render(); 
+}
+
+@section scripts
+{
+    <script type="text/javascript">
+        function onRowSelected_grdResult(e) {
+            var id = e.row.cells[0].innerHTML;
+            var url = '@Url.Action("Edit", "Category", new { area = "Admin" })';
+            url = url + '/' + id;
+
+            window.location.href = url;
+        }
+    </script>
+}

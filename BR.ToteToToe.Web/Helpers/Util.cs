@@ -24,6 +24,7 @@ namespace BR.ToteToToe.Web.Helpers
     {
         Brand,
         Category,
+        CategoryType,
         Collection,
         Colour,
         ColourDesc,
@@ -148,6 +149,18 @@ namespace BR.ToteToToe.Web.Helpers
                                 Value = a.ID.ToString()
                             }).ToList();
                     }
+                    break;
+
+                case RefType.CategoryType:
+
+                    resultList.Add(new SelectListItem()
+                    {
+                        Text = "Shoes",
+                        Value = "Shoes"
+                    });
+
+                    break;
+
                     break;
 
                 case RefType.Collection:
