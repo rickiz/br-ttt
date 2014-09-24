@@ -36,8 +36,14 @@ namespace T4MVC.Admin
             public class _ViewNamesClass
             {
                 public readonly string _Layout = "_Layout";
+                public readonly string BaseRefCreate = "BaseRefCreate";
+                public readonly string BaseRefEdit = "BaseRefEdit";
+                public readonly string BaseRefIndex = "BaseRefIndex";
             }
             public readonly string _Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+            public readonly string BaseRefCreate = "~/Areas/Admin/Views/Shared/BaseRefCreate.cshtml";
+            public readonly string BaseRefEdit = "~/Areas/Admin/Views/Shared/BaseRefEdit.cshtml";
+            public readonly string BaseRefIndex = "~/Areas/Admin/Views/Shared/BaseRefIndex.cshtml";
         }
     }
 

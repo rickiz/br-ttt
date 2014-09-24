@@ -24,6 +24,7 @@ namespace BR.ToteToToe.Web.Helpers
     {
         Brand,
         Category,
+        CategoryType,
         Collection,
         Colour,
         ColourDesc,
@@ -148,6 +149,18 @@ namespace BR.ToteToToe.Web.Helpers
                                 Value = a.ID.ToString()
                             }).ToList();
                     }
+                    break;
+
+                case RefType.CategoryType:
+
+                    resultList.Add(new SelectListItem()
+                    {
+                        Text = "Shoes",
+                        Value = "Shoes"
+                    });
+
+                    break;
+
                     break;
 
                 case RefType.Collection:
@@ -564,6 +577,38 @@ namespace BR.ToteToToe.Web.Helpers
                     Selected = (type == RefType.ModelSize && modelSizeID > 0) ? false : true
                 });
             }
+
+            return resultList;
+        }
+
+        public static List<SelectListItem> GetActiveList(string defaultValue = "", string defaultText = "default", 
+            bool includeDefault = true)
+        {
+            var resultList = new List<SelectListItem>();
+
+            if (includeDefault)
+            {
+                if (defaultText == "default")
+                    defaultText = "All";
+
+                resultList.Insert(0, new SelectListItem()
+                {
+                    Text = defaultText,
+                    Value = defaultValue,
+                    Selected = true
+                });
+            }            
+
+            resultList.Add(new SelectListItem()
+            {
+                Text = "Active",
+                Value = "True"
+            });
+            resultList.Add(new SelectListItem()
+            {
+                Text = "Inactive",
+                Value = "False"
+            });
 
             return resultList;
         }
