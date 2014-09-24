@@ -219,6 +219,9 @@
     <Compile Include="Admin.ColourDescController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
+    <Compile Include="Admin.ColourPriorityController.generated.cs">
+      <DependentUpon>T4MVC.tt</DependentUpon>
+    </Compile>
     <Compile Include="Admin.CountryController.generated.cs">
       <DependentUpon>T4MVC.tt</DependentUpon>
     </Compile>
@@ -441,6 +444,7 @@
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColourController.cs" />
     <Compile Include="Areas\Admin\Controllers\ColourDescController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ColourPriorityController.cs" />
     <Compile Include="Areas\Admin\Controllers\CountryController.cs" />
     <Compile Include="Areas\Admin\Controllers\LifeStyleController.cs" />
     <Compile Include="Areas\Admin\Controllers\ModelController.cs" />

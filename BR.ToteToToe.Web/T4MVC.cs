@@ -54,6 +54,7 @@ namespace T4MVC
         public BR.ToteToToe.Web.Areas.Admin.Controllers.CategoryController Category = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_CategoryController();
         public BR.ToteToToe.Web.Areas.Admin.Controllers.ColourController Colour = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_ColourController();
         public BR.ToteToToe.Web.Areas.Admin.Controllers.ColourDescController ColourDesc = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_ColourDescController();
+        public BR.ToteToToe.Web.Areas.Admin.Controllers.ColourPriorityController ColourPriority = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_ColourPriorityController();
         public BR.ToteToToe.Web.Areas.Admin.Controllers.CountryController Country = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_CountryController();
         public BR.ToteToToe.Web.Areas.Admin.Controllers.LifeStyleController LifeStyle = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_LifeStyleController();
         public BR.ToteToToe.Web.Areas.Admin.Controllers.ModelController Model = new BR.ToteToToe.Web.Areas.Admin.Controllers.T4MVC_ModelController();

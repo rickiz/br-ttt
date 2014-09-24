@@ -10,6 +10,13 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
 {
     public class ModelViewModel
     {
+        public int CategoryID { get; set; }
+        public string BrandName { get; set; }
+        public int ModelID { get; set; }
+        public int ColourID { get; set; }
+        public int? ColourDescID { get; set; }
+        public bool? Active { get; set; }
+
         public ModelViewModel()
         {
             ModelDetails = new List<ModelDetails>();
@@ -26,6 +33,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
         public int ModelID { get; set; }
         public int ColourDescID { get; set; }
         public int ModelColourDescID { get; set; }
+        public string ColourDescName { get; set; }
         public string ColourName { get; set; }
         public bool Active { get; set; }
     }

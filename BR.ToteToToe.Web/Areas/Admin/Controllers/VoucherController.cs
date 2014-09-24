@@ -8,6 +8,7 @@ using BR.ToteToToe.Web.DataModels;
 
 namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public partial class VoucherController : Controller
     {
         //

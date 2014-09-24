@@ -1,14 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Transactions;
 using System.Web;
 using System.Web.Mvc;
 using BR.ToteToToe.Web.Areas.Admin.ViewModels;
 using BR.ToteToToe.Web.DataModels;
+using BR.ToteToToe.Web.Properties;
 
 namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 {
+    [Authorize]
     public partial class ModelController : Controller
     {
         //
@@ -16,39 +19,82 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
         public virtual ActionResult Index()
         {
-            var viewModel = new ModelViewModel();
+            return View(new ModelViewModel());
+        }
 
+        [HttpPost]
+        public virtual ActionResult Index(ModelViewModel viewModel)
+        {
             using (var context = new TTTEntities())
             {
-                var models = context.refmodels
-                    .Join(context.refbrands, a => a.BrandID, b => b.ID, (a, b) => new { Model = a, Brand = b })
-                    .Join(context.refcategories, a => a.Brand.CategoryID, b => b.ID, (a, b) => new { ModelBrand = a, Category = b })
-                    .Join(context.lnkmodelcolourdescs, a => a.ModelBrand.Model.ID, b => b.ModelID, (a, b) => new { ModelBrandCategory = a, ModelColourDesc = b })
-                    .Join(context.refcolourdescs, a => a.ModelColourDesc.ColourDescID, b => b.ID, (a, b) => new { ModelBrandCategoryColourDesc = a, ColourDesc = b})
+                var query = context.refmodels
+                    .Join(context.refbrands, a => a.BrandID, b => b.ID, (a, b) => 
+                        new { Model = a, Brand = b })
+                    .Join(context.refcategories, a => a.Brand.CategoryID, b => b.ID, (a, b) => 
+                        new { a.Model, a.Brand, Category = b })
+                    .Join(context.lnkmodelcolourdescs, a => a.Model.ID, b => b.ModelID, (a, b) => 
+                        new { a.Model, a.Brand, a.Category, ModelColourDesc = b })
+                    .Join(context.refcolourdescs, a => a.ModelColourDesc.ColourDescID, b => b.ID, (a, b) => 
+                        new { a.Model,a.Brand,a.Category,a.ModelColourDesc, ColourDesc = b })
+                    .Join(context.refcolours, a => a.ColourDesc.ColourID, b => b.ID, (a, b) =>
+                        new { a.Model, a.Brand, a.Category, a.ModelColourDesc, a.ColourDesc, Colour = b })
                     .Take(50)
-                    .OrderByDescending(a => a.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model.UpdateDT)
-                    .ThenByDescending(a => a.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model.CreateDT)
+                    .OrderByDescending(a => a.Model.UpdateDT)
+                    .ThenByDescending(a => a.Model.CreateDT)
                     .Select(a => new
                     {
-                        Model = a.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Model,
-                        Brand = a.ModelBrandCategoryColourDesc.ModelBrandCategory.ModelBrand.Brand,
-                        Category = a.ModelBrandCategoryColourDesc.ModelBrandCategory.Category,
-                        ColourDesc = a.ColourDesc,
-                        ModelColourDesc = a.ModelBrandCategoryColourDesc.ModelColourDesc
-                    }).ToList();
+                        ModelColourDescID = a.ModelColourDesc.ID,
+                        ColourDescID = a.ColourDesc.ID,
+                        ColourDescName = a.ColourDesc.Name,
+                        ModelName = a.Model.Name,
+                        ModelID = a.Model.ID,
+                        BrandName = a.Brand.Name,
+                        CategoryName = a.Category.Name,
+                        CategoryID = a.Category.ID,
+                        ColourName = a.Colour.Name,
+                        ColourID = a.Colour.ID,
+                        Active = a.Model.Active
+
+                        //Model = a.Model,
+                        //Brand = a.Brand,
+                        //Category = a.Category,
+                        //ColourDesc = a.ColourDesc,
+                        //ModelColourDesc = a.ModelColourDesc
+                    });
+
+                if (viewModel.CategoryID != 0)
+                    query = query = query.Where(a => a.CategoryID == viewModel.CategoryID);
+
+                if (viewModel.BrandName!="0" && !string.IsNullOrEmpty(viewModel.BrandName))
+                    query = query = query.Where(a => a.BrandName == viewModel.BrandName);
+
+                if (viewModel.ColourID != 0)
+                    query = query.Where(a => a.ColourID == viewModel.ColourID);
+
+                if (viewModel.ColourDescID.HasValue)
+                    query = query.Where(a => a.ColourDescID == viewModel.ColourDescID.Value || viewModel.ColourDescID.Value == 0);
+
+                if (viewModel.ModelID != 0)
+                  query =  query.Where(a => a.ModelID == viewModel.ModelID);
+
+                if (viewModel.Active.HasValue)
+                  query =  query.Where(a => a.Active == viewModel.Active.Value);
+
+                var models = query.ToList();
 
                 foreach (var model in models)
                 {
                     viewModel.ModelDetails.Add(new ModelDetails()
                     {
-                        ModelColourDescID = model.ModelColourDesc.ID,
-                        ColourDescID = model.ColourDesc.ID,
-                        ModelName = model.Model.Name,
-                        ModelID = model.Model.ID,
-                        BrandName = model.Brand.Name,
-                        CategoryName = model.Category.Name,
-                        ColourName = model.ColourDesc.Name,
-                        Active = model.Model.Active
+                        ModelColourDescID = model.ModelColourDescID,
+                        ColourDescID = model.ColourDescID,
+                        ModelName = model.ModelName,
+                        ModelID = model.ModelID,
+                        BrandName = model.BrandName,
+                        CategoryName = model.CategoryName,
+                        ColourName = model.ColourName,
+                        ColourDescName = model.ColourDescName,
+                        Active = model.Active
                     });
                 }
             }
@@ -460,6 +506,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                                                                     (a, b) => new { modelColourDesc = b, modelImage = a })
                                                          .Where(a => a.modelColourDesc.ModelID == modelID && a.modelColourDesc.ColourDescID == colourDescID)
                                                          .Select(a => a.modelImage)
+                                                         .OrderBy(a=>a.ID)
                                                          .ToList();
 
                 var modelColourDesc = context.lnkmodelcolourdescs
@@ -470,11 +517,120 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
                 modelImageViewModel.ModelImages = context.lnkmodelimages.Where(a => a.ModelColourDescID == modelColourDesc.ID).ToList();
 
+                modelImageViewModel.ModelID = modelColourDesc.ModelID;
+                modelImageViewModel.ModelColourDescID = modelColourDesc.ID;
                 modelImageViewModel.MainImage = string.Format("~/Images/{0}/{1}", modelImageViewModel.CategoryName, modelColourDesc.MainImage);
                 modelImageViewModel.SubImage = string.Format("~/Images/{0}/{1}", modelImageViewModel.CategoryName, modelColourDesc.SubImage);
             }
 
             return View(modelImageViewModel);
+        }
+
+        [HttpPost]
+        public virtual ActionResult UploadImage(ModelImageViewModel viewModel, HttpPostedFileBase fileMain, HttpPostedFileBase fileSub,
+            HttpPostedFileBase fileThumbnail1, HttpPostedFileBase fileThumbnail2, HttpPostedFileBase fileThumbnail3, HttpPostedFileBase fileThumbnail4,
+            HttpPostedFileBase fileImage1, HttpPostedFileBase fileImage2, HttpPostedFileBase fileImage3, HttpPostedFileBase fileImage4)
+        {
+            try
+            {
+                using (var context = new TTTEntities())
+                {
+                    var modelColourDesc = context.lnkmodelcolourdescs.Where(a => a.ID == viewModel.ModelColourDescID).Single();
+                    var modelImages = context.lnkmodelimages.Where(a => a.ModelColourDescID == viewModel.ModelColourDescID).ToList();
+
+                    if (fileMain != null)
+                    {
+                        SaveImage(viewModel, fileMain);
+                        modelColourDesc.MainImage = Path.GetFileName(fileMain.FileName);
+                    }
+
+                    if (fileSub != null)
+                    {
+                        SaveImage(viewModel, fileSub);
+                        modelColourDesc.SubImage = Path.GetFileName(fileSub.FileName);
+                    }
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        var modelImage = new lnkmodelimage()
+                        {
+                            CreateDT = DateTime.Now,
+                            Active = true,
+                            ModelColourDescID = viewModel.ModelColourDescID,
+                        };
+
+                        //existing model images
+                        if (modelImages.Count() > i)
+                            modelImage = modelImages[i];
+
+                        switch (i)
+                        {
+                            case 0:
+                                UploadModelImage(viewModel, fileThumbnail1, fileImage1, modelImage);
+                                break;
+                            case 1:
+                                UploadModelImage(viewModel, fileThumbnail2, fileImage2, modelImage);
+                                break;
+                            case 2:
+                                UploadModelImage(viewModel, fileThumbnail3, fileImage3, modelImage);
+                                break;
+                            case 3:
+                                UploadModelImage(viewModel, fileThumbnail4, fileImage4, modelImage);
+                                break;
+                        }
+
+                        // new model images
+                        if (modelImage.ID == 0)
+                            context.lnkmodelimages.Add(modelImage);
+
+                    }
+                    context.SaveChanges();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            return RedirectToAction("Edit", new { id = viewModel.ModelColourDescID }); 
+        }
+
+        private void UploadModelImage(ModelImageViewModel viewModel, HttpPostedFileBase thumbnail, HttpPostedFileBase image, lnkmodelimage modelImage)
+        {
+            if (thumbnail != null)
+            {
+                SaveImage(viewModel, thumbnail);
+                modelImage.Thumbnail = Path.GetFileName(thumbnail.FileName);
+            }
+
+            if (image != null)
+            {
+                SaveImage(viewModel, image);
+                modelImage.Image = Path.GetFileName(image.FileName);
+            }
+        }
+
+        private void SaveImage(ModelImageViewModel viewModel, HttpPostedFileBase file)
+        {
+            if (file == null || file.ContentLength <= 0)
+                return;
+
+            var fileName = Path.GetFileName(file.FileName);
+            var extension = Path.GetExtension(fileName).ToLower();
+            var validImageExtensions = new List<string>() { ".jpg", ".png", ".gif", ".bmp" };
+
+            if (!validImageExtensions.Contains(extension))
+                throw new ApplicationException("Invalid Image extension.");
+
+            var savePath = string.Format("~/Images/{0}/", viewModel.CategoryName);
+
+            if (savePath.StartsWith("~"))
+                savePath = Server.MapPath(savePath);
+            else
+                savePath = savePath;
+
+            savePath = Path.Combine(savePath, fileName);
+
+            file.SaveAs(savePath);
         }
 
         public virtual ActionResult GetColourDescByColour(int colourID, int colourDescID)

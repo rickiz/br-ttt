@@ -9,16 +9,33 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
     {
         public TrendPriorityViewModel()
         {
-            Priorities = new List<PriorityDetails>();
+            Priorities = new List<TrendPriorityDetails>();
         }
 
-        public List<PriorityDetails> Priorities { get; set; }
+        public List<TrendPriorityDetails> Priorities { get; set; }
     }
 
-    public class PriorityDetails
+    public class TrendPriorityDetails
     {
         public int TrendID { get; set; }
         public string TrendName { get; set; }
+        public string Priority { get; set; }
+    }
+
+    public class ColourPriorityViewModel
+    {
+        public ColourPriorityViewModel()
+        {
+            Priorities = new List<ColourPriorityDetails>();
+        }
+
+        public List<ColourPriorityDetails> Priorities { get; set; }
+    }
+
+    public class ColourPriorityDetails
+    {
+        public int ColourID { get; set; }
+        public string ColourName { get; set; }
         public string Priority { get; set; }
     }
 

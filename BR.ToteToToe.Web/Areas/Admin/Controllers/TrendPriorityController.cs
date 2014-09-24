@@ -31,7 +31,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
 
                 foreach (var result in results)
                 {
-                    viewModel.Priorities.Add(new PriorityDetails()
+                    viewModel.Priorities.Add(new TrendPriorityDetails()
                     {
                         TrendID = result.TrendID,
                         TrendName = result.TrendName,

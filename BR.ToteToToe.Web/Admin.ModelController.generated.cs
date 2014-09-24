@@ -112,6 +112,14 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         }
 
 
+        static readonly ActionParamsClass_Index s_params_Index = new ActionParamsClass_Index();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Index IndexParams { get { return s_params_Index; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Index
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
@@ -149,6 +157,17 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             public readonly string modelID = "modelID";
             public readonly string colourDescID = "colourDescID";
             public readonly string categoryID = "categoryID";
+            public readonly string viewModel = "viewModel";
+            public readonly string fileMain = "fileMain";
+            public readonly string fileSub = "fileSub";
+            public readonly string fileThumbnail1 = "fileThumbnail1";
+            public readonly string fileThumbnail2 = "fileThumbnail2";
+            public readonly string fileThumbnail3 = "fileThumbnail3";
+            public readonly string fileThumbnail4 = "fileThumbnail4";
+            public readonly string fileImage1 = "fileImage1";
+            public readonly string fileImage2 = "fileImage2";
+            public readonly string fileImage3 = "fileImage3";
+            public readonly string fileImage4 = "fileImage4";
         }
         static readonly ActionParamsClass_GetColourDescByColour s_params_GetColourDescByColour = new ActionParamsClass_GetColourDescByColour();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -203,6 +222,16 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        partial void IndexOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.Areas.Admin.ViewModels.ModelViewModel viewModel);
+
+        public override System.Web.Mvc.ActionResult Index(BR.ToteToToe.Web.Areas.Admin.ViewModels.ModelViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            IndexOverride(callInfo, viewModel);
             return callInfo;
         }
 
@@ -276,6 +305,26 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourDescID", colourDescID);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "categoryID", categoryID);
             UploadImageOverride(callInfo, modelID, colourDescID, categoryID);
+            return callInfo;
+        }
+
+        partial void UploadImageOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.Areas.Admin.ViewModels.ModelImageViewModel viewModel, System.Web.HttpPostedFileBase fileMain, System.Web.HttpPostedFileBase fileSub, System.Web.HttpPostedFileBase fileThumbnail1, System.Web.HttpPostedFileBase fileThumbnail2, System.Web.HttpPostedFileBase fileThumbnail3, System.Web.HttpPostedFileBase fileThumbnail4, System.Web.HttpPostedFileBase fileImage1, System.Web.HttpPostedFileBase fileImage2, System.Web.HttpPostedFileBase fileImage3, System.Web.HttpPostedFileBase fileImage4);
+
+        public override System.Web.Mvc.ActionResult UploadImage(BR.ToteToToe.Web.Areas.Admin.ViewModels.ModelImageViewModel viewModel, System.Web.HttpPostedFileBase fileMain, System.Web.HttpPostedFileBase fileSub, System.Web.HttpPostedFileBase fileThumbnail1, System.Web.HttpPostedFileBase fileThumbnail2, System.Web.HttpPostedFileBase fileThumbnail3, System.Web.HttpPostedFileBase fileThumbnail4, System.Web.HttpPostedFileBase fileImage1, System.Web.HttpPostedFileBase fileImage2, System.Web.HttpPostedFileBase fileImage3, System.Web.HttpPostedFileBase fileImage4)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.UploadImage);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileMain", fileMain);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileSub", fileSub);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileThumbnail1", fileThumbnail1);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileThumbnail2", fileThumbnail2);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileThumbnail3", fileThumbnail3);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileThumbnail4", fileThumbnail4);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileImage1", fileImage1);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileImage2", fileImage2);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileImage3", fileImage3);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "fileImage4", fileImage4);
+            UploadImageOverride(callInfo, viewModel, fileMain, fileSub, fileThumbnail1, fileThumbnail2, fileThumbnail3, fileThumbnail4, fileImage1, fileImage2, fileImage3, fileImage4);
             return callInfo;
         }
 
