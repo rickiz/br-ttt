@@ -79,21 +79,21 @@
                                 </tr>
                                 <tr>
                                     <td width="32%">
-                                        <div class="dropdown">
+                                        <div class="dropdownbday">
                                             @(Html.DropDownListFor(model => model.BirthDateMonth, 
                                                 Util.GetList(RefType.Month, defaultText: "Month", defaultValue: ""), 
                                                 new { @class = "dropdownbday" }))
                                         </div>
                                     </td>
                                     <td width="32%" align="center">
-                                        <div class="dropdown">
+                                        <div class="dropdownbday">
                                             @(Html.DropDownListFor(model => model.BirthDateDay, 
                                                 Util.GetList(RefType.Day, defaultText: "Day", defaultValue: ""), 
                                                 new { @class = "dropdownbday" }))
                                         </div>
                                     </td>
                                     <td width="36%" align="right">
-                                        <div class="dropdown">
+                                        <div class="dropdownbday">
                                             @(Html.DropDownListFor(model => model.BirthDateYear, 
                                                 Util.GetList(RefType.Year, defaultText: "Year", defaultValue: ""), 
                                                 new { @class = "dropdownbday" }))
@@ -153,11 +153,9 @@
                                     @Html.DropDownListFor(model => model.PrimaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
                                 </div>
                                 <br />
-                                <br />
-                                <br />
 
                                 <span class="home-incomplete-msg" style="font-size:smaller; font-style: italic; display:none;">You have not completed your address yet.</span>
-                                <br />
+                                <br /><br />
 
                                 @Html.RadioButtonFor(m => m.BillingFlag, 1, new { @class = "home-flag" })
                                 Use as Billing Address
@@ -193,10 +191,8 @@
                                     @Html.DropDownListFor(model => model.SecondaryAddress.CountryID, Util.GetList(RefType.Country, includeDefault: false), new { @class = "dropdown" })
                                 </div>
                                 <br />
-                                <br />
-                                <br />
                                 <span class="work-incomplete-msg" style="font-size:smaller; font-style: italic; display:none;">You have not completed your address yet.</span>
-                                <br />
+                                <br /><br />
 
                                 @Html.RadioButtonFor(m => m.BillingFlag, 2, new { @class = "work-flag" })
                                 Use as Billing Address
