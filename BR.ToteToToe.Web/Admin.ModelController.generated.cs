@@ -68,6 +68,12 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetColourDescByColour);
         }
+        [NonAction]
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public virtual System.Web.Mvc.ActionResult GetBrandByCategory()
+        {
+            return new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetBrandByCategory);
+        }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ModelController Actions { get { return MVC.Admin.Model; } }
@@ -85,23 +91,35 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Create = "Create";
             public readonly string Edit = "Edit";
             public readonly string Size = "Size";
             public readonly string UploadImage = "UploadImage";
             public readonly string GetColourDescByColour = "GetColourDescByColour";
+            public readonly string GetBrandByCategory = "GetBrandByCategory";
         }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Create = "Create";
             public const string Edit = "Edit";
             public const string Size = "Size";
             public const string UploadImage = "UploadImage";
             public const string GetColourDescByColour = "GetColourDescByColour";
+            public const string GetBrandByCategory = "GetBrandByCategory";
         }
 
 
+        static readonly ActionParamsClass_Create s_params_Create = new ActionParamsClass_Create();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_Create CreateParams { get { return s_params_Create; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_Create
+        {
+            public readonly string viewModel = "viewModel";
+        }
         static readonly ActionParamsClass_Edit s_params_Edit = new ActionParamsClass_Edit();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         public ActionParamsClass_Edit EditParams { get { return s_params_Edit; } }
@@ -139,6 +157,16 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         public class ActionParamsClass_GetColourDescByColour
         {
             public readonly string colourID = "colourID";
+            public readonly string colourDescID = "colourDescID";
+        }
+        static readonly ActionParamsClass_GetBrandByCategory s_params_GetBrandByCategory = new ActionParamsClass_GetBrandByCategory();
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public ActionParamsClass_GetBrandByCategory GetBrandByCategoryParams { get { return s_params_GetBrandByCategory; } }
+        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
+        public class ActionParamsClass_GetBrandByCategory
+        {
+            public readonly string categoryID = "categoryID";
+            public readonly string brandName = "brandName";
         }
         static readonly ViewsClass s_views = new ViewsClass();
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -150,11 +178,13 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             public _ViewNamesClass ViewNames { get { return s_ViewNames; } }
             public class _ViewNamesClass
             {
+                public readonly string Create = "Create";
                 public readonly string Edit = "Edit";
                 public readonly string Index = "Index";
                 public readonly string Size = "Size";
                 public readonly string UploadImage = "UploadImage";
             }
+            public readonly string Create = "~/Areas/Admin/Views/Model/Create.cshtml";
             public readonly string Edit = "~/Areas/Admin/Views/Model/Edit.cshtml";
             public readonly string Index = "~/Areas/Admin/Views/Model/Index.cshtml";
             public readonly string Size = "~/Areas/Admin/Views/Model/Size.cshtml";
@@ -173,6 +203,25 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        public override System.Web.Mvc.ActionResult Create()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            CreateOverride(callInfo);
+            return callInfo;
+        }
+
+        partial void CreateOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, BR.ToteToToe.Web.Areas.Admin.ViewModels.MaintainModelViewModel viewModel);
+
+        public override System.Web.Mvc.ActionResult Create(BR.ToteToToe.Web.Areas.Admin.ViewModels.MaintainModelViewModel viewModel)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Create);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "viewModel", viewModel);
+            CreateOverride(callInfo, viewModel);
             return callInfo;
         }
 
@@ -230,13 +279,25 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             return callInfo;
         }
 
-        partial void GetColourDescByColourOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int colourID);
+        partial void GetColourDescByColourOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int colourID, int colourDescID);
 
-        public override System.Web.Mvc.ActionResult GetColourDescByColour(int colourID)
+        public override System.Web.Mvc.ActionResult GetColourDescByColour(int colourID, int colourDescID)
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetColourDescByColour);
             ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourID", colourID);
-            GetColourDescByColourOverride(callInfo, colourID);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "colourDescID", colourDescID);
+            GetColourDescByColourOverride(callInfo, colourID, colourDescID);
+            return callInfo;
+        }
+
+        partial void GetBrandByCategoryOverride(T4MVC_System_Web_Mvc_ActionResult callInfo, int categoryID, string brandName);
+
+        public override System.Web.Mvc.ActionResult GetBrandByCategory(int categoryID, string brandName)
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.GetBrandByCategory);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "categoryID", categoryID);
+            ModelUnbinderHelpers.AddRouteValues(callInfo.RouteValueDictionary, "brandName", brandName);
+            GetBrandByCategoryOverride(callInfo, categoryID, brandName);
             return callInfo;
         }
 

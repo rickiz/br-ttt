@@ -1186,6 +1186,7 @@
     <Content Include="Areas\Admin\Views\Model\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Model\Size.cshtml" />
     <Content Include="Areas\Admin\Views\Model\UploadImage.cshtml" />
+    <Content Include="Areas\Admin\Views\Model\Create.cshtml" />
     <None Include="Properties\PublishProfiles\Rick Local.pubxml" />
     <None Include="Properties\PublishProfiles\TTT Deploy.pubxml" />
     <Content Include="Images\about\lines.png" />

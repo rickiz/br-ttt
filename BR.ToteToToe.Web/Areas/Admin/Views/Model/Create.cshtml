@@ -2,15 +2,8 @@
 @using BR.ToteToToe.Web.Areas.Admin.ViewModels
 @model MaintainModelViewModel
 @{
-    ViewBag.Title = "Edit Model";
+    ViewBag.Title = "Add Model";
     var checkBoxPerRow = 5;
-}
-
-@section submenu
-{
-    @Html.ActionLink("Update Size", "Size", new { modelID = Model.ModelID, colourDescID = Model.ColourDescID })
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    @Html.ActionLink("Update Image", "UploadImage", new { modelID = Model.ModelID, colourDescID = Model.ColourDescID, categoryID = Model.CategoryID })
 }
 
 @using(Html.BeginForm())
@@ -26,8 +19,11 @@
             <td>
                 <div class="form-group row">
                     @Html.LabelFor(model => model.ModelName, new { @class = "col-sm-4 control-label text-info" })
-                    <div class="col-sm-6">
-                        @Html.Raw(Model.ModelName)
+                    <div class="col-sm-3">
+                        @Html.DropDownListFor(model => model.ModelID, Util.GetList(RefType.Model), new { @class = "form-control" })
+                    </div>
+                    <div class="col-sm-3">
+                        @Html.TextBoxFor(model => model.NewModelName, new { @class = "form-control" })
                     </div>
                 </div>
                 <div class="form-group row">
@@ -150,7 +146,6 @@
                             <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                 <label>
                                     <input type="checkbox" id="@string.Format("chkTrend_{0}",Model.AvailableTrends[i].ID)"
-                                        @(Model.SelectedTrend.Contains(Model.AvailableTrends[i].ID)?"checked":"")
                                         onclick="@string.Format("TrendChanged(this,{0})",Model.AvailableTrends[i].ID)" /> 
                                     @Html.Raw(Model.AvailableTrends[i].Name)
                                 </label>
@@ -175,7 +170,6 @@
                                 <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                     <label>
                                         <input type="checkbox" id="@string.Format("chkTrend_{0}",trends[trendIndex].ID)" 
-                                            @(Model.SelectedTrend.Contains(trends[trendIndex].ID)?"checked":"")
                                             onclick="@string.Format("TrendChanged(this,{0})",trends[trendIndex].ID)" />  
                                         @Html.Raw(trends[trendIndex].Name)
                                     </label>
@@ -203,7 +197,6 @@
                             <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                 <label>
                                     <input type="checkbox" id="@string.Format("chkLifestyle_{0}",Model.AvailableLifestyles[i].ID)"
-                                        @(Model.SelectedLifestyle.Contains(Model.AvailableLifestyles[i].ID)?"checked":"")
                                         onclick="@string.Format("LifestyleChanged(this,{0})",Model.AvailableLifestyles[i].ID)" /> 
                                     @Html.Raw(Model.AvailableLifestyles[i].Name)
                                 </label>
@@ -228,7 +221,6 @@
                                 <div class="col-sm-2 checkbox" style="margin-top: -5px;">
                                     <label>
                                         <input type="checkbox" id="@string.Format("chkLifestyle_{0}",lifestyles[lifestyleIndex].ID)" 
-                                            @(Model.SelectedLifestyle.Contains(lifestyles[lifestyleIndex].ID)?"checked":"")
                                             onclick="@string.Format("LifestyleChanged(this,{0})",lifestyles[lifestyleIndex].ID)" />  
                                         @Html.Raw(lifestyles[lifestyleIndex].Name)
                                     </label>
@@ -249,7 +241,7 @@
             <td colspan="2">
                 <div class="form-group row">
                     <div class="col-sm-offset-2 col-sm-6">
-                        <button type="submit" class="btn btn-primary" id="btnUpdate">Save</button>
+                        <button type="submit" class="btn btn-primary" id="btnCreate">Save</button>
                         <button type="button" class="btn btn-primary cancel" onclick="javascript:history.go(-1);">Cancel</button>
                     </div>
                 </div>  
@@ -260,13 +252,6 @@
 @section scripts
 {
     <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            ColourChange();
-
-            CategoryChange();
-        });
 
         function TrendChanged(chk,id) {
 
@@ -306,8 +291,7 @@
                 $.each(data, function (index, itemData) {
                     select.append($('<option/>', {
                         value: itemData.Value,
-                        text: itemData.Text,
-                        selected: itemData.Selected
+                        text: itemData.Text
                     }));
                 });
             });
@@ -327,8 +311,7 @@
                 $.each(data, function (index, itemData) {
                     select.append($('<option/>', {
                         value: itemData.Value,
-                        text: itemData.Text,
-                        selected: itemData.Selected
+                        text: itemData.Text
                     }));
                 });
             });

@@ -33,6 +33,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.ViewModels
     public class MaintainModelViewModel
     {
         public int ModelColourDescID { get; set; }
+        public string NewModelName { get; set; }
 
 
         [Display(Name = "Active")]

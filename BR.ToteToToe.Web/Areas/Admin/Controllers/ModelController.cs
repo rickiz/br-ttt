@@ -56,6 +56,137 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             return View(viewModel);
         }
 
+        public virtual ActionResult Create()
+        {
+            var maintainViewModel = new MaintainModelViewModel();
+
+            using (var context = new TTTEntities())
+            {
+                maintainViewModel = new MaintainModelViewModel()
+                {
+                    SelectedTrendIDText = "0",
+                    SelectedLifestyleIDText = "0",
+                    AvailableLifestyles = context.reflifestyles.Where(a=>a.Active).ToList(),
+                    AvailableTrends = context.reftrends.Where(a => a.Active).ToList(),
+                };
+            }
+
+            return View(maintainViewModel);
+
+        }
+
+        [HttpPost]
+        public virtual ActionResult Create(MaintainModelViewModel viewModel)
+        {
+            try
+            {
+                var modelColourDesc = new lnkmodelcolourdesc();
+
+                using (var trans = new TransactionScope())
+                {
+                    using (var context = new TTTEntities())
+                    {
+                        var brandID = context.refbrands.Where(a => a.Name == viewModel.BrandName && a.CategoryID == viewModel.CategoryID).Single().ID;
+
+                        // Model details**********************************************************************************
+
+                        var model = new refmodel();
+                        if (!string.IsNullOrEmpty(viewModel.NewModelName))
+                        {
+                            model = new refmodel()
+                            {
+                                BrandID = brandID,
+                                Price = viewModel.Price,
+                                DiscountPrice = viewModel.DiscountPrice,
+                                CreateDT = DateTime.Now,
+                                Active = true,
+                                Gender = "Female",
+                                Name = viewModel.NewModelName,
+                                Description = "-"
+                            };
+
+                            context.refmodels.Add(model);
+                            context.SaveChanges();
+                        }
+                        else
+                        {
+                            model = context.refmodels.Where(a => a.ID == viewModel.ModelID).Single();
+                        }
+
+                        //***************************************************************************************************
+
+                        // Model colour description details******************************************************************
+
+                        modelColourDesc = new lnkmodelcolourdesc()
+                        {
+                            ModelID = model.ID,
+                            ColourDescID = viewModel.ColourDescID,
+                            Active = viewModel.Active,
+                            SKU = viewModel.SKU,
+                            HeelHeight = viewModel.HeelHeight,
+                            Style = viewModel.Style,
+                            Description = viewModel.Description,
+                            LiningSock = viewModel.LiningSock,
+                            Sole = viewModel.Sole,
+                            Make = viewModel.Make,
+                            UpperMaterial = viewModel.UpperMaterial,
+                            HeelDesc = viewModel.HeelDesc,
+                            CreateDT = DateTime.Now
+                        };
+
+                        context.lnkmodelcolourdescs.Add(modelColourDesc);
+                        context.SaveChanges();
+
+                        // ****************************************************************************************************
+
+                        // Model lifestyle************************************************************
+                        var selectedLifestyleIDs = viewModel.SelectedLifestyleIDText.Replace(",,", ",").Split(',').Select(int.Parse).ToList();
+                        var selectedLifeStyles = context.reflifestyles.Where(a => selectedLifestyleIDs.Contains(a.ID)).ToList();
+
+                        foreach (var lifeStyle in selectedLifeStyles)
+                        {
+                            context.lnkmodellifestyles.Add(new lnkmodellifestyle()
+                            {
+                                ColourDescID = viewModel.ColourDescID,
+                                ModelID = model.ID,
+                                Active = true,
+                                CreateDT = DateTime.Now,
+                                LifeStyleID = lifeStyle.ID,
+                            });
+                        }
+                        //********************************************************************************
+
+                        // Model trend********************************************************************************
+                        var selectedTrendIDs = viewModel.SelectedTrendIDText.Replace(",,", ",").Split(',').Select(int.Parse).ToList();
+                        var selectedTrends = context.reftrends.Where(a => selectedTrendIDs.Contains(a.ID)).ToList();
+
+                        foreach (var trend in selectedTrends)
+                        {
+                            context.lnkmodeltrends.Add(new lnkmodeltrend()
+                            {
+                                ColourDescID = viewModel.ColourDescID,
+                                ModelID = model.ID,
+                                Active = true,
+                                CreateDT = DateTime.Now,
+                                TrendID = trend.ID,
+                            });
+                        }
+                        // ************************************************************************************************
+
+                        context.SaveChanges();
+                    }
+
+                    trans.Complete();
+                }
+
+                return RedirectToAction("Edit", new { id = modelColourDesc.ID });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public virtual ActionResult Edit(int id)
         {
             var maintainViewModel = new MaintainModelViewModel();
@@ -92,8 +223,8 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                                             (a, b) => new { a.ModelColourDesc, a.Model, a.ColourDesc, Brand = b })
                                      .Join(context.refcategories, a => a.Brand.CategoryID, b => b.ID,
                                             (a, b) => new { a.ModelColourDesc, a.Model, a.ColourDesc, a.Brand, Category = b })
-                                     .GroupJoin(context.lnkmodeltrends, a => new { a.ModelColourDesc.ModelID, a.ModelColourDesc.ColourDescID }, 
-                                            b => new {b.ModelID,b.ColourDescID },
+                                     .GroupJoin(context.lnkmodeltrends, a => new { a.ModelColourDesc.ModelID, a.ModelColourDesc.ColourDescID },
+                                            b => new { b.ModelID, b.ColourDescID },
                                             (a, b) => new { a.ModelColourDesc, a.Model, a.ColourDesc, a.Brand, a.Category, ModelTrends = b })
                                      .GroupJoin(context.lnkmodellifestyles, a => new { a.ModelColourDesc.ModelID, a.ModelColourDesc.ColourDescID },
                                             b => new { b.ModelID, b.ColourDescID },
@@ -132,10 +263,10 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                     HeelHeight = modelDetails.ModelColourDesc.HeelHeight,
                     SKU = modelDetails.ModelColourDesc.SKU,
                     SelectedTrend = trendIDs,
-                    SelectedTrendIDText = string.Format("0,{0}",string.Join(",", trendIDs)),
+                    SelectedTrendIDText = string.Format("0,{0}", string.Join(",", trendIDs)),
                     SelectedLifestyle = lifestyleIDs,
                     SelectedLifestyleIDText = string.Format("0,{0}", string.Join(",", lifestyleIDs)),
-                    AvailableLifestyles = context.reflifestyles.Where(a=>a.Active).ToList(),
+                    AvailableLifestyles = context.reflifestyles.Where(a => a.Active).ToList(),
                     AvailableTrends = context.reftrends.Where(a => a.Active).ToList(),
                     Active = modelDetails.Model.Active
                 };
@@ -346,7 +477,7 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             return View(modelImageViewModel);
         }
 
-        public virtual ActionResult GetColourDescByColour(int colourID)
+        public virtual ActionResult GetColourDescByColour(int colourID, int colourDescID)
         {
             var selectListItem = new List<SelectListItem>();
 
@@ -358,10 +489,33 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
                 new SelectListItem()
                 {
                     Text = a.Name,
-                    Value = a.ID.ToString()
+                    Value = a.ID.ToString(),
+                    Selected = colourDescID == a.ID ? true : false
                 }).ToList();
 
-                selectListItem.Insert(0, new SelectListItem() { Value = "", Text = "ACTUAL COLOUR", Selected = true });
+                selectListItem.Insert(0, new SelectListItem() { Value = "", Text = "ACTUAL COLOUR" });
+            }
+
+            return Json(selectListItem);
+        }
+
+        public virtual ActionResult GetBrandByCategory(int categoryID, string brandName)
+        {
+            var selectListItem = new List<SelectListItem>();
+
+            using (var context = new TTTEntities())
+            {
+                var brandNames = context.refbrands.Where(a => a.CategoryID == categoryID).Select(a => a.Name).Distinct().ToList();
+
+                selectListItem = brandNames.Select(a =>
+                new SelectListItem()
+                {
+                    Text = a,
+                    Value = a,
+                    Selected = brandName == a ? true : false
+                }).ToList();
+
+                selectListItem.Insert(0, new SelectListItem() { Value = "", Text = "BRAND" });
             }
 
             return Json(selectListItem);
