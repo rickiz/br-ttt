@@ -69,12 +69,10 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             if (!validImageExtensions.Contains(extension))
                 throw new ApplicationException("Invalid Image extension.");
 
-            var savePath = "";
+            var savePath = string.Format("~/Images/{0}/", viewModel.Name);
+            savePath = Server.MapPath(savePath);
 
-            if (Settings.Default.CategoryImagePath.StartsWith("~"))
-                savePath = Server.MapPath(Settings.Default.CategoryImagePath);
-            else
-                savePath = Settings.Default.CategoryImagePath;
+            Directory.CreateDirectory(savePath);
 
             savePath = Path.Combine(savePath, fileName);
 
@@ -155,8 +153,9 @@ namespace BR.ToteToToe.Web.Areas.Admin.Controllers
             using (var context = new TTTEntities())
             {
                 var record = context.refcategories.Single(a => a.ID == id);
-                var imageUrl = 
-                    string.IsNullOrEmpty(record.Image) ? "" : Path.Combine(Settings.Default.CategoryImagePath, record.Image);
+                var imagePath = string.Format("~/Images/{0}/", record.Name);
+                var imageUrl =
+                    string.IsNullOrEmpty(record.Image) ? "" : Path.Combine(imagePath, record.Image);
 
                 var viewModel = new CategoryModel
                 {
